@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1086139590606",
+    "project_id": "memedex-grupo8",
+    "storage_bucket": "memedex-grupo8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086139590606:android:b7417f044711b3eb6d2d9f",
+        "android_client_info": {
+          "package_name": "com.example.memedex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086139590606-3m21prm1q55pftbds7i2f3ueb34898if.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY6BmY7dajp9p2nvl7dTVprtvDOQjUoFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086139590606-3m21prm1q55pftbds7i2f3ueb34898if.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

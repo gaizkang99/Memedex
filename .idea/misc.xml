@@ -7,7 +7,9 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
         <entry key="app/src/main/res/layout/Página_Inicial.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/login.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/paginaprincipal.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/signin.xml" value="0.33" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.145" />
       </map>
     </option>
@@ -17,5 +19,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>

@@ -6,27 +6,38 @@
     android:layout_height="match_parent"
     android:background="#33E9FF">
 
+
     <Button
         android:id="@+id/signIn"
         android:layout_width="150dp"
         android:layout_height="68dp"
         android:layout_gravity="center"
         android:layout_marginStart="128dp"
+        android:layout_marginEnd="133dp"
         android:layout_marginBottom="212dp"
         android:text="Sign in"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/termsConditions"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <CheckBox
         android:id="@+id/termsConditions"
         android:layout_width="340dp"
         android:layout_height="100dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="280dp"
         android:text="Acepto terminos y condiciones de Memedex"
-        app:layout_constraintBottom_toTopOf="@+id/signIn"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwdSignin" />
 
     <EditText
         android:id="@+id/mailSignin"
@@ -34,9 +45,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="124dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="35dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:text="Mail"
+        app:layout_constraintBottom_toTopOf="@+id/niknameSignin"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,33 +60,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="26dp"
         android:ems="10"
         android:inputType="textWebPassword"
+        app:layout_constraintBottom_toTopOf="@+id/termsConditions"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/niknameSignin" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/niknameSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="204dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="18dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/passwdSignin"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mailSignin" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="292dp"
+        android:layout_marginBottom="53dp"
         android:text="Password:"
+        app:layout_constraintBottom_toTopOf="@+id/termsConditions"
         app:layout_constraintEnd_toStartOf="@+id/passwdSignin"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="290dp"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

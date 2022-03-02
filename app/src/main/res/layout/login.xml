@@ -12,10 +12,14 @@
         android:layout_height="68dp"
         android:layout_gravity="center"
         android:layout_marginStart="128dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="133dp"
         android:layout_marginBottom="248dp"
         android:text="Log in"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwd"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -24,9 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="52dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="23dp"
         android:ems="10"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/logIn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username"
         tools:ignore="MissingConstraints" />
@@ -37,10 +45,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="244dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="52dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Username"
+        app:layout_constraintBottom_toTopOf="@+id/passwd"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />

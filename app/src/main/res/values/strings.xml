@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Memedex</string>
+    <string name="atras">Atrás</string>
+    <string name="Atras">Atras</string>
 </resources>

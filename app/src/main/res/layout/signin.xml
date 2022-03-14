@@ -93,7 +93,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textpasswd"
-                        android:padding="10dp" />
+                        android:padding="10dp"
+                        android:inputType="textPassword"/>
 
                     <RelativeLayout
                         android:id="@+id/switchVibracion"

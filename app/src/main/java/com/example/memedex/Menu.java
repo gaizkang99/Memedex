@@ -14,11 +14,20 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.menu_opciones);
 
         Button ajustes = (Button) findViewById(R.id.ajustes);
+        Button profile = (Button) findViewById(R.id.profile);
 
         ajustes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentSign = new Intent(Menu.this, Ajustes.class);
+                startActivity(intentSign);
+            }
+        });
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSign = new Intent(Menu.this, Profile.class);
                 startActivity(intentSign);
             }
         });

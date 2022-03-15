@@ -17,30 +17,25 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="#33E9FF"
-            >
-
+            android:background="#33E9FF">
             <FrameLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
-
                 <Button
                     android:id="@+id/back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Atras"></Button>
-
+                    android:text="Atras" />
                 <Button
                     android:id="@+id/friends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="Amigos" />
-
             </FrameLayout>
-
         </RelativeLayout>
+
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

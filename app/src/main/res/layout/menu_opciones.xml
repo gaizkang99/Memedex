@@ -31,10 +31,11 @@
                         android:text="Nivel"></Button>
 
                     <Button
+                        android:id="@+id/ajustes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="Ajustes"></Button>
+                        android:text="Ajustes" />
 
                 </FrameLayout>
 

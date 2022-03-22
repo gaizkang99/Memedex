@@ -29,7 +29,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentSign = new Intent(Login.this, Menu.class);
-                buscaUsuario();
                 startActivity(intentSign);
             }
         });
@@ -41,17 +40,5 @@ public class Login extends AppCompatActivity {
                 startActivity(intentLogin);
             }
         });
-    }
-
-    private Usuario buscaUsuario(){
-        Usuario u;
-        try {
-            conexion.conectar();
-
-            conexion.desconectar();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return u;
     }
 }

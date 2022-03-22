@@ -10,5 +10,5 @@ public class Constantes {
     public static final String Password = "DAM1T_M03";
 
     //Querys para la base de datos
-
+    public static String REGISTRAR = "insert into Usuario values(?, ?, ?, ?, ?, ?)";
 }

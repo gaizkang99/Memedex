@@ -7,7 +7,6 @@ public class Usuario {
     private int id;
     private String username;
     private String password;
-    private int edad;
     private String mail;
     private String imagen;
     private int coins;
@@ -16,11 +15,10 @@ public class Usuario {
 
     public Usuario(){}
 
-    public Usuario(int id, String username, String password, int edad, String mail, String imagen, int coins, int lvl){
+    public Usuario(String username, String password, String mail, int coins, int lvl){
         this.id = id;
         this.username = username;
         this.password = password;
-        this.edad = edad;
         this.mail = mail;
         this.imagen = imagen;
         this.coins = coins;
@@ -50,14 +48,6 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     public String getMail() {
@@ -106,7 +96,6 @@ public class Usuario {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", edad=" + edad +
                 ", mail='" + mail + '\'' +
                 ", imagen='" + imagen + '\'' +
                 ", coins=" + coins +

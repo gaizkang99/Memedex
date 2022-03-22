@@ -23,17 +23,22 @@ public class JdbcConection {
         }
     }
 
-    public Usuario inicioSesion(String user, String pass) throws SQLException{
+    public Usuario registro(String user, String pass, String mail, int coins, int lvl) throws SQLException{
         Usuario u = null;
-        try (PreparedStatement ps = conexion.prepareStatement(Constantes.Inicio_Sesion)) {
+        try (PreparedStatement ps = conexion.prepareStatement(Constantes.REGISTRAR)) {
             ps.setString(1,user);
             ps.setString(2, pass);
+            ps.setString(3,mail);
+            ps.setInt(4, coins);
+            ps.setInt(5, lvl);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     u = new Usuario();
-                    u.setId(rs.getInt("id"));
                     u.setUsername(rs.getString("username"));
                     u.setPassword(rs.getString("password"));
+                    u.setMail(rs.getString("mail"));
+                    u.setCoins(rs.getInt("coins"));
+                    u.setLvl(rs.getInt("lvl"));
                 }
             }
         }

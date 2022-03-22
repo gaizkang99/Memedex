@@ -15,11 +15,20 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.profile);
 
         Button back = (Button) findViewById(R.id.back);
+        Button friends = (Button) findViewById(R.id.friends);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentSign = new Intent(Profile.this, Menu.class);
+                startActivity(intentSign);
+            }
+        });
+
+        friends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSign = new Intent(Profile.this, Friends.class);
                 startActivity(intentSign);
             }
         });

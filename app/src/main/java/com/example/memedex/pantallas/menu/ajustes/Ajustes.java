@@ -1,4 +1,4 @@
-package com.example.memedex;
+package com.example.memedex.pantallas.menu.ajustes;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.memedex.R;
+import com.example.memedex.pantallas.menu.Menu;
+import com.example.memedex.pantallas.registro.MainActivity;
 
 public class Ajustes extends AppCompatActivity {
 

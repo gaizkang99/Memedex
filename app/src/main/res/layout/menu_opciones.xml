@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".pantallas.registro.MainActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -74,18 +74,9 @@
                         android:padding="30dp">
 
                         <Button
-                            android:id="@+id/buttonCapturar"
-                            android:layout_width="fill_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginRight="40dp"
-                            android:text="Capturar"></Button>
-
-                        <Button
                             android:id="@+id/buttonMemedex"
                             android:layout_width="fill_parent"
                             android:layout_height="60dp"
-                            android:layout_below="@id/buttonCapturar"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
                             android:text="memedex"></Button>
@@ -97,13 +88,23 @@
                             android:layout_below="@id/buttonMemedex"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
-                            android:text="Coleccion"></Button>
+                            android:text="Colección"></Button>
+
+                        <Button
+                            android:id="@+id/buttonCapturar"
+                            android:layout_width="fill_parent"
+                            android:layout_height="60dp"
+                            android:layout_below="@id/buttonColeccion"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:text="Capturar"></Button>
+
 
                         <Button
                             android:id="@+id/buttonIntercambiar"
                             android:layout_width="fill_parent"
                             android:layout_height="60dp"
-                            android:layout_below="@id/buttonColeccion"
+                            android:layout_below="@id/buttonCapturar"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
                             android:text="Intercambiar"></Button>

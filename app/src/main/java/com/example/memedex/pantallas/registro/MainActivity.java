@@ -1,12 +1,13 @@
-package com.example.memedex;
+package com.example.memedex.pantallas.registro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.memedex.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentLogin);
             }
         });
+
 
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".pantallas.registro.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Atras"></Button>
+                    android:text="Atrás"></Button>
 
                 <Button
                     android:id="@+id/friends"
@@ -72,24 +72,24 @@
                     android:layout_height="fill_parent"
                     android:layout_below="@id/hijo21"
                     android:padding="30dp">
+
                     <TextView
                         android:id="@+id/nikname"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="NIKNAME"/>
-
+                        android:text="Nombre" />
 
 
                     <TextView
                         android:id="@+id/level"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_below="@id/nikname"
+                        android:gravity="center"
                         android:padding="10dp"
-                        android:text="LEVEL">
+                        android:text="Nivel">
 
                     </TextView>
                     <View
@@ -103,10 +103,10 @@
                         android:id="@+id/logros"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_below="@id/divider"
+                        android:gravity="center"
                         android:padding="20dp"
-                        android:text="LOGROS" />
+                        android:text="Logros" />
 
                     <!--
                     El ImageView de abajo debe ser un array de imagenes.(logros)

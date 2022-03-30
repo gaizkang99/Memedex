@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pantallas.registro.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:id="@+id/padre">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/hijo2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/hijo1"
+                    android:layout_width="fill_parent"
+                    android:gravity="center"
+                    android:layout_marginTop="@android:dimen/app_icon_size"
+                    android:layout_marginBottom="@android:dimen/app_icon_size"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NOMBRE MEME"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/hijo21"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/hijo1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/hijo22"
+                    android:layout_width="fill_parent"
+                    android:gravity="center"
+                    android:layout_below="@+id/hijo21"
+                    android:layout_marginTop="@android:dimen/app_icon_size"
+                    android:layout_marginBottom="@android:dimen/app_icon_size"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TIPO MEME"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/hijo23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hijo22"
+                    android:padding="30dp">
+
+                    <Button
+                        android:id="@+id/bottonVolverCaptura"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:text="volver a capturar"></Button>
+
+                    <Button
+                        android:id="@+id/bottonMenuPrincipal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dp"
+                        android:layout_below="@id/bottonVolverCaptura"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:text="Colección"></Button>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

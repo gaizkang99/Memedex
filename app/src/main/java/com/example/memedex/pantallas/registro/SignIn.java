@@ -1,4 +1,4 @@
-package com.example.memedex;
+package com.example.memedex.pantallas.registro;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,19 +7,23 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Login extends AppCompatActivity {
+import com.example.memedex.pantallas.menu.Menu;
+import com.example.memedex.R;
+
+public class SignIn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.signin);
 
-        Button login = (Button) findViewById(R.id.logIn);
+
+        Button signIn = (Button) findViewById(R.id.signIn);
         Button back = (Button) findViewById(R.id.back);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSign = new Intent(Login.this, Menu.class);
+                Intent intentSign = new Intent(SignIn.this, Menu.class);
                 startActivity(intentSign);
             }
         });
@@ -27,10 +31,11 @@ public class Login extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentLogin = new Intent(Login.this, MainActivity.class);
+                Intent intentLogin = new Intent(SignIn.this, MainActivity.class);
                 startActivity(intentLogin);
             }
         });
+
 
 
     }

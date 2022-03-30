@@ -28,8 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Atrás"
-                    tools:ignore="RtlHardcoded" />
+                    android:text="Atrás" />
 
             </FrameLayout>
 
@@ -51,73 +50,26 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/textemail"
+                        android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:padding="10dp"
-                        android:text="Mail" />
-
-                    <EditText
-                        android:id="@+id/email"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textemail"
-                        android:minHeight="48dp"
-                        android:padding="10dp" />
-
-                    <TextView
-                        android:id="@+id/textusername"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/email"
-                        android:padding="10dp"
-                        android:text="Username" />
-
-                    <EditText
-                        android:id="@+id/username"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textusername"
-                        android:padding="10dp" />
-
-
-                    <TextView
-                        android:id="@+id/textpasswd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/username"
-                        android:padding="10dp"
-                        android:text="Password" />
-
-                    <EditText
-                        android:id="@+id/passwd"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textpasswd"
-                        android:inputType="textPassword"
-                        android:padding="10dp" />
+                        android:text="Lista de amigos" />
 
                     <RelativeLayout
-                        android:id="@+id/switchVibracion"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/passwd"
+                        android:layout_below="@id/title"
                         android:gravity="center_horizontal|bottom"
                         android:padding="10dp">
 
-                        <Switch
+                        <Button
+                            android:id="@+id/addFriend"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Accept Terms and Conditions"
-                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+                            android:text="Añadir un amigo" />
                     </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/switchVibracion"
-                        android:gravity="center_horizontal|bottom"
-                        android:padding="10dp" />
 
                 </RelativeLayout>
 
@@ -129,13 +81,13 @@
                     android:gravity="center"
                     android:padding="30dp">
 
-
-                    <Button
-                        android:id="@+id/signIn"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/friend1"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="SIGN IN" />
-
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="AMIDO 1" />
 
                 </RelativeLayout>
 

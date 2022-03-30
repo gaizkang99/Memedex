@@ -21,7 +21,8 @@ public class SignIn extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                crearUsuario();
+                Intent intentSign = new Intent(SignIn.this, Menu.class);
+                startActivity(intentSign);
             }
         });
 

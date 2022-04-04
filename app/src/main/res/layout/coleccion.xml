@@ -27,12 +27,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="Atras" />
-                <Button
-                    android:id="@+id/friends"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="Amigos" />
             </FrameLayout>
         </RelativeLayout>
 
@@ -53,12 +47,12 @@
                     android:layout_height="200dp"
                     android:gravity="center">
 
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:src="@drawable/example" />
-
+                    <TextView
+                        android:id="@+id/memedex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COLECCIÓN"
+                        android:textSize="48sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -68,51 +62,35 @@
                     android:layout_below="@id/hijo21"
                     android:padding="30dp">
 
-                    <TextView
-                        android:id="@+id/nikname"
+                    <EditText
+                        android:id="@+id/finder"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hijo22"
+                        android:padding="10dp"
+                        android:text="Buscar"
+                        tools:ignore="NotSibling">
+                    </EditText>
+
+                    <Button
+                        android:id="@+id/filter"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:text="NIKNAME" />
+                        android:layout_toRightOf="@id/finder"
+                        android:gravity="right" />
 
-
-
-                    <TextView
-                        android:id="@+id/level"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_below="@id/nikname"
-                        android:padding="10dp"
-                        android:text="LEVEL">
-
-                    </TextView>
                     <View
                         android:id="@+id/divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@+id/level"
+                        android:layout_below="@+id/filter"
                         android:background="?android:attr/listDivider" />
 
-                    <TextView
-                        android:id="@+id/logros"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_below="@id/divider"
-                        android:padding="20dp"
-                        android:text="LOGROS" />
-
-                    <!--
-                    El ImageView de abajo debe ser un array de imagenes.(logros)
-                    Lo pongo para que se entienda pero no tengo niidea de como hacerlo
-                    -->
                     <ImageView
-                        android:id="@+id/logro1"
+                        android:id="@+id/meme"
                         android:layout_width="250px"
                         android:layout_height="250px"
-                        android:layout_below="@+id/logros"
+                        android:layout_below="@+id/divider"
                         android:src="@drawable/example" />
 
             </RelativeLayout>

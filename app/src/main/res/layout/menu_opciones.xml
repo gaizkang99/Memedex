@@ -29,7 +29,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="Nikname / level"></Button>
+                        android:text="Nikname / level" />
 
                     <Button
                         android:id="@+id/ajustes"
@@ -62,7 +62,7 @@
                             android:id="@+id/imageView1"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                            tools:srcCompat="@tools:sample/avatars" />
+                            android:src="@drawable/example" />
 
                     </RelativeLayout>
 
@@ -79,7 +79,7 @@
                             android:layout_height="60dp"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
-                            android:text="Capturar"></Button>
+                            android:text="Capturar" />
 
                         <Button
                             android:id="@+id/buttonMemedex"
@@ -88,7 +88,7 @@
                             android:layout_below="@id/buttonCapturar"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
-                            android:text="memedex"></Button>
+                            android:text="memedex" />
 
                         <Button
                             android:id="@+id/buttonColeccion"
@@ -97,7 +97,7 @@
                             android:layout_below="@id/buttonMemedex"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
-                            android:text="Coleccion"></Button>
+                            android:text="Coleccion" />
 
                         <Button
                             android:id="@+id/buttonIntercambiar"

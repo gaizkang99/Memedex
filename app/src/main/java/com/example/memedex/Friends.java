@@ -20,7 +20,7 @@ public class Friends extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSign = new Intent(Friends.this, Profile.class);
+                Intent intentSign = new Intent(Friends.this, Menu.class);
                 startActivity(intentSign);
             }
         });

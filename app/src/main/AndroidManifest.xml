@@ -46,10 +46,10 @@
             android:name=".Friends"
             android:exported="true" />
         <activity
-            android:name=".Memedex"
+            android:name=".pantallas.menu.memedex.Memedex"
             android:exported="true" />
         <activity
-            android:name=".Coleccion"
+            android:name=".pantallas.menu.coleccion.Coleccion"
             android:exported="true" />
     </application>
 

@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.memedex.Friends;
 import com.example.memedex.R;
 import com.example.memedex.pantallas.menu.Menu;
 

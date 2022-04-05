@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "1086139590606",
-    "project_id": "memedex-grupo8",
-    "storage_bucket": "memedex-grupo8.appspot.com"
+    "project_number": "807769169869",
+    "project_id": "memedex-aa951",
+    "storage_bucket": "memedex-aa951.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1086139590606:android:b7417f044711b3eb6d2d9f",
+        "mobilesdk_app_id": "1:807769169869:android:cbe8e9b8c4c82841c12e84",
         "android_client_info": {
           "package_name": "com.example.memedex"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1086139590606-3m21prm1q55pftbds7i2f3ueb34898if.apps.googleusercontent.com",
+          "client_id": "807769169869-7o2vfq3qbkvpvs693n90lq8rrst1msav.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.memedex",
+            "certificate_hash": "4e54d90b87e35060d72f24f152e86948b5567a5d"
+          }
+        },
+        {
+          "client_id": "807769169869-tkd808cs827s63m8s0u7krc63n54mqof.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDY6BmY7dajp9p2nvl7dTVprtvDOQjUoFk"
+          "current_key": "AIzaSyCqX6FOpuMY3d3SONFoplSPVmtWWspM3e0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1086139590606-3m21prm1q55pftbds7i2f3ueb34898if.apps.googleusercontent.com",
+              "client_id": "807769169869-tkd808cs827s63m8s0u7krc63n54mqof.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

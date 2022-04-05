@@ -39,14 +39,6 @@ public class SignIn extends AppCompatActivity {
     }
 
     public void crearUsuario(){
-        EditText email = findViewById(R.id.email);
-        EditText name = findViewById(R.id.username);
-        EditText pass = findViewById(R.id.passwd);
-        String nombre = String.valueOf(name.getText());
-        String password = String.valueOf(pass.getText());
-        String mail = String.valueOf(email.getText());
-        if(nombre!=null && password!=null && mail!=null){
 
-        }
     }
 }

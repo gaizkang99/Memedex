@@ -75,17 +75,17 @@
                         android:id="@+id/sonidoSeekbar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:layout_below="@id/sonido"></SeekBar>
+                        android:layout_below="@id/sonido"
+                        android:padding="10dp"></SeekBar>
 
 
                     <RelativeLayout
                         android:id="@+id/switchVibracion"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/sonidoSeekbar"
                         android:gravity="center_horizontal|bottom"
-                        android:padding="10dp"
-                        android:layout_below="@id/sonidoSeekbar">
+                        android:padding="10dp">
 
                         <Switch
                             android:layout_width="wrap_content"
@@ -96,9 +96,9 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/switchVibracion"
                         android:gravity="center_horizontal|bottom"
-                        android:padding="10dp"
-                        android:layout_below="@id/switchVibracion">
+                        android:padding="10dp">
 
                         <Button
                             android:id="@+id/cerrarSesion"
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Creación de memes"/>
+                        android:text="Creación de memes" />
 
                     <TextView
                         android:id="@+id/texto"
@@ -139,8 +139,8 @@
                         android:id="@+id/correo"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_below="@id/texto"
+                        android:gravity="center"
                         android:padding="10dp"
                         android:text="correo@gmail.com">
 

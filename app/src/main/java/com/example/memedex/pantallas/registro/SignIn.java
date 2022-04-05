@@ -17,6 +17,8 @@ import com.example.memedex.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class SignIn extends AppCompatActivity {
 
     private EditText email, username, password;
@@ -46,16 +48,16 @@ public class SignIn extends AppCompatActivity {
                     startActivity(intentSign);
                 }
                 if(!activo){
-                    Toast.makeText(getApplicationContext(), "Acepta los terminos y condiciones", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Acepta los terminos y condiciones", Toast.LENGTH_SHORT).show();
                 }
                 if(!checkMail()){
-                    Toast.makeText(getApplicationContext(), "El correo introducido es incorrecto", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "El correo introducido es incorrecto", Toast.LENGTH_SHORT).show();
                 }
                 if(!checkUser()){
-                    Toast.makeText(getApplicationContext(), "El usuario introducido ya existe", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "El usuario introducido ya existe", Toast.LENGTH_SHORT).show();
                 }
                 if(!checkPassword()){
-                    Toast.makeText(getApplicationContext(), "La contraseña introducida es incorrecta", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "La contraseña introducida es incorrecta", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -79,11 +81,10 @@ public class SignIn extends AppCompatActivity {
 
     public boolean checkMail(){
         String correo = email.getText().toString();
-        int longitud = correo.length();
         int arroba = 0;
         int punto = 0;
         boolean acertado = false;
-        for(int i=0; i<longitud; i++){
+        for(int i=0; i<correo.length(); i++){
             if(correo.charAt(i) == '@'){
                 arroba++;
             }
@@ -98,12 +99,15 @@ public class SignIn extends AppCompatActivity {
     }
 
     public boolean checkUser(){
-        boolean acertado = false;
+        boolean acertado = true;
         return acertado;
     }
 
     public boolean checkPassword(){
         boolean acertado = false;
+        if(password.length()>6){
+            acertado = true;
+        }
         return acertado;
     }
 }

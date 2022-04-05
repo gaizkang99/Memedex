@@ -1,5 +1,7 @@
 package com.example.memedex.modelo;
 
+import java.util.ArrayList;
+
 public class Usuario {
 
     private String userName;
@@ -7,12 +9,13 @@ public class Usuario {
     private String email;
     private int coins;
     private int level;
+    //Falta lista de amigos, lista de memes, lista de logros y avatar
 
     public Usuario(String userName, String password, String email){
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.coins = 0;
+        this.coins = 240;
         this.level = 1;
     }
 

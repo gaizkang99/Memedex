@@ -63,7 +63,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textemail"
                         android:minHeight="48dp"
-                        android:padding="10dp" />
+                        android:padding="10dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                     <TextView
                         android:id="@+id/textusername"
@@ -78,7 +79,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textusername"
-                        android:padding="10dp" />
+                        android:padding="10dp"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
                     <TextView
@@ -90,26 +92,28 @@
                         android:text="Password" />
 
                     <EditText
-                        android:id="@+id/passwd"
+                        android:id="@+id/password"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textpasswd"
                         android:inputType="textPassword"
-                        android:padding="10dp" />
+                        android:padding="10dp"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                     <RelativeLayout
                         android:id="@+id/switchVibracion"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/passwd"
+                        android:layout_below="@id/password"
                         android:gravity="center_horizontal|bottom"
                         android:padding="10dp">
 
                         <Switch
+                            android:id="@+id/terminos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Accept Terms and Conditions"
-                            tools:ignore="UseSwitchCompatOrMaterialXml" />
+                            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
                     </RelativeLayout>
 
                     <RelativeLayout

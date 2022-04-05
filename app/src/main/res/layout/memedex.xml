@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:id="@+id/padre">
+
+        <RelativeLayout
+            android:id="@+id/hijo1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#33E9FF">
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Atras" />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hijo1">
+
+            <RelativeLayout
+                android:id="@+id/hijo2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/hijo1">
+
+                <RelativeLayout
+                    android:id="@+id/hijo21"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/memedex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MEMEDEX"
+                        android:textSize="48sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/hijo22"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@id/hijo21"
+                    android:padding="30dp">
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Avistados = 69 / Total 420" />
+
+                    <EditText
+                        android:id="@+id/finder"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:padding="10dp"
+                        android:text="Buscar">
+                    </EditText>
+
+                    <Button
+                        android:id="@+id/filter"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text"
+                        android:layout_toRightOf="@id/finder"
+                        android:gravity="right"></Button>
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/filter"
+                        android:background="?android:attr/listDivider" />
+
+                    <ImageView
+                        android:id="@+id/meme"
+                        android:layout_width="250px"
+                        android:layout_height="250px"
+                        android:layout_below="@+id/divider"
+                        android:src="@drawable/example" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

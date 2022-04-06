@@ -10,6 +10,7 @@ import com.example.memedex.R;
 import com.example.memedex.pantallas.menu.Menu;
 
 public class Memedex extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

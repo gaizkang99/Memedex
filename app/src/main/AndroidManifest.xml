@@ -47,9 +47,13 @@
             android:exported="true" />
         <activity
             android:name=".pantallas.menu.memedex.Memedex"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"
             android:exported="true" />
         <activity
             android:name=".pantallas.menu.coleccion.Coleccion"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"
             android:exported="true" />
     </application>
 

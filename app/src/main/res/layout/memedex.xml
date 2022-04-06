@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="pantallas.registro.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -76,8 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text"
                         android:padding="10dp"
-                        android:text="Buscar">
-                    </EditText>
+                        android:text="Buscar" />
 
                     <Button
                         android:id="@+id/filter"
@@ -85,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text"
                         android:layout_toRightOf="@id/finder"
-                        android:gravity="right"></Button>
+                        android:gravity="right" />
 
                     <View
                         android:id="@+id/divider"

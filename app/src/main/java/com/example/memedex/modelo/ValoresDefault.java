@@ -1,4 +1,4 @@
-package com.example.memedex;
+package com.example.memedex.modelo;
 
 import com.example.memedex.modelo.Logro;
 import com.example.memedex.modelo.Meme;

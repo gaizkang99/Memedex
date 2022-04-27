@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ValoresDefault {
 
-    //Esta clase sirve para no ir cargando todo el rato valores de la base de datos
+    //Esta clase sirve para no ir cargando all el rato valores de la base de datos
 
     /* Listado de memes existentes
      * Listado de logros existentes

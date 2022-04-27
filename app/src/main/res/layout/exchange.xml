@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/padre"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="ExtraText">
+
+        <RelativeLayout
+            android:id="@+id/hijo1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#33E9FF">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Atrás" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hijo1">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hijo1">
+
+                <RelativeLayout
+                    android:id="@+id/hijo2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/hijo21"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:padding="10dp"
+                            android:text="Lista de amigos" />
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/title"
+                            android:gravity="center_horizontal|bottom"
+                            android:padding="10dp">
+
+                            <Button
+                                android:id="@+id/addFriend"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Añadir un amigo" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/hijo22"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hijo21"
+                        android:gravity="center"
+                        android:padding="30dp">
+
+                        <ImageView
+                            android:id="@+id/friendI1"
+                            android:layout_width="250px"
+                            android:layout_height="250px"
+                            android:gravity="center"
+                            android:src="@drawable/example" />
+
+                        <TextView
+                            android:id="@+id/friend1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/friendI1"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="AMIDO 1" />
+
+                        <Button
+                            android:id="@+id/friend1Intercambiar"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/friend1"
+                            android:layout_toRightOf="@id/friendI1"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="INTERCAMBIAR" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/hijo23"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hijo22"
+                        android:gravity="center"
+                        android:padding="30dp">
+
+                        <ImageView
+                            android:id="@+id/friendI2"
+                            android:layout_width="250px"
+                            android:layout_height="250px"
+                            android:gravity="center"
+                            android:src="@drawable/example" />
+
+                        <TextView
+                            android:id="@+id/friend2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/friendI2"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="AMIDO 1" />
+
+                        <Button
+                            android:id="@+id/friend2Intercambiar"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/friend2"
+                            android:layout_toRightOf="@id/friendI2"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="INTERCAMBIAR" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/hijo24"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hijo23"
+                        android:gravity="center"
+                        android:padding="30dp">
+
+                        <ImageView
+                            android:id="@+id/friendI3"
+                            android:layout_width="250px"
+                            android:layout_height="250px"
+                            android:gravity="center"
+                            android:src="@drawable/example" />
+
+                        <TextView
+                            android:id="@+id/friend3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/friendI3"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="AMIDO 1" />
+
+                        <Button
+                            android:id="@+id/friend3Intercambiar"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/friend3"
+                            android:layout_toRightOf="@id/friendI3"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="INTERCAMBIAR" />
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

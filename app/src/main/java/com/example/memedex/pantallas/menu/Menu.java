@@ -7,7 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.memedex.Friends;
+import com.example.memedex.pantallas.menu.perfil.Exchange;
+import com.example.memedex.pantallas.menu.perfil.Friends;
 import com.example.memedex.pantallas.menu.ajustes.Ajustes;
 import com.example.memedex.pantallas.menu.capturar.Capturar;
 import com.example.memedex.pantallas.menu.coleccion.Coleccion;
@@ -70,7 +71,7 @@ public class Menu extends AppCompatActivity {
         exchange.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent i = new Intent(Menu.this, Friends.class);
+                Intent i = new Intent(Menu.this, Exchange.class);
                 startActivity(i);
             }
         });

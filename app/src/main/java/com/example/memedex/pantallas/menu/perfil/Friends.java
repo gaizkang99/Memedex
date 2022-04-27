@@ -1,4 +1,4 @@
-package com.example.memedex;
+package com.example.memedex.pantallas.menu.perfil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.memedex.R;
 import com.example.memedex.pantallas.menu.Menu;
 
 public class Friends extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class Friends extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSign = new Intent(Friends.this, Menu.class);
+                Intent intentSign = new Intent(Friends.this, Profile.class);
                 startActivity(intentSign);
             }
         });

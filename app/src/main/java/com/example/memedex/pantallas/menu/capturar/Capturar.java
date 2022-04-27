@@ -12,10 +12,21 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
+import com.example.memedex.modelo.Meme;
 import com.example.memedex.pantallas.menu.ajustes.Ajustes;
 import com.example.memedex.pantallas.registro.MainActivity;
 import com.example.memedex.pantallas.registro.SignIn;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Capturar  extends AppCompatActivity {
@@ -24,10 +35,39 @@ public class Capturar  extends AppCompatActivity {
     private final Integer[] imgID=
             {R.drawable.dam, R.drawable.hectortostring,R.drawable.sistemasxd};
 
+
+    private ArrayList<Meme> memes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.capturar);
+        memes = new ArrayList<Meme>();
+
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+
+        Query query = myRef.child("Meme");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot meme : dataSnapshot.getChildren()) {
+                        memes.add(meme.getValue(Meme.class));
+                        // Get Post object and use the values to update the UI
+                        //memes.add(meme.getValue(Meme.class));
+                    }
+                }
+                for(Meme m: memes){
+                    Log.i("Memes",m.toString());
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         imgConfigure();
     }

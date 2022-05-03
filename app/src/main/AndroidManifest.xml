@@ -43,7 +43,10 @@
             android:name=".pantallas.menu.capturar.memeAtrapado"
             android:exported="true" />
         <activity
-            android:name=".Friends"
+            android:name=".pantallas.menu.perfil.Friends"
+            android:exported="true" />
+        <activity
+            android:name=".pantallas.menu.perfil.Exchange"
             android:exported="true" />
         <activity
             android:name=".pantallas.menu.memedex.Memedex"

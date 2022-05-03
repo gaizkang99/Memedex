@@ -27,10 +27,17 @@
                     android:layout_marginTop="@android:dimen/app_icon_size"
                     android:layout_marginBottom="@android:dimen/app_icon_size"
                     android:layout_height="wrap_content">
+
                     <TextView
+                        android:id="@+id/nombreMemeCapturado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NOMBRE MEME"/>
+                        android:gravity="center"
+                        android:textSize="35dp"
+                        android:text="NOMBRE MEME"
+                        android:textStyle="bold"
+
+                        />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -44,6 +51,7 @@
                         android:id="@+id/imageView1"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
+
                         tools:srcCompat="@tools:sample/avatars" />
 
                 </RelativeLayout>
@@ -51,15 +59,15 @@
                 <RelativeLayout
                     android:id="@+id/hijo22"
                     android:layout_width="fill_parent"
-                    android:gravity="center"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/hijo21"
-                    android:layout_marginTop="@android:dimen/app_icon_size"
-                    android:layout_marginBottom="@android:dimen/app_icon_size"
-                    android:layout_height="wrap_content">
+                    android:gravity="center">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TIPO MEME"/>
+                        android:layout_marginTop="20dp"
+                        android:text="TIPO MEME" />
 
                 </RelativeLayout>
 

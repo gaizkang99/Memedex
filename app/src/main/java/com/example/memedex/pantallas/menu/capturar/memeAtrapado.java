@@ -6,19 +6,34 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
+import com.example.memedex.modelo.Meme;
 import com.example.memedex.pantallas.registro.Login;
 import com.example.memedex.pantallas.registro.MainActivity;
 import com.example.memedex.pantallas.registro.SignIn;
+import com.squareup.picasso.Picasso;
 
 public class memeAtrapado  extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meme_atrapado);
+
+        Meme meme= new Meme();
+        meme.setNombre(getIntent().getExtras().getString("name"));
+        meme.setImg(getIntent().getExtras().getString("imgurl"));
+
+        TextView tw = (TextView) findViewById(R.id.nombreMemeCapturado);
+        tw.setText(meme.getNombre());
+        ImageView iv = (ImageView) findViewById(R.id.imageView1);
+        Picasso.get().load(meme.getImg()).into(iv);
+
+
 
         Button bottonVolverCaptura = (Button) findViewById(R.id.bottonVolverCaptura);
         Button bottonMenuPrincipal = (Button) findViewById(R.id.bottonMenuPrincipal);
@@ -45,4 +60,5 @@ public class memeAtrapado  extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

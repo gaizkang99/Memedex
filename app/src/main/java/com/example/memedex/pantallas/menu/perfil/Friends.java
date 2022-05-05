@@ -8,7 +8,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
-import com.example.memedex.pantallas.menu.Menu;
 
 public class Friends extends AppCompatActivity {
 

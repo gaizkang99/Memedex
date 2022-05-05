@@ -1,8 +1,5 @@
 package com.example.memedex.modelo;
 
-import com.example.memedex.modelo.Logro;
-import com.example.memedex.modelo.Meme;
-import com.example.memedex.modelo.Usuario;
 
 import java.util.List;
 

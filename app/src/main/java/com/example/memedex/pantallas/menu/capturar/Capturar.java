@@ -3,12 +3,11 @@ package com.example.memedex.pantallas.menu.capturar;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
+import com.example.memedex.pantallas.registro.Login;
+import com.example.memedex.pantallas.registro.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,8 +25,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -43,7 +42,20 @@ public class Capturar  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.capturar);
 
+        Button back = (Button) findViewById(R.id.back);
+
         obtenerListadoMemes();
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent menu = new Intent(Capturar.this, Menu.class);
+                startActivity(menu);
+            }
+        });
+
+
     }
 
     private void obtenerListadoMemes() {
@@ -127,6 +139,8 @@ public class Capturar  extends AppCompatActivity {
         iv.animate()
                 .alpha(0.0f)
                 .setDuration(500);
+
+
 
     }
 

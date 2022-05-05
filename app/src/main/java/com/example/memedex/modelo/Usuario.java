@@ -1,7 +1,5 @@
 package com.example.memedex.modelo;
 
-import java.util.ArrayList;
-
 public class Usuario {
 
     private String userName;

@@ -13,9 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
-import com.example.memedex.pantallas.registro.Login;
-import com.example.memedex.pantallas.registro.MainActivity;
-import com.example.memedex.pantallas.registro.SignIn;
 import com.squareup.picasso.Picasso;
 
 public class memeAtrapado  extends AppCompatActivity {

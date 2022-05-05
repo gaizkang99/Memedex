@@ -9,7 +9,6 @@ public class Usuario {
     private String email;
     private int coins;
     private int level;
-    //Falta lista de amigos, lista de memes, lista de logros y avatar
 
     public Usuario(String userName, String password, String email){
         this.userName = userName;
@@ -17,6 +16,10 @@ public class Usuario {
         this.email = email;
         this.coins = 240;
         this.level = 1;
+    }
+
+    public Usuario() {
+
     }
 
     public String getUserName() {

@@ -2,11 +2,18 @@ package com.example.memedex.pantallas.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.memedex.modelo.Meme;
+import com.example.memedex.modelo.Usuario;
+import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.perfil.Exchange;
 import com.example.memedex.pantallas.menu.perfil.Friends;
 import com.example.memedex.pantallas.menu.ajustes.Ajustes;
@@ -15,8 +22,20 @@ import com.example.memedex.pantallas.menu.coleccion.Coleccion;
 import com.example.memedex.pantallas.menu.memedex.Memedex;
 import com.example.memedex.pantallas.menu.perfil.Profile;
 import com.example.memedex.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class Menu extends AppCompatActivity {
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+    private ArrayList<Usuario> usuario;
+    TextView info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +47,23 @@ public class Menu extends AppCompatActivity {
         Button memedex = (Button) findViewById(R.id.buttonMemedex);
         Button coleccion = (Button) findViewById(R.id.buttonColeccion);
         Button exchange = (Button) findViewById(R.id.buttonIntercambiar);
+        TextView text = (TextView) findViewById(R.id.texto);
+
+
+        Query query = myRef.child("Usuario");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String data = snapshot.getValue().toString();
+                text.setText(data);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         justes.setOnClickListener(new View.OnClickListener() {
             @Override

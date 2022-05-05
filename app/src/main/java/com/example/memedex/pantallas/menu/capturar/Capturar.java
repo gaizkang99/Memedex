@@ -31,7 +31,11 @@ import java.util.Random;
 
 public class Capturar  extends AppCompatActivity {
 
-    private final Random rand = new Random();
+    private final Random rand = new Random(); //rand.nextInt();
+    private final Integer[] imgID=
+            {R.drawable.dam, R.drawable.hectortostring,R.drawable.sistemasxd};
+
+
     private ArrayList<Meme> memes;
 
     @Override

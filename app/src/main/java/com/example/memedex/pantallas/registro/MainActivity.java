@@ -8,12 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.memedex.R;
-import com.example.memedex.modelo.Meme;
-import com.example.memedex.modelo.Usuario;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSign = new Intent(MainActivity.this, SignIn.class);
+                Intent intentSign = new Intent(MainActivity.this, Register.class);
                 startActivity(intentSign);
             }
         });

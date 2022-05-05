@@ -50,49 +50,44 @@
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/username1"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Nombre del usuario" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="140dp"
+                        android:layout_marginEnd="20dp"
+                        android:hint="Enter email"
+                        android:inputType="textEmailAddress"
+                        android:padding="5dp" />
 
-                    <EditText
-                        android:id="@+id/username2"
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/username"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:id="@+id/register"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/username1"
-                        android:padding="10dp" />
-
-                    <TextView
-                        android:id="@+id/password1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/username2"
-                        android:padding="10dp"
-                        android:text="Contraseña" />
-
-                    <EditText
-                        android:id="@+id/password2"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/password1"
-                        android:padding="10dp"
-                        android:inputType="textPassword"/>
+                        android:layout_below="@+id/passwd"
+                        android:text="New user? Register here!"
+                        android:textAlignment="center"
+                        android:textColor="#00F" />
 
                     <RelativeLayout
                         android:id="@+id/switchVibracion"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/password2"
-                        android:gravity="center_horizontal|bottom"
-                        android:padding="10dp">
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/switchVibracion"
+                        android:layout_below="@id/register"
                         android:gravity="center_horizontal|bottom"
                         android:padding="10dp" />
 
@@ -106,14 +101,11 @@
                     android:gravity="center"
                     android:padding="30dp">
 
-
                     <Button
                         android:id="@+id/logIn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="LOG IN" />
-
-
                 </RelativeLayout>
 
             </RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
 import com.example.memedex.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -64,6 +65,8 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
+                                //Recoger usuario por correo
+                                setValoresDefault();
                                 Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Login.this, Menu.class );
                                 startActivity(i);
@@ -85,7 +88,9 @@ public class Login extends AppCompatActivity {
                 startActivity(intentLogin);
             }
         });
+    }
 
+    private void setValoresDefault(){
 
     }
 }

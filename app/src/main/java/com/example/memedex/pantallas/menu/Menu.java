@@ -43,6 +43,8 @@ public class Menu extends AppCompatActivity {
         Button coleccion = (Button) findViewById(R.id.buttonColeccion);
         Button exchange = (Button) findViewById(R.id.buttonIntercambiar);
         TextView text = (TextView) findViewById(R.id.texto);
+        Button perfil = (Button) findViewById(R.id.profile);
+        //perfil.setText();
 
 
         Query query = myRef.child("Usuario");

@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.modelo.Usuario;
+import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
 import com.example.memedex.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -106,7 +107,8 @@ public class Register extends AppCompatActivity {
     public void crearUsuario(){
         fb = FirebaseDatabase.getInstance();
         DatabaseReference usuario = fb.getReference("Usuario");
-        Usuario user = new Usuario(userName.getText().toString(), password.getText().toString(), userMail.getText().toString());
+        Usuario user = new Usuario(userName.getText().toString(), userMail.getText().toString());
+        ValoresDefault.setUser(user);
         usuario.push().setValue(user);
     }
 }

@@ -4,12 +4,7 @@ package com.example.memedex.modelo;
 import java.util.List;
 
 public class ValoresDefault {
-    private Usuario user;
-
-    private ValoresDefault(){
-        user = new Usuario();
-
-    }
+    public static Usuario user;
 
     private static ValoresDefault mValoresDefault;
     public static ValoresDefault get(){
@@ -19,7 +14,13 @@ public class ValoresDefault {
         return mValoresDefault;
     }
 
+    public static Usuario getUser() {
+        return user;
+    }
 
+    public static void setUser(Usuario user) {
+        ValoresDefault.user = user;
+    }
 
     //Esta clase sirve para no ir cargando all el rato valores de la base de datos
     /* Listado de memes existentes

@@ -44,8 +44,9 @@
                 <RelativeLayout
                     android:id="@+id/hijo21"
                     android:layout_width="fill_parent"
-                    android:layout_height="200dp"
-                    android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/memedex"
@@ -59,8 +60,7 @@
                     android:id="@+id/hijo22"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_below="@id/hijo21"
-                    android:padding="30dp">
+                    android:layout_below="@id/hijo21">
 
                     <TextView
                         android:id="@+id/text"
@@ -75,8 +75,8 @@
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text"
-                        android:padding="10dp"
-                        android:text="Buscar" />
+                        android:hint="Buscar"
+                        android:padding="10dp" />
 
                     <Button
                         android:id="@+id/filter"
@@ -84,26 +84,21 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text"
                         android:layout_toRightOf="@id/finder"
-                        android:gravity="right" />
+                        android:text="Buscar" />
 
-                    <View
-                        android:id="@+id/divider"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/filter"
-                        android:background="?android:attr/listDivider" />
+                </RelativeLayout>
 
-                    <ImageView
-                        android:id="@+id/meme"
-                        android:layout_width="250px"
-                        android:layout_height="250px"
-                        android:layout_below="@+id/divider"
-                        android:src="@drawable/example" />
+                <GridLayout
+                    android:id="@+id/memedexMemes"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hijo22"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:columnCount="3">
 
+                </GridLayout>
             </RelativeLayout>
-
-        </RelativeLayout>
-
     </ScrollView>
 
 </RelativeLayout>

@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.memedex.R;
+import com.example.memedex.modelo.Meme;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 

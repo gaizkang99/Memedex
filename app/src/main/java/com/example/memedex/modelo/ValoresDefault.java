@@ -1,17 +1,21 @@
 package com.example.memedex.modelo;
 
 
+import android.os.CountDownTimer;
+import android.util.Log;
+
 import java.util.List;
 
 public class ValoresDefault {
     public static Usuario user;
 
-    private static ValoresDefault mValoresDefault;
+    private static ValoresDefault ValoresDefault;
+
     public static ValoresDefault get(){
-        if (mValoresDefault == null){
-            mValoresDefault = new ValoresDefault();
+        if (ValoresDefault == null){
+            ValoresDefault = new ValoresDefault();
         }
-        return mValoresDefault;
+        return ValoresDefault;
     }
 
     public static Usuario getUser() {
@@ -30,5 +34,6 @@ public class ValoresDefault {
      */
     public List<Meme> memedex;
     public List<Logro> logros;
+    public CountDownTimer countDownTimer;
 
 }

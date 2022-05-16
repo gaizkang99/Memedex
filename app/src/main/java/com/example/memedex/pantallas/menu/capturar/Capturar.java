@@ -4,10 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -31,9 +35,9 @@ import java.util.Random;
 public class Capturar  extends AppCompatActivity {
 
     private final Random rand = new Random(); //rand.nextInt();
-
-
     private ArrayList<Meme> memes;
+    private int contador=0;
+    private CountDownTimer c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,22 +45,37 @@ public class Capturar  extends AppCompatActivity {
         setContentView(R.layout.capturar);
 
         Button back = (Button) findViewById(R.id.back);
-
-        obtenerListadoMemes();
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                c.cancel();
                 Intent menu = new Intent(Capturar.this, Menu.class);
                 startActivity(menu);
             }
         });
 
+            c= new CountDownTimer(rand.nextInt(30) * 1000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    // Used for formatting digit to be in 2 digits only
+                    long hour = (millisUntilFinished / 3600000) % 24;
+                    long min = (millisUntilFinished / 60000) % 60;
+                    long sec = (millisUntilFinished / 1000) % 60;
+                    Log.i("Memes", hour + ":" + min + ":" + sec);
+                }
+
+                // When the task is over it will print 00:00:00 there
+                public void onFinish() {
+                    Log.i("Memes", "00:00:00");
+                    obtenerListadoMemes();
+
+                }
+            }.start();
+
 
     }
 
     private void obtenerListadoMemes() {
+
 
         memes = new ArrayList<Meme>();
 
@@ -83,9 +102,8 @@ public class Capturar  extends AppCompatActivity {
         });
 
     }
-
-    int contador = 0;
     private void imgConfigure(ArrayList<Meme> memes){
+        //Log.i("Memes",cronometro.getText().toString());
         final ImageView image = (ImageView) findViewById(R.id.memeCapturar);
         Meme re= memes.get(rand.nextInt(memes.size()-1));
         LoadImageFromWeb(re.getImg(),image,re);

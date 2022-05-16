@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = username.getText().toString();
+               /* String user = username.getText().toString();
                 String pwd = password.getText().toString();
                 if (TextUtils.isEmpty(user) && TextUtils.isEmpty(pwd)){
                     Toast.makeText(Login.this , "Enter credentials...",Toast.LENGTH_SHORT).show();
@@ -67,16 +67,16 @@ public class Login extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 //Recoger usuario por correo
                                 setValoresDefault();
-                                Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();*/
                                 Intent i = new Intent(Login.this, Menu.class );
-                                startActivity(i);
+                                startActivity(i);/*
                                 finish();
                             } else {
                                 Toast.makeText(Login.this , "Failed login !!",Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-                }
+                }*/
             }
         });
 

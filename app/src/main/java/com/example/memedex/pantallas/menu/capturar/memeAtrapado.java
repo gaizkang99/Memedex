@@ -33,7 +33,7 @@ public class memeAtrapado  extends AppCompatActivity {
 
 
         Button bottonVolverCaptura = (Button) findViewById(R.id.bottonVolverCaptura);
-        Button bottonMenuPrincipal = (Button) findViewById(R.id.bottonMenuPrincipal);
+        Button bottonMenuPrincipal = (Button) findViewById(R.id.bottonMemedex);
 
         bottonVolverCaptura.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

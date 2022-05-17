@@ -110,5 +110,7 @@ public class Register extends AppCompatActivity {
         Usuario user = new Usuario(userName.getText().toString(), userMail.getText().toString());
         ValoresDefault.setUser(user);
         usuario.push().setValue(user);
+        //update
+        //usuario.child("uri").child("").setValue();
     }
 }

@@ -60,6 +60,8 @@
                     android:id="@+id/hijo22"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_below="@id/hijo21">
 
                     <TextView
@@ -72,19 +74,11 @@
 
                     <EditText
                         android:id="@+id/finder"
-                        android:layout_width="250dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text"
                         android:hint="Buscar"
                         android:padding="10dp" />
-
-                    <Button
-                        android:id="@+id/filter"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/text"
-                        android:layout_toRightOf="@id/finder"
-                        android:text="Buscar" />
 
                 </RelativeLayout>
 

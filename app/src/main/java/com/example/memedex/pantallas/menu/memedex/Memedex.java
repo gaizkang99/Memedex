@@ -2,10 +2,14 @@ package com.example.memedex.pantallas.menu.memedex;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,6 +40,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Locale;
 
 public class Memedex extends AppCompatActivity {
 
@@ -45,18 +50,46 @@ public class Memedex extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.memedex);
+
+        pillarMemesBaseDatos();
+
+        //Inicialización de varaibles
         memes = new ArrayList<>();
-/*
-        LayoutInflater lf=LayoutInflater.from(Memedex.this);
-        v= lf.inflate(R.layout.plantilla_memes,null);
 
-        LinearLayout ll = findViewById(R.id.memedexMemes);
-        TextView tv = v.findViewById(R.id.nombrePlantillaMeme);
+        EditText buscar = (EditText) findViewById(R.id.finder);
 
-        ImageView iv = v.findViewById(R.id.imagePlantillaMeme);
+        ArrayAdapter<Meme> adapter = new ArrayAdapter<Meme>(Memedex.this, android.R.layout.simple_list_item_1,memes);
+        buscar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        ll.addView(v);*/
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter.getFilter().filter(charSequence);
+                GridLayout ll = findViewById(R.id.memedexMemes);
+                ArrayList<Meme> memesBusqueda= new ArrayList<>();
+
+
+                for(Meme m: memes){
+                    if(m.getTitulo().toLowerCase(Locale.ROOT).contains(charSequence.toString().toLowerCase(Locale.ROOT))){
+                        Log.i("Memes",charSequence +" "+m.getTitulo());
+                        memesBusqueda.add(m);
+                    }
+                }
+                ll.removeAllViews();
+                for(Meme m: memesBusqueda){
+                    printMeme(m);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        //Botones
         Button back = findViewById(R.id.back);
         back.setOnClickListener(view -> {
             Intent intentSign = new Intent(Memedex.this, Menu.class);
@@ -64,7 +97,6 @@ public class Memedex extends AppCompatActivity {
         });
 
 
-        pillarMemesBaseDatos();
     }
 
     private void pillarMemesBaseDatos() {

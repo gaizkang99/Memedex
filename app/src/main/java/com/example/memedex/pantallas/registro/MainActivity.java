@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         Button login = (Button) findViewById(R.id.logIn);
 
  //INSERTAR MEMES
-        FirebaseDatabase fb;
+        /*FirebaseDatabase fb;
         fb = FirebaseDatabase.getInstance();
         DatabaseReference momardo = fb.getReference("Meme");
 
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         momardo.push().setValue(new Meme("ipMeme.jpg","Direccion IP","Las IP privadas mejor guardarlas para uno mismo",22,"https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/ipMeme.jpg?alt=media&token=817aee7a-0c40-454f-96d4-be9ac1ecc7a7"));
         momardo.push().setValue(new Meme("memePerro.jpg","Perro burlador","Los chistes de programadores no son solo para desarrolladores",22,"https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/memePerro.jpg?alt=media&token=ed40238b-b656-48b8-b0b4-6a3e7c90ebd9"));
         momardo.push().setValue(new Meme("spiderMeme.jpg","Spider love","Peter vacilando a Mary Jane",22,"https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/spiderMeme.jpg?alt=media&token=bd9cd7d5-3d15-4e6a-a359-28474b61231b"));
-
+*/
 
 
 

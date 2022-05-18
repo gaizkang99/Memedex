@@ -108,7 +108,7 @@ public class Register extends AppCompatActivity {
         fb = FirebaseDatabase.getInstance();
         DatabaseReference usuario = fb.getReference("Usuario");
         Usuario user = new Usuario(userName.getText().toString(), userMail.getText().toString());
-        ValoresDefault.setUser(user);
+        ValoresDefault.get().setUser(user);
         usuario.push().setValue(user);
         //update
         //usuario.child("uri").child("").setValue();

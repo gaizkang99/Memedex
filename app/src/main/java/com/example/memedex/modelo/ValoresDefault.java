@@ -18,12 +18,12 @@ public class ValoresDefault {
         return ValoresDefault;
     }
 
-    public static Usuario getUser() {
+    public Usuario getUser() {
         return user;
     }
 
-    public static void setUser(Usuario user) {
-        ValoresDefault.user = user;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
     //Esta clase sirve para no ir cargando all el rato valores de la base de datos

@@ -18,10 +18,37 @@ public class Usuario {
         this.email = email;
         this.coins = 240;
         this.level = 1;
+        this.logros= new ArrayList<>();
+        this.amigos=new ArrayList<>();
+        this.memes=new ArrayList<>();
     }
 
     public Usuario() {
 
+    }
+
+    public ArrayList<Logro> getLogros() {
+        return logros;
+    }
+
+    public void setLogros(ArrayList<Logro> logros) {
+        this.logros = logros;
+    }
+
+    public ArrayList<Usuario> getAmigos() {
+        return amigos;
+    }
+
+    public void setAmigos(ArrayList<Usuario> amigos) {
+        this.amigos = amigos;
+    }
+
+    public ArrayList<Meme> getMemes() {
+        return memes;
+    }
+
+    public void setMemes(ArrayList<Meme> memes) {
+        this.memes = memes;
     }
 
     public String getUserName() {
@@ -63,6 +90,9 @@ public class Usuario {
                 ", email='" + email + '\'' +
                 ", coins=" + coins +
                 ", level=" + level +
+                ", logros=" + logros +
+                ", amigos=" + amigos +
+                ", memes=" + memes +
                 '}';
     }
 }

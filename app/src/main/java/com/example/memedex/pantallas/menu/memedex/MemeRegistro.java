@@ -48,14 +48,11 @@ public class MemeRegistro extends AppCompatActivity {
         iv.setOnClickListener(view -> {
             if(bo){
                 Log.i("Memes","tru");
-
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 //params.addRule(RelativeLayout.BELOW, R.id.hijo1);
                 rl.setLayoutParams(params);
             }else{
-
                 rl.setLayoutParams(w);
-
             }
             bo=!bo;
             //iv.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -67,7 +64,5 @@ public class MemeRegistro extends AppCompatActivity {
             Intent intentSign = new Intent(MemeRegistro.this, Memedex.class);
             startActivity(intentSign);
         });
-
-
     }
 }

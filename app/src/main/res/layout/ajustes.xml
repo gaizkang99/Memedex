@@ -60,8 +60,8 @@
                         android:id="@+id/musicaSeekbar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:layout_below="@id/musica"></SeekBar>
+                        android:layout_below="@id/musica"
+                        android:padding="10dp"></SeekBar>
 
                     <TextView
                         android:id="@+id/sonido"

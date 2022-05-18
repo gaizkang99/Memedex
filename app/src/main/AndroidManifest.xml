@@ -65,6 +65,12 @@
             android:windowSoftInputMode="stateHidden"
             android:exported="true" />
 
+        <activity
+            android:name=".pantallas.menu.coleccion.memeColeccion"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:exported="true" />
+
     </application>
 
 </manifest>

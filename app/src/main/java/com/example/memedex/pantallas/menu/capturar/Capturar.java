@@ -3,6 +3,7 @@ package com.example.memedex.pantallas.menu.capturar;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
@@ -17,10 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
-import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,8 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class Capturar  extends AppCompatActivity {
@@ -40,11 +37,15 @@ public class Capturar  extends AppCompatActivity {
     private ArrayList<Meme> memes;
     private int contador=0;
     private CountDownTimer c;
+    private MediaPlayer sonido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.capturar);
+
+        sonido = MediaPlayer.create(this, R.raw.duck_sound);
+        sonido.setVolume(ValoresDefault.get().getSonido(), ValoresDefault.get().getSonido());
 
         Button back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +56,7 @@ public class Capturar  extends AppCompatActivity {
                 startActivity(menu);
             }
         });
+
 
             c= new CountDownTimer(rand.nextInt(10) * 0, 1000) {
                 public void onTick(long millisUntilFinished) {
@@ -121,10 +123,12 @@ public class Capturar  extends AppCompatActivity {
                 public void onClick(View view) {
                     contador++;
                     if(contador<3) {
+                        sonido.start();
                         miniJuegoMoverPulsarEsconder(imageView);
+
                     }else {
                         //Update de tu colección
-                        addToFirebaseUser();
+                        addToFirebaseUser(meme);
 
                         Intent intent = new Intent(Capturar.this, memeAtrapado.class);
                         intent.putExtra("name", meme.getTitulo());
@@ -140,13 +144,13 @@ public class Capturar  extends AppCompatActivity {
         }
     }
 
-    private void addToFirebaseUser() {
+    private void addToFirebaseUser(Meme meme) {
         DatabaseReference nombre = FirebaseDatabase.getInstance()
                 .getReference()
                 .child("Usuario")
                 .child(ValoresDefault.get().getUser().getId())
-                .child("memedexMemes");
-        nombre.setValue(new Meme("1","1","1",1,"1"));
+                .child("memedexMemes").push();
+        nombre.setValue(meme);
     }
 
     private void miniJuegoMoverPulsarEsconder(ImageView iv){

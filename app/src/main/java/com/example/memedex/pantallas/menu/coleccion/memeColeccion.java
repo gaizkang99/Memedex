@@ -1,29 +1,30 @@
-package com.example.memedex.pantallas.menu.capturar;
+package com.example.memedex.pantallas.menu.coleccion;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
-import com.example.memedex.pantallas.menu.Menu;
-import com.example.memedex.pantallas.menu.coleccion.Coleccion;
+import com.example.memedex.pantallas.menu.capturar.Capturar;
 import com.squareup.picasso.Picasso;
 
-public class memeAtrapado  extends AppCompatActivity {
-
+public class memeColeccion extends AppCompatActivity {
+    boolean bo;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meme_atrapado);
 
         Meme meme= new Meme();
-        meme.setNombre(getIntent().getExtras().getString("name"));
+        meme.setNombre(getIntent().getExtras().getString("titulo"));
         meme.setImg(getIntent().getExtras().getString("imgurl"));
 
         TextView tw = (TextView) findViewById(R.id.nombreMemeCapturado);
@@ -31,21 +32,38 @@ public class memeAtrapado  extends AppCompatActivity {
         ImageView iv = (ImageView) findViewById(R.id.imageView1);
         Picasso.get().load(meme.getImg()).into(iv);
 
-
+        bo=true;
+        RelativeLayout rl = (RelativeLayout) findViewById(R.id.hijo21);
+        RelativeLayout.LayoutParams w= (RelativeLayout.LayoutParams) rl.getLayoutParams();
+        iv.setOnClickListener(view -> {
+            if(bo){
+                Log.i("Memes","tru");
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                //params.addRule(RelativeLayout.BELOW, R.id.hijo1);
+                rl.setLayoutParams(params);
+            }else{
+                rl.setLayoutParams(w);
+            }
+            bo=!bo;
+            //iv.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            //iv.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+        });
 
         Button bottonVolverCaptura = (Button) findViewById(R.id.bottonVolverCaptura);
         Button bottonMenuPrincipal = (Button) findViewById(R.id.bottonMemedex);
+        bottonVolverCaptura.setAlpha(0);
+        bottonMenuPrincipal.setAlpha(0);
 
         bottonVolverCaptura.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent(memeAtrapado.this, Capturar.class);
+                Intent i = new Intent(memeColeccion.this, Capturar.class);
                 startActivity(i);
             }
         });
 
         bottonMenuPrincipal.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent(memeAtrapado.this, Coleccion.class);
+                Intent i = new Intent(memeColeccion.this, Coleccion.class);
                 startActivity(i);
             }
         });

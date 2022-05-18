@@ -4,14 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.memedex.modelo.Meme;
+import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
 import com.example.memedex.R;
@@ -20,11 +24,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class Login extends AppCompatActivity {
 
-    private TextInputEditText username, password;
+    private TextInputEditText usermail, password;
     private Button login;
     private TextView register;
     private FirebaseDatabase fb;
@@ -37,7 +50,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        username = findViewById(R.id.username);
+        usermail = findViewById(R.id.username);
         password = findViewById(R.id.passwd);
         login = findViewById(R.id.logIn);
         register = findViewById(R.id.register);
@@ -56,7 +69,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = username.getText().toString();
+                String user = usermail.getText().toString();
                 String pwd = password.getText().toString();
                 if (TextUtils.isEmpty(user) && TextUtils.isEmpty(pwd)){
                     Toast.makeText(Login.this , "Enter credentials...",Toast.LENGTH_SHORT).show();
@@ -92,5 +105,29 @@ public class Login extends AppCompatActivity {
 
     private void setValoresDefault(){
 
+        usermail = findViewById(R.id.username);
+
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        Query query = myRef.child("Usuario");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot user : dataSnapshot.getChildren()) {
+                        if (user.child("email").getValue().equals(usermail)){
+                            Usuario usuari = new Usuario(user.child("id").getValue().toString(),user.child("userName").getValue().toString(),user.child("email").getValue().toString());
+                            ValoresDefault.get().setUser(usuari);
+
+                        }
+                    }
+                }else
+                    Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
+
 }

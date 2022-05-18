@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.modelo.Usuario;
+import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.perfil.Exchange;
 import com.example.memedex.pantallas.menu.ajustes.Ajustes;
 import com.example.memedex.pantallas.menu.capturar.Capturar;
@@ -42,24 +43,24 @@ public class Menu extends AppCompatActivity {
         Button memedex = (Button) findViewById(R.id.buttonMemedex);
         Button coleccion = (Button) findViewById(R.id.buttonColeccion);
         Button exchange = (Button) findViewById(R.id.buttonIntercambiar);
-        TextView text = (TextView) findViewById(R.id.texto);
         Button perfil = (Button) findViewById(R.id.profile);
-        //perfil.setText();
 
+        perfil.setText(ValoresDefault.get().getUser().getUserName());
 
+        /*
         Query query = myRef.child("Usuario");
-        myRef.addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String data = snapshot.getValue().toString();
-                text.setText(data);
+                String userName = snapshot.child("userName").getValue().toString();
+                perfil.setText(userName);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
 
         justes.setOnClickListener(new View.OnClickListener() {

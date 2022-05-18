@@ -5,13 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Menu;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,8 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
-import com.example.memedex.pantallas.registro.Login;
-import com.example.memedex.pantallas.registro.MainActivity;
+import com.example.memedex.pantallas.menu.Menu;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,7 +51,7 @@ public class Capturar  extends AppCompatActivity {
             }
         });
 
-            c= new CountDownTimer(rand.nextInt(30) * 1000, 1000) {
+            c= new CountDownTimer(rand.nextInt(10) * 0, 1000) {
                 public void onTick(long millisUntilFinished) {
                     // Used for formatting digit to be in 2 digits only
                     long hour = (millisUntilFinished / 3600000) % 24;
@@ -113,12 +110,13 @@ public class Capturar  extends AppCompatActivity {
         try {
             Picasso.get().load(url).into(imageView);
 
+            miniJuegoMoverPulsarEsconder(imageView);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     contador++;
                     if(contador<3) {
-                        MoveImg(imageView);
+                        miniJuegoMoverPulsarEsconder(imageView);
                     }else {
                         Intent intent = new Intent(Capturar.this, memeAtrapado.class);
                         intent.putExtra("name", meme.getTitulo());
@@ -134,13 +132,17 @@ public class Capturar  extends AppCompatActivity {
         }
     }
 
-    private void MoveImg(ImageView iv){
+    private void miniJuegoMoverPulsarEsconder(ImageView iv){
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int width = (int) (metrics.widthPixels/1.50); // ancho absoluto en pixels
         int height = (int) (metrics.heightPixels/1.40); // alto absoluto en pixels
+        //Esconde imagen
+        iv.animate()
+                .alpha(0.0f)
+                .setDuration(500);
+        //Mueve la imagen, la hace visible
 
-        //SEttings de la imagen
         iv.animate()
                 .translationX(rand.nextInt(width))
                 .translationY(rand.nextInt(height))
@@ -152,13 +154,14 @@ public class Capturar  extends AppCompatActivity {
                     }
                 })
         ;
-
-        iv.animate()
-                .alpha(0.0f)
-                .setDuration(500);
-
-
-
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+            Intent i = new Intent(this, Menu.class);
+            startActivity(i);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

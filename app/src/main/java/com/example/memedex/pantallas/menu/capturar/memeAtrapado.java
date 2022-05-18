@@ -3,7 +3,6 @@ package com.example.memedex.pantallas.menu.capturar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
+import com.example.memedex.pantallas.menu.Menu;
 import com.squareup.picasso.Picasso;
 
 public class memeAtrapado  extends AppCompatActivity {
@@ -52,7 +52,7 @@ public class memeAtrapado  extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==event.KEYCODE_BACK){
-            Intent i = new Intent(this, Menu.class);
+            Intent i = new Intent(this, Capturar.class);
             startActivity(i);
         }
         return super.onKeyDown(keyCode, event);

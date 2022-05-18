@@ -45,7 +45,8 @@
                 android:id="@+id/memeCapturar"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                android:alpha="0"/>
 
         </RelativeLayout>
     </RelativeLayout>

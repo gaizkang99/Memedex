@@ -1,11 +1,17 @@
 package com.example.memedex.modelo;
 
+import java.util.ArrayList;
+
 public class Usuario {
 
     private String userName;
     private String email;
     private int coins;
     private int level;
+    //private String imgUrl;
+    private ArrayList<Logro> logros;
+    private ArrayList<Usuario> amigos;
+    private ArrayList<Meme> memes;
 
     public Usuario(String userName, String email){
         this.userName = userName;

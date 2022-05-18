@@ -17,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
+import com.example.memedex.modelo.Usuario;
+import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Capturar  extends AppCompatActivity {
@@ -118,6 +123,9 @@ public class Capturar  extends AppCompatActivity {
                     if(contador<3) {
                         miniJuegoMoverPulsarEsconder(imageView);
                     }else {
+                        //Update de tu colección
+                        addToFirebaseUser();
+
                         Intent intent = new Intent(Capturar.this, memeAtrapado.class);
                         intent.putExtra("name", meme.getTitulo());
                         intent.putExtra("imgurl", meme.getImg());
@@ -130,6 +138,15 @@ public class Capturar  extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void addToFirebaseUser() {
+        DatabaseReference nombre = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("memedexMemes");
+        nombre.setValue(new Meme("1","1","1",1,"1"));
     }
 
     private void miniJuegoMoverPulsarEsconder(ImageView iv){

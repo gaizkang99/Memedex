@@ -8,19 +8,47 @@ public class Usuario {
     private String email;
     private int coins;
     private int level;
+    private String id;
     //private String imgUrl;
     private ArrayList<Logro> logros;
     private ArrayList<Usuario> amigos;
-    private ArrayList<Meme> memes;
+    private ArrayList<Meme> coleccionMemes;
+    private ArrayList<Meme> memedexMemes;
 
-    public Usuario(String userName, String email){
+    public Usuario(String id, String userName, String email){
+        this.id = id;
         this.userName = userName;
         this.email = email;
         this.coins = 240;
         this.level = 1;
         this.logros= new ArrayList<>();
         this.amigos=new ArrayList<>();
-        this.memes=new ArrayList<>();
+        this.coleccionMemes=new ArrayList<>();
+        this.memedexMemes=new ArrayList<>();
+    }
+
+    public ArrayList<Meme> getColeccionMemes() {
+        return coleccionMemes;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setColeccionMemes(ArrayList<Meme> coleccionMemes) {
+        this.coleccionMemes = coleccionMemes;
+    }
+
+    public ArrayList<Meme> getMemedexMemes() {
+        return memedexMemes;
+    }
+
+    public void setMemedexMemes(ArrayList<Meme> memedexMemes) {
+        this.memedexMemes = memedexMemes;
     }
 
     public Usuario() {
@@ -43,14 +71,6 @@ public class Usuario {
         this.amigos = amigos;
     }
 
-    public ArrayList<Meme> getMemes() {
-        return memes;
-    }
-
-    public void setMemes(ArrayList<Meme> memes) {
-        this.memes = memes;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -71,6 +91,20 @@ public class Usuario {
         return coins;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", coins=" + coins +
+                ", level=" + level +
+                ", logros=" + logros +
+                ", amigos=" + amigos +
+                ", coleccionMemes=" + coleccionMemes +
+                ", memedexMemes=" + memedexMemes +
+                '}';
+    }
+
     public void setCoins(int coins) {
         this.coins = coins;
     }
@@ -83,16 +117,4 @@ public class Usuario {
         this.level = level;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", coins=" + coins +
-                ", level=" + level +
-                ", logros=" + logros +
-                ", amigos=" + amigos +
-                ", memes=" + memes +
-                '}';
-    }
 }

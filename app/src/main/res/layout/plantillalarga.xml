@@ -15,8 +15,8 @@
 
         <RelativeLayout
             android:id="@+id/imagen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="80dp"
+            android:layout_height="80dp">
             <ImageView
                 android:id="@+id/imagenMeme"
                 android:layout_width="250px"
@@ -41,7 +41,8 @@
             android:id="@+id/botones"
             android:layout_below="@+id/textoMeme"
             android:layout_toEndOf="@+id/imagen"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center"
             android:layout_height="wrap_content">
 
             <Button

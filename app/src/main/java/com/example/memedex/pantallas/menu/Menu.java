@@ -1,5 +1,6 @@
 package com.example.memedex.pantallas.menu;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,7 @@ public class Menu extends AppCompatActivity {
     private ArrayList<Usuario> usuario;
     TextView info;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

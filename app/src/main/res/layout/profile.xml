@@ -92,6 +92,7 @@
                         android:text="Nivel">
 
                     </TextView>
+
                     <View
                         android:id="@+id/divider"
                         android:layout_width="match_parent"
@@ -112,15 +113,18 @@
                     El ImageView de abajo debe ser un array de imagenes.(logros)
                     Lo pongo para que se entienda pero no tengo niidea de como hacerlo
                     -->
-                <ImageView
-                    android:id="@+id/logro1"
-                    android:layout_width="250px"
-                    android:layout_height="250px"
-                    android:layout_below="@+id/logros"
-                    tools:srcCompat="@tools:sample/avatars" />
 
-            </RelativeLayout>
+                </RelativeLayout>
 
+                <GridLayout
+                    android:id="@+id/coleccionlogros"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hijo22"
+                    android:layout_marginTop="20dp"
+                    android:columnCount="3"
+                    android:orientation="horizontal">
+                </GridLayout>
         </RelativeLayout>
 
     </ScrollView>

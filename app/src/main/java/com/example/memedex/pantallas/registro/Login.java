@@ -104,7 +104,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void setValoresDefault(){
-
         usermail = findViewById(R.id.username);
 
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
@@ -112,7 +111,6 @@ public class Login extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
                     for (DataSnapshot user : dataSnapshot.getChildren()) {
                         if (user.child("email").getValue().equals(usermail)){
                             Usuario usuari = new Usuario(user.child("id").getValue().toString(),user.child("userName").getValue().toString(),user.child("email").getValue().toString());
@@ -120,14 +118,10 @@ public class Login extends AppCompatActivity {
 
                         }
                     }
-                }else
-                    Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
-
 }

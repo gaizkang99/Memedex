@@ -8,7 +8,9 @@ import java.util.List;
 
 public class ValoresDefault {
     public static Usuario user;
-
+    public List<Meme> memedex;
+    public List<Logro> logros;
+    public CountDownTimer countDownTimer;
     private static ValoresDefault ValoresDefault;
 
     public static ValoresDefault get(){
@@ -32,8 +34,5 @@ public class ValoresDefault {
      *
      * usuario
      */
-    public List<Meme> memedex;
-    public List<Logro> logros;
-    public CountDownTimer countDownTimer;
 
 }

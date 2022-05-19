@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.memedex.modelo.Meme;
 import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
@@ -33,7 +32,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.HashMap;
 
 public class Login extends AppCompatActivity {
 
@@ -79,11 +78,7 @@ public class Login extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 //Recoger usuario por correo
-                                setValoresDefault();
-                                Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(Login.this, Menu.class );
-                                startActivity(i);
-                                finish();
+                                registroUsuario();
                             } else {
                                 Toast.makeText(Login.this , "Failed login !!",Toast.LENGTH_SHORT).show();
                             }
@@ -103,25 +98,66 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void setValoresDefault(){
-        usermail = findViewById(R.id.username);
-
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
-        Query query = myRef.child("Usuario");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void registroUsuario(){
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Usuario");
+        //Query query = myRef.child("Usuario").orderByChild("email").equalTo(usermail.getText().toString());
+        myRef.orderByChild("email").equalTo(usermail.getText().toString()).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot user : dataSnapshot.getChildren()) {
-                        if (user.child("email").getValue().equals(usermail)){
-                            Usuario usuari = new Usuario(user.child("id").getValue().toString(),user.child("userName").getValue().toString(),user.child("email").getValue().toString());
-                            ValoresDefault.get().setUser(usuari);
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Usuario u = snapshot.getValue(Usuario.class);
+                ValoresDefault.get().setUser(u);
+                Log.i("Memes", ValoresDefault.get().getUser().getUserName());
 
-                        }
-                    }
+
+                Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Login.this, Menu.class );
+                i.putExtra("username",u.getUserName());
+                i.putExtra("level", String.valueOf(u.getLevel()));
+                startActivity(i);
+                finish();
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+                /*.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot) {
+                Usuario u = dataSnapshot.getValue(Usuario.class);
+                Log.i("Memes", u.toString());
+                if (dataSnapshot.exists()) {
+                    //u.setEmail(dataSnapshot.getValue(Usuario.class).getEmail());
+                    //Log.i("Memes", dataSnapshot.getValue(Usuario.class).toString());
+                    /*ArrayList<String> u = new ArrayList<>();
+                    for (DataSnapshot usuario : dataSnapshot.getChildren()) {
+                        u.add(usuario.getValue(Usuario.class).getEmail());
+                        if(usuario.getValue(Usuario.class).getEmail().equals(usermail.getText().toString())){
+                            Usuario u= usuario.getValue(Usuario.class);
+                            ValoresDefault.get().setUser(u);
+                        }
+                    }
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });*/
     }
 }

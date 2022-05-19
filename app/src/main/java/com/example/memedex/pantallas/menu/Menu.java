@@ -1,6 +1,5 @@
 package com.example.memedex.pantallas.menu;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,12 +18,9 @@ import com.example.memedex.pantallas.menu.coleccion.Coleccion;
 import com.example.memedex.pantallas.menu.memedex.Memedex;
 import com.example.memedex.pantallas.menu.perfil.Profile;
 import com.example.memedex.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.memedex.pantallas.menu.mercado.Mercado;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -33,7 +29,6 @@ public class Menu extends AppCompatActivity {
     private ArrayList<Usuario> usuario;
     TextView info;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +40,7 @@ public class Menu extends AppCompatActivity {
         Button memedex = (Button) findViewById(R.id.buttonMemedex);
         Button coleccion = (Button) findViewById(R.id.buttonColeccion);
         Button exchange = (Button) findViewById(R.id.buttonIntercambiar);
+        Button mercado = findViewById(R.id.buttonMercado);
         Button perfil = (Button) findViewById(R.id.profile);
 
         if(getIntent().getStringExtra("username")!=null)
@@ -96,6 +92,13 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent i = new Intent(Menu.this, Exchange.class);
+                startActivity(i);
+            }
+        });
+        mercado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Menu.this, Mercado.class);
                 startActivity(i);
             }
         });

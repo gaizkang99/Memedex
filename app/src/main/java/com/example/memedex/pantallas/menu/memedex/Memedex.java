@@ -125,15 +125,15 @@ public class Memedex extends AppCompatActivity {
     }
 
     private void printMeme(Meme meme) {
-        LayoutInflater lf=LayoutInflater.from(Memedex.this);
-        v= lf.inflate(R.layout.plantilla_memes,null);
+        LayoutInflater lf = LayoutInflater.from(Memedex.this);
+        v = lf.inflate(R.layout.plantilla_memes,null);
         GridLayout ll = findViewById(R.id.memedexMemes);
         TextView tv = v.findViewById(R.id.nombrePlantillaMeme);
         tv.setText(meme.getTitulo());
         ImageView iv = v.findViewById(R.id.imagePlantillaMeme);
 
         iv.setTag(meme.getTitulo());
-        Log.i("Memes",iv.getTag().toString());
+        Log.i("Memes", iv.getTag().toString());
         Picasso.get().load(meme.getImg()).into(iv);
 
         ll.addView(v);

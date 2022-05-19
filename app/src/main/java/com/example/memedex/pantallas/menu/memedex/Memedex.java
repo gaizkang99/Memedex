@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
+import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
 import com.example.memedex.pantallas.menu.perfil.Exchange;
 import com.example.memedex.pantallas.registro.Login;
@@ -51,7 +52,7 @@ public class Memedex extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.memedex);
 
-        pillarMemesBaseDatos();
+        obtenerMemesFirebase();
 
         //Inicialización de varaibles
         memes = new ArrayList<>();
@@ -99,10 +100,12 @@ public class Memedex extends AppCompatActivity {
 
     }
 
-    private void pillarMemesBaseDatos() {
+    private void obtenerMemesFirebase() {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
 
-        Query query = myRef.child("Meme");
+        Query query = myRef.child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("memedexMemes");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

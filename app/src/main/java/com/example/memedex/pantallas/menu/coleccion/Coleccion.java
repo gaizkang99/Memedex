@@ -98,7 +98,7 @@ public class Coleccion extends AppCompatActivity {
 
         Query query = myRef.child("Usuario")
                 .child(ValoresDefault.get().getUser().getId())
-                .child("memedexMemes");
+                .child("coleccionMemes");
         Log.i("Memes",query.toString());
 
         //Query query = myRef.child("Meme");

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
@@ -145,12 +146,125 @@ public class Capturar  extends AppCompatActivity {
     }
 
     private void addToFirebaseUser(Meme meme) {
-        DatabaseReference nombre = FirebaseDatabase.getInstance()
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("coleccionMemes").push().setValue(meme);
+
+
+        DatabaseReference memedex = FirebaseDatabase.getInstance().getReference()
+                .child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("memedexMemes");
+        memedex.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean existenciaEnMemedex = false;
+                if (snapshot.exists()) {
+                    for (DataSnapshot m : snapshot.getChildren()) {
+                        Log.i("Memes",m.getValue(Meme.class).getNombre());
+                        if(m.getValue(Meme.class).getTitulo().equals(meme.getTitulo())){
+                            existenciaEnMemedex=true;
+                        }
+                    }
+                    if(!existenciaEnMemedex){
+                        FirebaseDatabase.getInstance().getReference()
+                            .child("Usuario")
+                            .child(ValoresDefault.get().getUser().getId())
+                            .child("memedexMemes").push().setValue(meme);
+                    }
+                }else{
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Usuario")
+                            .child(ValoresDefault.get().getUser().getId())
+                            .child("memedexMemes").push().setValue(meme);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        /*DatabaseReference memedex = FirebaseDatabase.getInstance().getReference();
+        Query q=  memedex
+                .child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("memedexMemes").orderByChild("titulo").equalTo(meme.getTitulo());
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int i = 0;
+                if (snapshot.exists()) {
+                    for (DataSnapshot m : snapshot.getChildren()) {
+                        Log.i("Memes",m.getValue(Meme.class).getNombre());
+                        FirebaseDatabase.getInstance().getReference()
+                                .child("Usuario")
+                                .child(ValoresDefault.get().getUser().getId())
+                                .child("memedexMemes").setValue(meme);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
+
+        /*
+        *
+    private void addToFirebaseUser(Meme meme) {
+        //Coleccion
+        //Lo inserta a la colección
+        DatabaseReference coleccion = FirebaseDatabase.getInstance()
                 .getReference()
                 .child("Usuario")
                 .child(ValoresDefault.get().getUser().getId())
-                .child("memedexMemes").push();
-        nombre.setValue(meme);
+                .child("coleccionMemes");
+        coleccion.setValue(meme);
+        //Memedex
+        //Verifica que no se ha registrado ningún meme que sea él mismo
+        DatabaseReference memedex = FirebaseDatabase.getInstance().getReference();
+        Query query= memedex
+                .child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("memedexMemes");
+        memedex.setValue(meme);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    boolean yaCapturado=false;
+                    for (DataSnapshot memeColeccion : dataSnapshot.getChildren()) {
+                        if(meme==memeColeccion.getValue(Meme.class)){
+                            yaCapturado=true;
+                        }
+                    }
+                    if(yaCapturado){
+
+                    }else{
+                        memedex.push();
+                        Intent intent = new Intent(Capturar.this, memeAtrapado.class);
+                        intent.putExtra("name", meme.getTitulo());
+                        intent.putExtra("imgurl", meme.getImg());
+                        //intent.putExtra("tipo", );
+                        startActivity(intent);
+                    }
+                }else
+                    Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }*/
+
     }
 
     private void miniJuegoMoverPulsarEsconder(ImageView iv){

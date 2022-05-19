@@ -45,22 +45,10 @@ public class Menu extends AppCompatActivity {
         Button exchange = (Button) findViewById(R.id.buttonIntercambiar);
         Button perfil = (Button) findViewById(R.id.profile);
 
-        perfil.setText(ValoresDefault.get().getUser().getUserName());
-
-        /*
-        Query query = myRef.child("Usuario");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String userName = snapshot.child("userName").getValue().toString();
-                perfil.setText(userName);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
+        if(getIntent().getStringExtra("username")!=null)
+            perfil.setText(getIntent().getStringExtra("username") + " / " + getIntent().getStringExtra("level"));
+        else
+            perfil.setText(ValoresDefault.get().getUser().getUserName() + " / " + ValoresDefault.get().getUser().getLevel());
 
 
         justes.setOnClickListener(new View.OnClickListener() {

@@ -4,14 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
 import com.example.memedex.R;
@@ -20,11 +23,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
 
-    private TextInputEditText username, password;
+    private TextInputEditText usermail, password;
     private Button login;
     private TextView register;
     private FirebaseDatabase fb;
@@ -37,7 +44,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        username = findViewById(R.id.username);
+        usermail = findViewById(R.id.username);
         password = findViewById(R.id.passwd);
         login = findViewById(R.id.logIn);
         register = findViewById(R.id.register);
@@ -56,7 +63,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = username.getText().toString();
+                String user = usermail.getText().toString();
                 String pwd = password.getText().toString();
                 if (TextUtils.isEmpty(user) && TextUtils.isEmpty(pwd)){
                     Toast.makeText(Login.this , "Enter credentials...",Toast.LENGTH_SHORT).show();
@@ -66,11 +73,7 @@ public class Login extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 //Recoger usuario por correo
-                                setValoresDefault();
-                                Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(Login.this, Menu.class );
-                                startActivity(i);
-                                finish();
+                                registroUsuario();
                             } else {
                                 Toast.makeText(Login.this , "Failed login !!",Toast.LENGTH_SHORT).show();
                             }
@@ -90,7 +93,44 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void setValoresDefault(){
+    private void registroUsuario(){
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Usuario");
+        //Query query = myRef.child("Usuario").orderByChild("email").equalTo(usermail.getText().toString());
+        myRef.orderByChild("email").equalTo(usermail.getText().toString()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Usuario u = snapshot.getValue(Usuario.class);
+                ValoresDefault.get().setUser(u);
+                Log.i("Memes", ValoresDefault.get().getUser().getUserName());
 
+
+                Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Login.this, Menu.class );
+                i.putExtra("username",u.getUserName());
+                i.putExtra("level", String.valueOf(u.getLevel()));
+                startActivity(i);
+                finish();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -62,7 +62,7 @@
                         android:id="@+id/imageView1"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        tools:srcCompat="@drawable/perfil" />
 
                 </RelativeLayout>
 
@@ -112,12 +112,16 @@
                     El ImageView de abajo debe ser un array de imagenes.(logros)
                     Lo pongo para que se entienda pero no tengo niidea de como hacerlo
                     -->
-                <ImageView
-                    android:id="@+id/logro1"
-                    android:layout_width="250px"
-                    android:layout_height="250px"
-                    android:layout_below="@+id/logros"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    <GridLayout
+                        android:id="@+id/mislogros"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/logros"
+                        android:layout_marginTop="20dp"
+                        android:columnCount="3"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+                    </GridLayout>
 
             </RelativeLayout>
 

@@ -179,7 +179,6 @@ public class Memedex extends AppCompatActivity {
         ImageView iv = v.findViewById(R.id.imagePlantillaMeme);
 
         iv.setTag(meme.getTitulo());
-        Log.i("Memes",iv.getTag().toString());
         Picasso.get().load(meme.getImg()).into(iv);
 
         ll.addView(v,params);

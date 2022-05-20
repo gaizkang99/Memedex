@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_opciones);
+
+        ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
         Button justes = (Button) findViewById(R.id.ajustes);
         Button capturar = (Button) findViewById(R.id.buttonCapturar);
         Button memedex = (Button) findViewById(R.id.buttonMemedex);
@@ -49,6 +52,13 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        perfilimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu.this, Profile.class);
+                startActivity(intent);
+            }
+        });
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

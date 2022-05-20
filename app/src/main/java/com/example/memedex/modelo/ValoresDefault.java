@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ValoresDefault {
     public static Usuario user;
-    public List<Logro> logros;
     public CountDownTimer countDownTimer;
     public float Sonido;
     public float Musica;
@@ -28,14 +27,6 @@ public class ValoresDefault {
 
     public void setUser(Usuario user) {
         this.user = user;
-    }
-
-    public List<Logro> getLogros() {
-        return logros;
-    }
-
-    public void setLogros(List<Logro> logros) {
-        this.logros = logros;
     }
 
     public CountDownTimer getCountDownTimer() {

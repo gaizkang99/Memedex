@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.memedex.modelo.Logro;
+import com.example.memedex.modelo.Meme;
 import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
@@ -108,10 +110,8 @@ public class Login extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int i = 0;
                 if (snapshot.exists()) {
                     for (DataSnapshot user : snapshot.getChildren()) {
-
                         Usuario u= new Usuario(
                                 user.getValue(Usuario.class).getId(),
                                 user.getValue(Usuario.class).getUserName(),
@@ -122,10 +122,12 @@ public class Login extends AppCompatActivity {
 
                         ValoresDefault.get().setUser(u);
                         Log.i("Memes",u.toString());
-                        Intent intent = new Intent(Login.this, Menu.class );
 
+                        //LOGRO 1 --> Iniciar session
+                        logroObtenido1();
+
+                        Intent intent = new Intent(Login.this, Menu.class );
                         startActivity(intent);
-                        //finish();
                     }
                 }
             }
@@ -136,5 +138,15 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    private void logroObtenido1() {
+
+/*
+            FirebaseDatabase.getInstance().getReference()
+                    .child("Usuario")
+                    .child(ValoresDefault.get().getUser().getId())
+                    .child("logros").push().setValue(new Logro());*/
     }
 }

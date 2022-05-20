@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.memedex.R;
+import com.example.memedex.modelo.Logro;
 import com.example.memedex.modelo.Meme;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
         momardo.push().setValue(new Meme("memePerro.jpg","Perro burlador","Los chistes de programadores no son solo para desarrolladores",22,"https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/memePerro.jpg?alt=media&token=ed40238b-b656-48b8-b0b4-6a3e7c90ebd9"));
         momardo.push().setValue(new Meme("spiderMeme.jpg","Spider love","Peter vacilando a Mary Jane",22,"https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/spiderMeme.jpg?alt=media&token=bd9cd7d5-3d15-4e6a-a359-28474b61231b"));
 */
+
+//INSERTAR LOGROS
+/*
+        FirebaseDatabase fb;
+        fb = FirebaseDatabase.getInstance();
+        DatabaseReference logro = fb.getReference("Logro");
+
+        logro.push().setValue(new Logro("login.jpg","Logro de inicio de sesion conseguido!","https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/login.jpg?alt=media&token=68554858-8c76-4236-b184-ff040e67369a"));
+ */
 
 
 

@@ -12,24 +12,16 @@ public class Usuario {
     //private String imgUrl;
     private ArrayList<Logro> logros;
     private ArrayList<Usuario> amigos;
-    private ArrayList<Meme> coleccionMemes;
-    private ArrayList<Meme> memedexMemes;
 
-    public Usuario(String id, String userName, String email){
+    public Usuario(String id, String userName, String email, int coins, int level){
         this.id = id;
         this.userName = userName;
         this.email = email;
-        this.coins = 240;
-        this.level = 1;
-        this.logros= new ArrayList<>();
-        this.amigos=new ArrayList<>();
-        this.coleccionMemes=new ArrayList<>();
-        this.memedexMemes=new ArrayList<>();
+        this.coins = coins;
+        this.level = level;
     }
+    public Usuario() { }
 
-    public ArrayList<Meme> getColeccionMemes() {
-        return coleccionMemes;
-    }
 
     public String getId() {
         return id;
@@ -37,22 +29,6 @@ public class Usuario {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setColeccionMemes(ArrayList<Meme> coleccionMemes) {
-        this.coleccionMemes = coleccionMemes;
-    }
-
-    public ArrayList<Meme> getMemedexMemes() {
-        return memedexMemes;
-    }
-
-    public void setMemedexMemes(ArrayList<Meme> memedexMemes) {
-        this.memedexMemes = memedexMemes;
-    }
-
-    public Usuario() {
-
     }
 
     public ArrayList<Logro> getLogros() {
@@ -99,10 +75,7 @@ public class Usuario {
                 ", coins=" + coins +
                 ", level=" + level +
                 ", logros=" + logros +
-                ", amigos=" + amigos +
-                ", coleccionMemes=" + coleccionMemes +
-                ", memedexMemes=" + memedexMemes +
-                '}';
+                ", amigos=" + amigos;
     }
 
     public void setCoins(int coins) {

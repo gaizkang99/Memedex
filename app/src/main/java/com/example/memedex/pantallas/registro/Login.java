@@ -99,38 +99,40 @@ public class Login extends AppCompatActivity {
     }
 
     private void registroUsuario(){
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Usuario");
-        myRef.orderByChild("email").equalTo(usermail.getText().toString()).addChildEventListener(new ChildEventListener() {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        Query query= myRef
+                .child("Usuario")
+                .orderByChild("email")
+                .equalTo(usermail.getText().toString());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Usuario u = snapshot.getValue(Usuario.class);
-                ValoresDefault.get().setUser(u);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int i = 0;
+                if (snapshot.exists()) {
+                    for (DataSnapshot user : snapshot.getChildren()) {
 
-                Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(Login.this, Menu.class );
-                i.putExtra("username",u.getUserName());
-                i.putExtra("level", String.valueOf(u.getLevel()));
-                startActivity(i);
-                finish();
-            }
+                        Usuario u= new Usuario(
+                                user.getValue(Usuario.class).getId(),
+                                user.getValue(Usuario.class).getUserName(),
+                                user.getValue(Usuario.class).getEmail(),
+                                user.getValue(Usuario.class).getCoins(),
+                                user.getValue(Usuario.class).getLevel()
+                                );
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                        ValoresDefault.get().setUser(u);
+                        Log.i("Memes",u.toString());
+                        Intent intent = new Intent(Login.this, Menu.class );
 
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                        startActivity(intent);
+                        //finish();
+                    }
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Login.this , "Error de conexión",Toast.LENGTH_SHORT).show();
 
             }
         });

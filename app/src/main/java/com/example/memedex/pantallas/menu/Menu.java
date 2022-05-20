@@ -39,10 +39,7 @@ public class Menu extends AppCompatActivity {
         Button exchange = (Button) findViewById(R.id.buttonIntercambiar);
         Button perfil = (Button) findViewById(R.id.profile);
 
-        if(getIntent().getStringExtra("username")!=null)
-            perfil.setText(getIntent().getStringExtra("username") + " / " + getIntent().getStringExtra("level"));
-        else
-            perfil.setText(ValoresDefault.get().getUser().getUserName() + " / " + ValoresDefault.get().getUser().getLevel());
+        perfil.setText(ValoresDefault.get().getUser().getUserName() + " / " + ValoresDefault.get().getUser().getLevel());
 
         justes.setOnClickListener(new View.OnClickListener() {
             @Override

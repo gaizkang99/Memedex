@@ -107,7 +107,12 @@ public class Register extends AppCompatActivity {
     public void crearUsuario(){
         fb = FirebaseDatabase.getInstance();
         DatabaseReference usuario = fb.getReference("Usuario");
-        Usuario user = new Usuario(usuario.push().getKey(),userName.getText().toString(), userMail.getText().toString());
+        Usuario user = new Usuario(
+                usuario.push().getKey(),
+                userName.getText().toString(),
+                userMail.getText().toString(),
+                300,
+                1);
         ValoresDefault.get().setUser(user);
         usuario.child(user.getId()).setValue(user);
 

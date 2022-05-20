@@ -9,9 +9,6 @@ public class Usuario {
     private int coins;
     private int level;
     private String id;
-    //private String imgUrl;
-    private ArrayList<Logro> logros;
-    private ArrayList<Usuario> amigos;
 
     public Usuario(String id, String userName, String email, int coins, int level){
         this.id = id;
@@ -31,21 +28,6 @@ public class Usuario {
         this.id = id;
     }
 
-    public ArrayList<Logro> getLogros() {
-        return logros;
-    }
-
-    public void setLogros(ArrayList<Logro> logros) {
-        this.logros = logros;
-    }
-
-    public ArrayList<Usuario> getAmigos() {
-        return amigos;
-    }
-
-    public void setAmigos(ArrayList<Usuario> amigos) {
-        this.amigos = amigos;
-    }
 
     public String getUserName() {
         return userName;
@@ -73,9 +55,7 @@ public class Usuario {
                 "userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", coins=" + coins +
-                ", level=" + level +
-                ", logros=" + logros +
-                ", amigos=" + amigos;
+                ", level=" + level ;
     }
 
     public void setCoins(int coins) {

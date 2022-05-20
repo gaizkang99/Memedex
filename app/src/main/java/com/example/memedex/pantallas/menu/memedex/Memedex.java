@@ -126,7 +126,7 @@ public class Memedex extends AppCompatActivity {
 
     private void printMeme(Meme meme) {
         LayoutInflater lf=LayoutInflater.from(Memedex.this);
-        v= lf.inflate(R.layout.plantilla_memes,null);
+        v = lf.inflate(R.layout.plantilla_memes,null);
         GridLayout ll = findViewById(R.id.memedexMemes);
         TextView tv = v.findViewById(R.id.nombrePlantillaMeme);
         tv.setText(meme.getTitulo());

@@ -28,6 +28,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Login extends AppCompatActivity {
 
@@ -95,14 +100,11 @@ public class Login extends AppCompatActivity {
 
     private void registroUsuario(){
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Usuario");
-        //Query query = myRef.child("Usuario").orderByChild("email").equalTo(usermail.getText().toString());
         myRef.orderByChild("email").equalTo(usermail.getText().toString()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Usuario u = snapshot.getValue(Usuario.class);
                 ValoresDefault.get().setUser(u);
-                Log.i("Memes", ValoresDefault.get().getUser().getUserName());
-
 
                 Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(Login.this, Menu.class );

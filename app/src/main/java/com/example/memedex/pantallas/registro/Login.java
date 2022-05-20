@@ -100,14 +100,11 @@ public class Login extends AppCompatActivity {
 
     private void registroUsuario(){
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Usuario");
-        //Query query = myRef.child("Usuario").orderByChild("email").equalTo(usermail.getText().toString());
         myRef.orderByChild("email").equalTo(usermail.getText().toString()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Usuario u = snapshot.getValue(Usuario.class);
                 ValoresDefault.get().setUser(u);
-                Log.i("Memes", ValoresDefault.get().getUser().getUserName());
-
 
                 Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(Login.this, Menu.class );
@@ -137,27 +134,5 @@ public class Login extends AppCompatActivity {
 
             }
         });
-                /*.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot) {
-                Usuario u = dataSnapshot.getValue(Usuario.class);
-                Log.i("Memes", u.toString());
-                if (dataSnapshot.exists()) {
-                    //u.setEmail(dataSnapshot.getValue(Usuario.class).getEmail());
-                    //Log.i("Memes", dataSnapshot.getValue(Usuario.class).toString());
-                    /*ArrayList<String> u = new ArrayList<>();
-                    for (DataSnapshot usuario : dataSnapshot.getChildren()) {
-                        u.add(usuario.getValue(Usuario.class).getEmail());
-                        if(usuario.getValue(Usuario.class).getEmail().equals(usermail.getText().toString())){
-                            Usuario u= usuario.getValue(Usuario.class);
-                            ValoresDefault.get().setUser(u);
-                        }
-                    }
-                }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });*/
     }
 }

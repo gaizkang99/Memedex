@@ -49,7 +49,7 @@ public class MemeRegistro extends AppCompatActivity {
             if(bo){
                 Log.i("Memes","tru");
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                //params.addRule(RelativeLayout.BELOW, R.id.hijo1);
+                params.addRule(RelativeLayout.BELOW, R.id.hijo1);
                 rl.setLayoutParams(params);
             }else{
                 rl.setLayoutParams(w);

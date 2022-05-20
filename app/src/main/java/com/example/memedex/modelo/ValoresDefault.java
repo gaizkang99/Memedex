@@ -8,9 +8,11 @@ import java.util.List;
 
 public class ValoresDefault {
     public static Usuario user;
-    public List<Meme> memedex;
     public List<Logro> logros;
     public CountDownTimer countDownTimer;
+    public float Sonido;
+    public float Musica;
+
     private static ValoresDefault ValoresDefault;
 
     public static ValoresDefault get(){
@@ -28,7 +30,38 @@ public class ValoresDefault {
         this.user = user;
     }
 
-    //Esta clase sirve para no ir cargando all el rato valores de la base de datos
+    public List<Logro> getLogros() {
+        return logros;
+    }
+
+    public void setLogros(List<Logro> logros) {
+        this.logros = logros;
+    }
+
+    public CountDownTimer getCountDownTimer() {
+        return countDownTimer;
+    }
+
+    public void setCountDownTimer(CountDownTimer countDownTimer) {
+        this.countDownTimer = countDownTimer;
+    }
+
+    public float getSonido() {
+        return Sonido;
+    }
+
+    public void setSonido(float sonido) {
+        Sonido = sonido;
+    }
+
+    public float getMusica() {
+        return Musica;
+    }
+
+    public void setMusica(float musica) {
+        Musica = musica;
+    }
+//Esta clase sirve para no ir cargando all el rato valores de la base de datos
     /* Listado de memes existentes
      * Listado de logros existentes
      *

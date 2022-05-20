@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Size;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -110,12 +113,30 @@ public class Coleccion extends AppCompatActivity {
                         memes.add(meme.getValue(Meme.class));
                         printMeme(meme.getValue(Meme.class));
                     }
-                }else
-                    Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
+                }else{
+                    GridLayout ll = findViewById(R.id.coleccionMemes);
+                    //Text
+                    TextView tv=new TextView(getApplicationContext());
+                    tv.setText("¡Actualmente no tienes ningún meme!\n" +
+                            "Para tener alguno vete a Capturar");
+                    tv.setGravity(Gravity.CENTER);
+
+                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    params.addRule(RelativeLayout.BELOW, R.id.finder);
+                    ll.addView(tv, params);
+                    //Boton
+                    /*Button button= new Button(getApplicationContext());
+                    button.setText("Ir a Capturar");
+                    params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    params.addRule(RelativeLayout.BELOW, R.id.finder);
+
+                    ll.addView(button,params);*/
+
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
             }
         });
     }

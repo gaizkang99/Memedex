@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Size;
 import android.view.Gravity;
@@ -144,16 +145,30 @@ public class Coleccion extends AppCompatActivity {
     private void printMeme(Meme meme) {
         LayoutInflater lf=LayoutInflater.from(Coleccion.this);
         View v= lf.inflate(R.layout.plantilla_memes,null);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int width = (int) (metrics.widthPixels); // ancho absoluto en pixels
+        int height = (int) (metrics.heightPixels); // alto absoluto en pixels
+
+
         GridLayout ll = findViewById(R.id.coleccionMemes);
         TextView tv = v.findViewById(R.id.nombrePlantillaMeme);
         tv.setText(meme.getTitulo());
         ImageView iv = v.findViewById(R.id.imagePlantillaMeme);
 
         iv.setTag(meme.getTitulo());
+        iv.setPadding(10,10,10,0);
         Log.i("Memes",iv.getTag().toString());
         Picasso.get().load(meme.getImg()).into(iv);
 
-        ll.addView(v);
+
+
+        RelativeLayout.LayoutParams w =
+                new RelativeLayout.LayoutParams(
+                        width/3,
+                        height/5);
+        ll.addView(v,w);
     }
 
     public void memeMemedex(View v){

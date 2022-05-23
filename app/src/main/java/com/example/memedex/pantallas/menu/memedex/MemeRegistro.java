@@ -47,8 +47,15 @@ public class MemeRegistro extends AppCompatActivity {
         RelativeLayout.LayoutParams w= (RelativeLayout.LayoutParams) rl.getLayoutParams();
         iv.setOnClickListener(view -> {
             if(bo){
-                Log.i("Memes","tru");
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                DisplayMetrics metrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(metrics);
+                int width = (int) (metrics.widthPixels); // ancho absoluto en pixels
+                int height = (int) (metrics.heightPixels); // alto absoluto en pixels
+
+                RelativeLayout.LayoutParams params =
+                        new RelativeLayout.LayoutParams(
+                                width,
+                                height);
                 params.addRule(RelativeLayout.BELOW, R.id.hijo1);
                 rl.setLayoutParams(params);
             }else{

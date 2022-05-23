@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Avistados = 69 / Total 420" />
+                        android:text="Avistados: 0 / Total: 0" />
 
                     <EditText
                         android:id="@+id/finder"

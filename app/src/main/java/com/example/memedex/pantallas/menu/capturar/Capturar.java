@@ -94,10 +94,10 @@ public class Capturar  extends AppCompatActivity {
                     for (DataSnapshot meme : dataSnapshot.getChildren()) {
                         memes.add(meme.getValue(Meme.class));
                     }
+                    imgConfigure(memes);
                 }else
                     Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
 
-                imgConfigure(memes);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -110,35 +110,64 @@ public class Capturar  extends AppCompatActivity {
     private void imgConfigure(ArrayList<Meme> memes){
         //Log.i("Memes",cronometro.getText().toString());
         final ImageView image = (ImageView) findViewById(R.id.memeCapturar);
-        Meme re= memes.get(rand.nextInt(memes.size()-1));
+        Meme re;
+        if(memes.size()==1){
+            re= memes.get(0);
+        }else
+            re= memes.get(rand.nextInt(memes.size()-1));
         LoadImageFromWeb(re.getImg(),image,re);
 
     }
     private void LoadImageFromWeb(String url,ImageView imageView,Meme meme) {
         try {
             Picasso.get().load(url).into(imageView);
+            Log.i("Memes", meme.getTipo());
 
-            miniJuegoMoverPulsarEsconder(imageView);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    contador++;
-                    if(contador<3) {
-                        sonido.start();
-                        miniJuegoMoverPulsarEsconder(imageView);
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            int width = (int) (metrics.widthPixels/1.50); // ancho absoluto en pixels
+            int height = (int) (metrics.heightPixels/1.40); // alto absoluto en pixels
+            //Mueve la imagen, la hace visible
 
-                    }else {
-                        //Update de tu colección
-                        addToFirebaseUser(meme);
+            imageView.animate()
+                    .translationX(rand.nextInt(width))
+                    .translationY(rand.nextInt(height));
 
-                        Intent intent = new Intent(Capturar.this, memeAtrapado.class);
-                        intent.putExtra("name", meme.getTitulo());
-                        intent.putExtra("imgurl", meme.getImg());
-                        //intent.putExtra("tipo", );
-                        startActivity(intent);
-                    }
-                }
-            });
+            switch (meme.getTipo()){
+                case "PROGRAMADOR":
+                    Log.i("Memes", meme.getTipo());
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            contador++;
+                            if(contador<3) {
+                                sonido.start();
+                                miniJuegoMoverPulsarEsconder(imageView);
+                            }else {
+                                //Update de tu colección
+                                addToFirebaseUser(meme);
+
+                                Intent intent = new Intent(Capturar.this, memeAtrapado.class);
+                                intent.putExtra("name", meme.getTitulo());
+                                intent.putExtra("imgurl", meme.getImg());
+                                intent.putExtra("tipo", meme.getTipo());
+                                //intent.putExtra("tipo", );
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                    break;
+                case "DAM 2T":
+                    //Esconde imagen
+                    imageView.animate()
+                            .alpha(1.0f)
+                            .setDuration(500);
+                    Log.i("Memes", meme.getTipo());
+                    miniJuegoMoverRapido(imageView);
+                    break;
+                default:
+                    Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
+            }
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
@@ -170,9 +199,9 @@ public class Capturar  extends AppCompatActivity {
                     }
                     if(!existenciaEnMemedex){
                         FirebaseDatabase.getInstance().getReference()
-                            .child("Usuario")
-                            .child(ValoresDefault.get().getUser().getId())
-                            .child("memedexMemes").push().setValue(meme);
+                                .child("Usuario")
+                                .child(ValoresDefault.get().getUser().getId())
+                                .child("memedexMemes").push().setValue(meme);
                     }
                 }else{
                     FirebaseDatabase.getInstance().getReference()
@@ -187,87 +216,37 @@ public class Capturar  extends AppCompatActivity {
 
             }
         });
+    }
 
-        /*DatabaseReference memedex = FirebaseDatabase.getInstance().getReference();
-        Query q=  memedex
-                .child("Usuario")
-                .child(ValoresDefault.get().getUser().getId())
-                .child("memedexMemes").orderByChild("titulo").equalTo(meme.getTitulo());
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int i = 0;
-                if (snapshot.exists()) {
-                    for (DataSnapshot m : snapshot.getChildren()) {
-                        Log.i("Memes",m.getValue(Meme.class).getNombre());
-                        FirebaseDatabase.getInstance().getReference()
-                                .child("Usuario")
-                                .child(ValoresDefault.get().getUser().getId())
-                                .child("memedexMemes").setValue(meme);
-                    }
-                }
-            }
+    private void miniJuegoMoverRapido(ImageView iv) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        ImageView anterior= iv;
+        //Esconde imagen
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        for(int i=0;i<20;i++) {
+            int wImg;
+            int hImg;
+            int r=60;
+            do{
+                wImg=iv.getWidth() +rand.nextInt(r)-r/2;
+                hImg=iv.getHeight() +rand.nextInt(r)-r/2;
+            }while(wImg<=0 || hImg<=0);
+            ImageView imageView = new ImageView(this);
+            imageView.setLayoutParams(anterior.getLayoutParams());
 
-            }
-        });*/
+            Log.i("Memes",wImg +" "+ hImg);
 
-        /*
-        *
-    private void addToFirebaseUser(Meme meme) {
-        //Coleccion
-        //Lo inserta a la colección
-        DatabaseReference coleccion = FirebaseDatabase.getInstance()
-                .getReference()
-                .child("Usuario")
-                .child(ValoresDefault.get().getUser().getId())
-                .child("coleccionMemes");
-        coleccion.setValue(meme);
-        //Memedex
-        //Verifica que no se ha registrado ningún meme que sea él mismo
-        DatabaseReference memedex = FirebaseDatabase.getInstance().getReference();
-        Query query= memedex
-                .child("Usuario")
-                .child(ValoresDefault.get().getUser().getId())
-                .child("memedexMemes");
-        memedex.setValue(meme);
-
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    boolean yaCapturado=false;
-                    for (DataSnapshot memeColeccion : dataSnapshot.getChildren()) {
-                        if(meme==memeColeccion.getValue(Meme.class)){
-                            yaCapturado=true;
-                        }
-                    }
-                    if(yaCapturado){
-
-                    }else{
-                        memedex.push();
-                        Intent intent = new Intent(Capturar.this, memeAtrapado.class);
-                        intent.putExtra("name", meme.getTitulo());
-                        intent.putExtra("imgurl", meme.getImg());
-                        //intent.putExtra("tipo", );
-                        startActivity(intent);
-                    }
-                }else
-                    Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }*/
-
+            imageView.animate()
+                    .translationX(hImg)
+                    .translationY(wImg)
+                    .setDuration(3000);
+            anterior = imageView;
+        }
     }
 
     private void miniJuegoMoverPulsarEsconder(ImageView iv){
+
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int width = (int) (metrics.widthPixels/1.50); // ancho absoluto en pixels
@@ -287,8 +266,7 @@ public class Capturar  extends AppCompatActivity {
                         super.onAnimationEnd(animation);
                         iv.animate().alpha(1.0f).setDuration(3000);
                     }
-                })
-        ;
+                });
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

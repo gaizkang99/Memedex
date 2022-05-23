@@ -79,41 +79,28 @@
                         android:padding="10dp"></SeekBar>
 
 
-                    <RelativeLayout
-                        android:id="@+id/switchVibracion"
-                        android:layout_width="fill_parent"
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/botom"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hijo21"
+                    android:gravity="center_horizontal|bottom"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/cerrarSesion"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/sonidoSeekbar"
-                        android:gravity="center_horizontal|bottom"
-                        android:padding="10dp">
-
-                        <Switch
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Vibración" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/switchVibracion"
-                        android:gravity="center_horizontal|bottom"
-                        android:padding="10dp">
-
-                        <Button
-                            android:id="@+id/cerrarSesion"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cerrar sesión" />
-                    </RelativeLayout>
-
+                        android:text="Cerrar sesión" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/hijo22"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/hijo21"
+                    android:layout_below="@id/botom"
                     android:gravity="center"
                     android:padding="30dp">
 
@@ -123,6 +110,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="10dp"
+                        android:textSize="20sp"
                         android:text="Creación de memes" />
 
                     <TextView
@@ -142,9 +130,7 @@
                         android:layout_below="@id/texto"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="correo@gmail.com">
-
-                    </TextView>
+                        android:text="correo@gmail.com"/>
 
                 </RelativeLayout>
 

@@ -62,8 +62,6 @@ public class MemeRegistro extends AppCompatActivity {
                 rl.setLayoutParams(w);
             }
             bo=!bo;
-            //iv.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-            //iv.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
         });
 
         Button b = (Button) findViewById(R.id.bottonMemedex);

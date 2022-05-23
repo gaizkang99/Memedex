@@ -38,6 +38,7 @@ public class Mercado extends AppCompatActivity {
 
     private View v;
     private ArrayList<Meme> memes;
+    private Button comprar, vender;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class Mercado extends AppCompatActivity {
             Intent intentSign = new Intent(Mercado.this, Menu.class);
             startActivity(intentSign);
         });
+
 
         ArrayAdapter<Meme> adapter = new ArrayAdapter<Meme>(Mercado.this, android.R.layout.simple_list_item_1, memes);
         finder.addTextChangedListener(new TextWatcher() {
@@ -119,6 +121,31 @@ public class Mercado extends AppCompatActivity {
                 TextView tv = v.findViewById(R.id.nombreMeme);
                 tv.setText(meme.getTitulo());
                 ImageView iv = v.findViewById(R.id.imagenMeme);
+                comprar = v.findViewById(R.id.botonComprar);
+                vender = v.findViewById(R.id.botonVender);
+
+                comprar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(Mercado.this, Comprar.class);
+                        i.putExtra("tituloMeme", meme.getTitulo());
+                        i.putExtra("imagenMeme", meme.getImg());
+                        i.putExtra("valorMeme", String.valueOf(meme.getPrecio()));
+                        i.putExtra("descripcionMeme", meme.getDescripcion());
+                        i.putExtra("nombreMeme", meme.getNombre());
+                        startActivity(i);
+                    }
+                });
+                vender.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(Mercado.this, Vender.class);
+                        i.putExtra("nombreMeme", meme.getTitulo());
+                        i.putExtra("imagenMeme", meme.getImg());
+                        startActivity(i);
+                    }
+                });
+
 
                 iv.setTag(meme.getTitulo());
                 Log.i("Memes", iv.getTag().toString());
@@ -126,4 +153,4 @@ public class Mercado extends AppCompatActivity {
 
                 ll.addView(v);
             }
-        }
+}

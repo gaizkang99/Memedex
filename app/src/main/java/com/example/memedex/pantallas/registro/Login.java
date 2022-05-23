@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.memedex.modelo.Logro;
+import com.example.memedex.modelo.Meme;
 import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
@@ -28,6 +30,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Login extends AppCompatActivity {
 
@@ -94,39 +101,52 @@ public class Login extends AppCompatActivity {
     }
 
     private void registroUsuario(){
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Usuario");
-        myRef.orderByChild("email").equalTo(usermail.getText().toString()).addChildEventListener(new ChildEventListener() {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        Query query= myRef
+                .child("Usuario")
+                .orderByChild("email")
+                .equalTo(usermail.getText().toString());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Usuario u = snapshot.getValue(Usuario.class);
-                ValoresDefault.get().setUser(u);
-                Toast.makeText(Login.this , "Login succesfull !!",Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(Login.this, Menu.class );
-                i.putExtra("username",u.getUserName());
-                i.putExtra("level", String.valueOf(u.getLevel()));
-                startActivity(i);
-                finish();
-            }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot user : snapshot.getChildren()) {
+                        Usuario u= new Usuario(
+                                user.getValue(Usuario.class).getId(),
+                                user.getValue(Usuario.class).getUserName(),
+                                user.getValue(Usuario.class).getEmail(),
+                                user.getValue(Usuario.class).getCoins(),
+                                user.getValue(Usuario.class).getLevel()
+                                );
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                        ValoresDefault.get().setUser(u);
+                        Log.i("Memes",u.toString());
 
-            }
+                        //LOGRO 1 --> Iniciar session
+                        logroObtenido1();
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                        Intent intent = new Intent(Login.this, Menu.class );
+                        startActivity(intent);
+                    }
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Login.this , "Error de conexión",Toast.LENGTH_SHORT).show();
 
             }
         });
+    }
+
+
+    private void logroObtenido1() {
+
+/*
+            FirebaseDatabase.getInstance().getReference()
+                    .child("Usuario")
+                    .child(ValoresDefault.get().getUser().getId())
+                    .child("logros").push().setValue(new Logro());*/
     }
 }

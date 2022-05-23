@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:id="@+id/plantilla"
-        android:layout_width="116dp"
-        android:layout_height="134dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:gravity="center"
@@ -19,21 +19,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imagePlantillaMeme"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:onClick="memeMemedex"
-            tools:srcCompat="@tools:sample/avatars" />
-
         <TextView
             android:id="@+id/nombrePlantillaMeme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imagePlantillaMeme"
             android:gravity="center"
             android:text="nombre"
             android:textSize="10dp" />
+
+        <ImageView
+            android:id="@+id/imagePlantillaMeme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="memeMemedex"
+            android:layout_below="@+id/nombrePlantillaMeme"
+            tools:srcCompat="@tools:sample/avatars" />
+
 
 
     </LinearLayout>

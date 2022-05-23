@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Avistados = 69 / Total 420" />
+                        android:text="Avistados: 0 / Total: 0" />
 
                     <EditText
                         android:id="@+id/finder"
@@ -88,8 +88,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/hijo22"
                     android:layout_marginTop="20dp"
+                    android:columnCount="3"
                     android:orientation="horizontal"
-                    android:columnCount="3">
+                    android:padding="14dp">
 
                 </GridLayout>
             </RelativeLayout>

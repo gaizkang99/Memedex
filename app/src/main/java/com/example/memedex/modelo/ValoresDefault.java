@@ -8,6 +8,9 @@ import java.util.List;
 
 public class ValoresDefault {
     public static Usuario user;
+    public CountDownTimer countDownTimer;
+    public float Sonido;
+    public float Musica;
 
     private static ValoresDefault ValoresDefault;
 
@@ -18,56 +21,12 @@ public class ValoresDefault {
         return ValoresDefault;
     }
 
-    //Esta clase sirve para no ir cargando all el rato valores de la base de datos
-    /* Listado de memes existentes
-     * Listado de logros existentes
-     *
-     * usuario
-     */
-    public List<Meme> memedex;
-    public List<Logro> logros;
-    public CountDownTimer countDownTimer;
-    public float sonido;
-    public float musica;
-
-    public float getMusica() {
-        return musica;
-    }
-
-    public void setMusica(float musica) {
-        this.musica = musica;
-    }
-
     public Usuario getUser() {
         return user;
     }
 
     public void setUser(Usuario user) {
         this.user = user;
-    }
-
-    public List<Meme> getMemedex() {
-        return memedex;
-    }
-
-    public void setMemedex(List<Meme> memedex) {
-        this.memedex = memedex;
-    }
-
-    public List<Logro> getLogros() {
-        return logros;
-    }
-
-    public void setLogros(List<Logro> logros) {
-        this.logros = logros;
-    }
-
-    public float getSonido() {
-        return sonido;
-    }
-
-    public void setSonido(float sonido) {
-        this.sonido = sonido;
     }
 
     public CountDownTimer getCountDownTimer() {
@@ -78,5 +37,26 @@ public class ValoresDefault {
         this.countDownTimer = countDownTimer;
     }
 
+    public float getSonido() {
+        return Sonido;
+    }
+
+    public void setSonido(float sonido) {
+        Sonido = sonido;
+    }
+
+    public float getMusica() {
+        return Musica;
+    }
+
+    public void setMusica(float musica) {
+        Musica = musica;
+    }
+//Esta clase sirve para no ir cargando all el rato valores de la base de datos
+    /* Listado de memes existentes
+     * Listado de logros existentes
+     *
+     * usuario
+     */
 
 }

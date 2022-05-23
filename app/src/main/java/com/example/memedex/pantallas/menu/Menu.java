@@ -2,11 +2,13 @@ package com.example.memedex.pantallas.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.modelo.Usuario;
@@ -22,20 +24,15 @@ import com.example.memedex.pantallas.menu.mercado.Mercado;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-
 public class Menu extends AppCompatActivity {
-    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
-    private ArrayList<Usuario> usuario;
-    TextView info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_opciones);
 
+        ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
         Button justes = (Button) findViewById(R.id.ajustes);
-        Button profile = (Button) findViewById(R.id.profile);
         Button capturar = (Button) findViewById(R.id.buttonCapturar);
         Button memedex = (Button) findViewById(R.id.buttonMemedex);
         Button coleccion = (Button) findViewById(R.id.buttonColeccion);
@@ -43,11 +40,7 @@ public class Menu extends AppCompatActivity {
         Button mercado = findViewById(R.id.buttonMercado);
         Button perfil = (Button) findViewById(R.id.profile);
 
-        if(getIntent().getStringExtra("username")!=null)
-            perfil.setText(getIntent().getStringExtra("username") + " / " + getIntent().getStringExtra("level"));
-        else
-            perfil.setText(ValoresDefault.get().getUser().getUserName() + " / " + ValoresDefault.get().getUser().getLevel());
-
+        perfil.setText(ValoresDefault.get().getUser().getUserName() + " / Nivel: " + ValoresDefault.get().getUser().getLevel());
 
         justes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +50,14 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        profile.setOnClickListener(new View.OnClickListener() {
+        perfilimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu.this, Profile.class);
+                startActivity(intent);
+            }
+        });
+        perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Menu.this, Profile.class);

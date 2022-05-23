@@ -2,6 +2,7 @@ package com.example.memedex.pantallas.menu.coleccion;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -37,9 +38,16 @@ public class memeColeccion extends AppCompatActivity {
         RelativeLayout.LayoutParams w= (RelativeLayout.LayoutParams) rl.getLayoutParams();
         iv.setOnClickListener(view -> {
             if(bo){
-                Log.i("Memes","tru");
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                //params.addRule(RelativeLayout.BELOW, R.id.hijo1);
+                DisplayMetrics metrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(metrics);
+                int width = (int) (metrics.widthPixels); // ancho absoluto en pixels
+                int height = (int) (metrics.heightPixels); // alto absoluto en pixels
+
+                RelativeLayout.LayoutParams params =
+                        new RelativeLayout.LayoutParams(
+                                width,
+                                height);
+                params.addRule(RelativeLayout.BELOW, R.id.hijo1);
                 rl.setLayoutParams(params);
             }else{
                 rl.setLayoutParams(w);
@@ -56,7 +64,7 @@ public class memeColeccion extends AppCompatActivity {
 
         bottonVolverCaptura.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent(memeColeccion.this, Capturar.class);
+                Intent i = new Intent(memeColeccion.this, Coleccion.class);
                 startActivity(i);
             }
         });

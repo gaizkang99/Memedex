@@ -24,6 +24,7 @@ public class Ajustes extends AppCompatActivity {
         Button atras = (Button) findViewById(R.id.atras);
         Button close = (Button) findViewById(R.id.cerrarSesion);
 
+
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +62,7 @@ public class Ajustes extends AppCompatActivity {
 
         SeekBar s = (SeekBar) findViewById(R.id.sonidoSeekbar);
         s.setMax(100);
+        scrubSeekBar.setProgress((int) ValoresDefault.get().getMusica());
 
         s.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

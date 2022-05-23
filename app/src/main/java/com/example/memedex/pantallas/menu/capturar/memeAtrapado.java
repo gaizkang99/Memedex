@@ -25,12 +25,16 @@ public class memeAtrapado  extends AppCompatActivity {
         Meme meme= new Meme();
         meme.setNombre(getIntent().getExtras().getString("name"));
         meme.setImg(getIntent().getExtras().getString("imgurl"));
+        meme.setTipo(getIntent().getExtras().getString("tipo"));
 
         TextView tw = (TextView) findViewById(R.id.nombreMemeCapturado);
         tw.setText(meme.getNombre());
         ImageView iv = (ImageView) findViewById(R.id.imageView1);
         Picasso.get().load(meme.getImg()).into(iv);
 
+        TextView tipo = (TextView) findViewById(R.id.tipo);
+
+        tipo.setText(meme.getTipo());
 
 
         Button bottonVolverCaptura = (Button) findViewById(R.id.bottonVolverCaptura);

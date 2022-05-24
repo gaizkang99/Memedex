@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
@@ -32,12 +33,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class Profile extends AppCompatActivity {
 
     private View v;
     private ArrayList<Logro> logros;
+    private ArrayList<Logro> misLogros;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,13 @@ public class Profile extends AppCompatActivity {
         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
         Button back = (Button) findViewById(R.id.back);
         Button friends = (Button) findViewById(R.id.friends);
+
+        TextView nikname = (TextView) findViewById(R.id.nikname);
+        TextView level = (TextView) findViewById(R.id.level);
+        nikname.setText(ValoresDefault.get().getUser().getUserName());
+        //todo mostrar level String
+        //level.setText(ValoresDefault.get().getUser().getLevel());
+
 
         logros = new ArrayList<>();
 
@@ -71,32 +82,45 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        obtenerLogrosFirebase();
+        obtenerLogrosUserFirebase();
 
     }
 
-    private void obtenerLogrosFirebase() {
 
-            DatabaseReference meme = FirebaseDatabase.getInstance().getReference();
+    private void obtenerLogrosUserFirebase() {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
 
-            Query query = meme.child("Logro");
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        for (DataSnapshot logro : dataSnapshot.getChildren()) {
-                            logros.add(logro.getValue(Logro.class));
-                            Log.i("Memes",logros.toString());
-                            printLogro(logro.getValue(Logro.class));
-                        }
+        Query query = myRef.child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("logros");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot lograco : dataSnapshot.getChildren()) {
+                        //todo no muestra los logros de firebase del usuario
+                        //misLogros.add(lograco.getValue(Logro.class));
+                        //printLogro(lograco.getValue(Logro.class));
                     }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
-                }
-            });
 
+                }else{
+                    //todo este else no funciona...
+                    GridLayout ll = findViewById(R.id.memedexMemes);
+                    //Text
+                    TextView tv=new TextView(getApplicationContext());
+                    tv.setText("¡Todavía no has conseguido ningún logro!");
+                    tv.setGravity(Gravity.CENTER);
+
+                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    params.addRule(RelativeLayout.BELOW, R.id.finder);
+                    //ll.addView(tv, params);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void printLogro(Logro logro) {
@@ -125,4 +149,10 @@ public class Profile extends AppCompatActivity {
         ll.addView(v,params);
     }
 
+    private void addLogroToFirebaseUser(Logro logro) {
+        FirebaseDatabase.getInstance().getReference()
+                .child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("logros").push().setValue(logro);
+    }
 }

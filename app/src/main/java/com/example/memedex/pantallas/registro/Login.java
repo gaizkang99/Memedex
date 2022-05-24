@@ -1,6 +1,7 @@
 package com.example.memedex.pantallas.registro;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,11 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.modelo.Logro;
-import com.example.memedex.modelo.Meme;
 import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
@@ -25,16 +25,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Login extends AppCompatActivity {
 
@@ -66,10 +62,10 @@ public class Login extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String user = usermail.getText().toString();
                 String pwd = password.getText().toString();
                 if (TextUtils.isEmpty(user) && TextUtils.isEmpty(pwd)){
@@ -81,6 +77,9 @@ public class Login extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 //Recoger usuario por correo
                                 registroUsuario();
+
+                                //LOGRO 1 --> Iniciar session
+                                logroObtenido1();
                             } else {
                                 Toast.makeText(Login.this , "Failed login !!",Toast.LENGTH_SHORT).show();
                             }
@@ -119,12 +118,7 @@ public class Login extends AppCompatActivity {
                                 user.getValue(Usuario.class).getCoins(),
                                 user.getValue(Usuario.class).getLevel()
                                 );
-
                         ValoresDefault.get().setUser(u);
-                        Log.i("Memes",u.toString());
-
-                        //LOGRO 1 --> Iniciar session
-                        logroObtenido1();
 
                         Intent intent = new Intent(Login.this, Menu.class );
                         startActivity(intent);
@@ -142,11 +136,50 @@ public class Login extends AppCompatActivity {
 
 
     private void logroObtenido1() {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        Query query= myRef
+                .child("Logro")
+                .orderByChild("nombre")
+                .equalTo("login.jpg");
 
-/*
-            FirebaseDatabase.getInstance().getReference()
-                    .child("Usuario")
-                    .child(ValoresDefault.get().getUser().getId())
-                    .child("logros").push().setValue(new Logro());*/
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot logro : snapshot.getChildren()) {
+                        Logro newlogro =  logro.getValue(Logro.class);
+                        FirebaseDatabase.getInstance().getReference()
+                                .child("Usuario")
+                                .child(ValoresDefault.get().getUser().getId())
+                                .child("logros").push().setValue(newlogro);
+                        popup();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+    }
+
+    private void popup() {
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alerta = new AlertDialog.Builder(Login.this);
+                alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog title = alerta.create();
+                title.setTitle("Logeado!");
+                title.show();
+            }
+        });
     }
 }

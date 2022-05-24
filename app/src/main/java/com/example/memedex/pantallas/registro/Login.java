@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +40,7 @@ public class Login extends AppCompatActivity {
     private TextView register;
     private FirebaseDatabase fb;
     private FirebaseAuth firebaseauth;
+    private boolean popup;
 
 
     @SuppressLint("WrongViewCast")
@@ -47,6 +49,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        popup = false;
         usermail = findViewById(R.id.username);
         password = findViewById(R.id.passwd);
         login = findViewById(R.id.logIn);
@@ -65,7 +68,6 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String user = usermail.getText().toString();
                 String pwd = password.getText().toString();
                 if (TextUtils.isEmpty(user) && TextUtils.isEmpty(pwd)){
@@ -140,20 +142,50 @@ public class Login extends AppCompatActivity {
         Query query= myRef
                 .child("Logro")
                 .orderByChild("nombre")
-                .equalTo("login.jpg");
+                .equalTo("login");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    for (DataSnapshot logro : snapshot.getChildren()) {
-                        Logro newlogro =  logro.getValue(Logro.class);
-                        FirebaseDatabase.getInstance().getReference()
-                                .child("Usuario")
-                                .child(ValoresDefault.get().getUser().getId())
-                                .child("logros").push().setValue(newlogro);
-                        popup();
+                    Logro newlogro;
+                    for (DataSnapshot logru : snapshot.getChildren()) {
+                        newlogro=  logru.getValue(Logro.class);
+                        insertLogro(newlogro);
                     }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+    }
+
+    private void insertLogro(Logro logro) {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        Query query= myRef
+                .child("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("logro");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot l : snapshot.getChildren()) {
+                        if(!(l.getValue(Logro.class).getNombre().equals(logro.getNombre()))){
+                            FirebaseDatabase.getInstance().getReference("Usuario")
+                                    .child(ValoresDefault.get().getUser().getId())
+                                    .child("logro").push().setValue(logro);
+                            popup = true;
+                        }
+                    }
+                }else{
+                    FirebaseDatabase.getInstance().getReference("Usuario")
+                            .child(ValoresDefault.get().getUser().getId())
+                            .child("logro").push().setValue(logro);
                 }
             }
 
@@ -166,20 +198,16 @@ public class Login extends AppCompatActivity {
     }
 
     private void popup() {
-        login.setOnClickListener(new View.OnClickListener() {
+        AlertDialog.Builder alerta = new AlertDialog.Builder(Login.this);
+        alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alerta = new AlertDialog.Builder(Login.this);
-                alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-                AlertDialog title = alerta.create();
-                title.setTitle("Logeado!");
-                title.show();
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
             }
         });
+        AlertDialog title = alerta.create();
+        title.setTitle("Logeado!");
+        title.show();
+
     }
 }

@@ -46,6 +46,8 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+        misLogros= new ArrayList<>();
+        logros = new ArrayList<>();
 
         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
         Button back = (Button) findViewById(R.id.back);
@@ -58,7 +60,6 @@ public class Profile extends AppCompatActivity {
         //level.setText(ValoresDefault.get().getUser().getLevel());
 
 
-        logros = new ArrayList<>();
 
         perfilimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,15 +93,15 @@ public class Profile extends AppCompatActivity {
 
         Query query = myRef.child("Usuario")
                 .child(ValoresDefault.get().getUser().getId())
-                .child("logros");
+                .child("logro");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot lograco : dataSnapshot.getChildren()) {
-                        //todo no muestra los logros de firebase del usuario
-                        //misLogros.add(lograco.getValue(Logro.class));
-                        //printLogro(lograco.getValue(Logro.class));
+                        //todo- no muestra los logros de firebase del usuario
+                        misLogros.add(lograco.getValue(Logro.class));
+                        printLogro(lograco.getValue(Logro.class));
                     }
 
                 }else{
@@ -145,14 +146,6 @@ public class Profile extends AppCompatActivity {
 
         iv.setTag(logro.getNombre());
         Picasso.get().load(logro.getImg()).into(iv);
-
         ll.addView(v,params);
-    }
-
-    private void addLogroToFirebaseUser(Logro logro) {
-        FirebaseDatabase.getInstance().getReference()
-                .child("Usuario")
-                .child(ValoresDefault.get().getUser().getId())
-                .child("logros").push().setValue(logro);
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.memedex.R;
+import com.example.memedex.modelo.Logro;
 import com.example.memedex.modelo.Meme;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -97,10 +98,12 @@ public class MainActivity extends AppCompatActivity {
         fb = FirebaseDatabase.getInstance();
         DatabaseReference logro = fb.getReference("Logro");
 
-        logro.push().setValue(new Logro("login.jpg","Logro de inicio de sesion conseguido!","https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/login.jpg?alt=media&token=68554858-8c76-4236-b184-ff040e67369a"));
- */
+        logro.push().setValue(new Logro("login",
+        "Logro de inicio de sesion conseguido!",
+        "https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/login.jpg?alt=media&token=68554858-8c76-4236-b184-ff040e67369a"));
 
 
+*/
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override

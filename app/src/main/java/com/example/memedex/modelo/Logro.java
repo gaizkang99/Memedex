@@ -5,7 +5,6 @@ public class Logro {
     private String nombre;
     private String descripcion;
     private String img;
-    private boolean conseguido;
 
     public Logro(){}
 
@@ -13,7 +12,6 @@ public class Logro {
         this.nombre = name;
         this.descripcion = description;
         this.img = image;
-        this.conseguido = false;
     }
 
     public String getNombre() {
@@ -40,21 +38,12 @@ public class Logro {
         this.img = img;
     }
 
-    public boolean isConseguido() {
-        return conseguido;
-    }
-
-    public void setConseguido(boolean conseguido) {
-        this.conseguido = conseguido;
-    }
-
     @Override
     public String toString() {
         return "Logro{" +
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", img='" + img + '\'' +
-                ", conseguido=" + conseguido +
                 '}';
     }
 }

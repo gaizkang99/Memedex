@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/hijo22"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/imagen"
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/imagenMeme"
+                android:layout_width="250px"
+                android:layout_height="250px"
+                android:gravity="center"
+                android:src="@drawable/example" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/textoMeme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imagen">
+            <TextView
+                android:id="@+id/nombreMeme"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="TEXTO" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/botones"
+            android:layout_below="@+id/textoMeme"
+            android:layout_toEndOf="@+id/imagen"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/botonComprar"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="COMPRAR"/>
+            <Button
+                android:id="@+id/botonVender"
+                android:layout_toEndOf="@+id/botonComprar"
+                android:layout_marginLeft="25dp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="VENDER"/>
+        </RelativeLayout>
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

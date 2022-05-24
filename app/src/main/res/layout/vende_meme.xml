@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pantallas.registro.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
                 android:layout_height="wrap_content">
 
                 <RelativeLayout
-                    android:id="@+id/hijo1"
+                    android:id="@+id/cajaTitulo"
                     android:layout_width="fill_parent"
                     android:gravity="center"
                     android:layout_marginTop="@android:dimen/app_icon_size"
@@ -33,42 +32,70 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="NOMBRE MEME"
+                        android:text="VENTAS"
                         android:textSize="35dp"
-                        android:textStyle="bold"
-
-                        />
-
+                        android:textStyle="bold"/>
                 </RelativeLayout>
+
                 <RelativeLayout
-                    android:id="@+id/hijo21"
+                    android:id="@+id/cajaImagenMeme"
                     android:layout_width="fill_parent"
                     android:layout_height="200dp"
-                    android:layout_below="@+id/hijo1"
+                    android:layout_below="@+id/cajaTitulo"
                     android:gravity="center">
-
                     <ImageView
-                        android:id="@+id/imageView1"
+                        android:id="@+id/imagenMemeElegido"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-
                         tools:srcCompat="@tools:sample/avatars" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/hijo22"
+                    android:id="@+id/cajaNombreMeme"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/hijo21"
+                    android:layout_below="@+id/cajaImagenMeme"
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/nombreMemeElegido"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tipo"
                         android:layout_marginTop="20dp"
-                        android:text="TIPO MEME" />
+                        android:text="NOMBRE MEME" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/cajaCantidad"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cajaNombreMeme"
+                    android:padding="30dp">
+
+                    <Button
+                        android:id="@+id/menosCantidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_alignParentLeft="true"/>
+
+                    <EditText
+                        android:id="@+id/numeroCantidad"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="number"/>
+
+                    <Button
+                        android:id="@+id/masCantidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:layout_alignParentEnd="true"/>
 
                 </RelativeLayout>
 
@@ -76,30 +103,30 @@
                     android:id="@+id/hijo23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/hijo22"
-                    android:padding="30dp">
+                    android:layout_below="@id/cajaCantidad"
+                    android:padding="20dp">
 
                     <Button
-                        android:id="@+id/bottonVolverCaptura"
+                        android:id="@+id/vender"
                         android:layout_width="fill_parent"
                         android:layout_height="60dp"
                         android:layout_marginLeft="40dp"
                         android:layout_marginRight="40dp"
-                        android:text="volver a capturar"></Button>
+                        android:text="Vender"/>
 
                     <Button
-                        android:id="@+id/bottonMemedex"
+                        android:id="@+id/cancelar"
                         android:layout_width="fill_parent"
                         android:layout_height="60dp"
-                        android:layout_below="@id/bottonVolverCaptura"
+                        android:layout_below="@id/vender"
                         android:layout_marginLeft="40dp"
                         android:layout_marginRight="40dp"
-                        android:text="Colección"></Button>
+                        android:text="Cancelar"/>
 
                 </RelativeLayout>
 
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
 
+</androidx.constraintlayout.widget.ConstraintLayout>

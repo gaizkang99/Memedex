@@ -20,12 +20,9 @@ import com.example.memedex.pantallas.menu.coleccion.Coleccion;
 import com.example.memedex.pantallas.menu.memedex.Memedex;
 import com.example.memedex.pantallas.menu.perfil.Profile;
 import com.example.memedex.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.memedex.pantallas.menu.mercado.Mercado;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class Menu extends AppCompatActivity {
 
@@ -40,6 +37,7 @@ public class Menu extends AppCompatActivity {
         Button memedex = (Button) findViewById(R.id.buttonMemedex);
         Button coleccion = (Button) findViewById(R.id.buttonColeccion);
         Button exchange = (Button) findViewById(R.id.buttonIntercambiar);
+        Button mercado = findViewById(R.id.buttonMercado);
         Button perfil = (Button) findViewById(R.id.profile);
 
         perfil.setText(ValoresDefault.get().getUser().getUserName() + " / Nivel: " + ValoresDefault.get().getUser().getLevel());
@@ -94,6 +92,13 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent i = new Intent(Menu.this, Exchange.class);
+                startActivity(i);
+            }
+        });
+        mercado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Menu.this, Mercado.class);
                 startActivity(i);
             }
         });

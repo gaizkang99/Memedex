@@ -27,11 +27,16 @@ public class memeColeccion extends AppCompatActivity {
         Meme meme= new Meme();
         meme.setNombre(getIntent().getExtras().getString("titulo"));
         meme.setImg(getIntent().getExtras().getString("imgurl"));
+        meme.setImg(getIntent().getExtras().getString("tipo"));
 
         TextView tw = (TextView) findViewById(R.id.nombreMemeCapturado);
         tw.setText(meme.getNombre());
         ImageView iv = (ImageView) findViewById(R.id.imageView1);
         Picasso.get().load(meme.getImg()).into(iv);
+
+
+        TextView tipo = (TextView) findViewById(R.id.tipo);
+        tipo.setText(meme.getTipo());
 
         bo=true;
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.hijo21);
@@ -79,7 +84,7 @@ public class memeColeccion extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==event.KEYCODE_BACK){
-            Intent i = new Intent(this, Capturar.class);
+            Intent i = new Intent(this, Coleccion.class);
             startActivity(i);
         }
         return super.onKeyDown(keyCode, event);

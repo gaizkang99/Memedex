@@ -82,13 +82,16 @@
 
                 </RelativeLayout>
 
+
+
+
                 <GridLayout
-                    android:id="@+id/coleccionMemes"
+                    android:id="@+id/mercadoMemes"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/hijo22"
                     android:layout_marginTop="20dp"
-                    android:columnCount="3"
+                    android:columnCount="1"
                     android:orientation="horizontal">
 
                 </GridLayout>

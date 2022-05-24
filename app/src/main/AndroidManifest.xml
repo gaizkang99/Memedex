@@ -71,6 +71,24 @@
             android:windowSoftInputMode="stateHidden"
             android:exported="true" />
 
+        <activity
+            android:name=".pantallas.menu.mercado.Mercado"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:exported="true" />
+
+        <activity
+            android:name=".pantallas.menu.mercado.Comprar"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:exported="true" />
+
+        <activity
+            android:name=".pantallas.menu.mercado.Vender"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:exported="true" />
+
     </application>
 
 </manifest>

@@ -5,18 +5,27 @@ public class Meme {
     private String nombre;
     private String titulo;
     private String descripcion;
+    private String tipo;
     private int precio;
     private String img;
 
     public Meme(){}
 
-    public Meme (String nombre,String titulo,String descripcion,int precio,String img){
+    public Meme (String nombre,String titulo,String tipo,String descripcion,int precio,String img){
         this.nombre=nombre;
         this.titulo=titulo;
+        this.tipo= tipo;
         this.descripcion=descripcion;
         this.precio=precio;
         this.img=img;
+    }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @Override

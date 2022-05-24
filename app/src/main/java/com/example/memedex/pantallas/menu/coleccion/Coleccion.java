@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Size;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -177,8 +178,18 @@ public class Coleccion extends AppCompatActivity {
         for(Meme m: memes){
             if(v.getTag().toString().equals(m.getTitulo())) {
                 i.putExtra("imgurl",m.getImg());
+                i.putExtra("tipo",m.getTipo());
             }
         }
         startActivity(i);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+            Intent i = new Intent(this, Menu.class);
+            startActivity(i);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

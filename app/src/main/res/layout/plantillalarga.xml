@@ -50,6 +50,7 @@
                 android:id="@+id/botonComprar"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
+                android:textSize="10dp"
                 android:layout_marginLeft="10dp"
                 android:text="COMPRAR" />
 
@@ -58,6 +59,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
+                android:textSize="10dp"
                 android:layout_toEndOf="@+id/botonComprar"
                 android:text="VENDER" />
         </RelativeLayout>

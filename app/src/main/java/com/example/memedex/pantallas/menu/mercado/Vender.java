@@ -67,7 +67,9 @@ public class Vender extends AppCompatActivity {
         restarCantidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cantidadExacta--;
+                if(cantidadExacta>0)
+                    cantidadExacta--;
+
                 cantidad.setText(String.valueOf(cantidadExacta));
             }
         });

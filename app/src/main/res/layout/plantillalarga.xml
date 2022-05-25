@@ -37,27 +37,29 @@
                 android:padding="10dp"
                 android:text="TEXTO" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/botones"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/textoMeme"
             android:layout_toEndOf="@+id/imagen"
-            android:layout_width="fill_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content">
+            android:gravity="center">
 
             <Button
                 android:id="@+id/botonComprar"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="COMPRAR"/>
+                android:text="COMPRAR" />
+
             <Button
                 android:id="@+id/botonVender"
-                android:layout_toEndOf="@+id/botonComprar"
-                android:layout_marginLeft="25dp"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:text="VENDER"/>
+                android:layout_marginLeft="25dp"
+                android:layout_toEndOf="@+id/botonComprar"
+                android:text="VENDER" />
         </RelativeLayout>
 
 

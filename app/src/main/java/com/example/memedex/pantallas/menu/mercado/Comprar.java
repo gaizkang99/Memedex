@@ -101,14 +101,15 @@ public class Comprar extends AppCompatActivity {
             if(monedasJugador>=valorTotal){
                 int resultado = monedasJugador - valorTotal;
                 //Update
+                ValoresDefault.get().getUser().setCoins(resultado);
                 FirebaseDatabase.getInstance().getReference("Usuario")
                         .child(ValoresDefault.get().getUser().getId())
                         .child("coins").setValue(resultado);
                 for(int i=0; i < cantidadDeMemes; i++){
                     Meme meme = new Meme(nombreMeme,nombreDeImagen,"DAM 2T",descripcionMeme,valor,rutaImagen);
-                    Toast.makeText(this, "Has comprado " + cantidadDeMemes + " de memes", Toast.LENGTH_SHORT).show();
                     insertaMemeColeccion(meme);
                 }
+                Toast.makeText(this, "Has comprado " + cantidadDeMemes + " de memes", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(Comprar.this, Mercado.class);
                 startActivity(i);
             }else{

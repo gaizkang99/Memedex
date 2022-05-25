@@ -127,6 +127,7 @@ public class Vender extends AppCompatActivity {
             int valorTotal = valor*cantidadExacta;
             int resultado = monedasJugador + valorTotal;
             //Update
+            ValoresDefault.get().getUser().setCoins(resultado);
             FirebaseDatabase.getInstance().getReference("Usuario")
                     .child(ValoresDefault.get().getUser().getId())
                     .child("coins").setValue(resultado);
@@ -136,9 +137,10 @@ public class Vender extends AppCompatActivity {
                         .child(ValoresDefault.get().getUser().getId())
                         .child("coleccionMemes").child(llaves.get(i))
                         .removeValue();
-                Toast.makeText(this, "Has Vendido " + cantidadExacta + " de memes", Toast.LENGTH_SHORT).show();
                 ventas.remove(meme);
-                }
+            }
+            Toast.makeText(this, "Has Vendido " + cantidadExacta + " de memes", Toast.LENGTH_SHORT).show();
+
             Intent i = new Intent(Vender.this, Mercado.class);
             startActivity(i);
         }else{

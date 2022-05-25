@@ -41,12 +41,13 @@ public class Memedex extends AppCompatActivity {
     private View v;
     private ArrayList<Meme> coleccion;
     private ArrayList<Meme> memedex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.memedex);
 
-        coleccion =new ArrayList<>();
+        coleccion = new ArrayList<>();
         memedex = new ArrayList<>();
 
         obtenerMemesUserFirebase();
@@ -66,17 +67,17 @@ public class Memedex extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 adapter.getFilter().filter(charSequence);
                 GridLayout ll = findViewById(R.id.memedexMemes);
-                ArrayList<Meme> memesBusqueda= new ArrayList<>();
+                ArrayList<Meme> memesBusqueda = new ArrayList<>();
 
 
-                for(Meme m: coleccion){
-                    if(m.getTitulo().toLowerCase(Locale.ROOT).contains(charSequence.toString().toLowerCase(Locale.ROOT))){
-                        Log.i("Memes",charSequence +" "+m.getTitulo());
+                for (Meme m : coleccion) {
+                    if (m.getTitulo().toLowerCase(Locale.ROOT).contains(charSequence.toString().toLowerCase(Locale.ROOT))) {
+                        Log.i("Memes", charSequence + " " + m.getTitulo());
                         memesBusqueda.add(m);
                     }
                 }
                 ll.removeAllViews();
-                for(Meme m: memesBusqueda){
+                for (Meme m : memesBusqueda) {
                     printMeme(m);
                 }
             }
@@ -106,13 +107,14 @@ public class Memedex extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot meme : dataSnapshot.getChildren()) {
                         memedex.add(meme.getValue(Meme.class));
-                        Log.i("Memes",String.valueOf(memedex.size()));
+                        Log.i("Memes", String.valueOf(memedex.size()));
                     }
                     TextView tv = (TextView) findViewById(R.id.text);
-                    tv.setText("Avistados: "+coleccion+" de "+memedex.size());
+                    tv.setText("Avistados: " + coleccion + " de " + memedex.size());
 
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
@@ -137,11 +139,11 @@ public class Memedex extends AppCompatActivity {
                     }
                     obtenerMemesMemedex(coleccion.size());
 
-                }else{
+                } else {
 
                     GridLayout ll = findViewById(R.id.memedexMemes);
                     //Text
-                    TextView tv=new TextView(getApplicationContext());
+                    TextView tv = new TextView(getApplicationContext());
                     tv.setText("¡Todavía te queda un montón de memes qué explorar!");
                     tv.setGravity(Gravity.CENTER);
 
@@ -150,6 +152,7 @@ public class Memedex extends AppCompatActivity {
                     ll.addView(tv, params);
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
@@ -158,8 +161,8 @@ public class Memedex extends AppCompatActivity {
     }
 
     private void printMeme(Meme meme) {
-        LayoutInflater lf=LayoutInflater.from(Memedex.this);
-        v = lf.inflate(R.layout.plantilla_memes,null);
+        LayoutInflater lf = LayoutInflater.from(Memedex.this);
+        v = lf.inflate(R.layout.plantilla_memes, null);
 
         //dimensiones de pantalla
         DisplayMetrics metrics = new DisplayMetrics();
@@ -170,8 +173,8 @@ public class Memedex extends AppCompatActivity {
 
         RelativeLayout.LayoutParams params =
                 new RelativeLayout.LayoutParams(
-                        width/3,
-                        height/5);
+                        width / 3,
+                        height / 5);
 
         GridLayout ll = findViewById(R.id.memedexMemes);
         TextView tv = v.findViewById(R.id.nombrePlantillaMeme);
@@ -181,15 +184,16 @@ public class Memedex extends AppCompatActivity {
         iv.setTag(meme.getTitulo());
         Picasso.get().load(meme.getImg()).into(iv);
 
-        ll.addView(v,params);
+        ll.addView(v, params);
     }
-    public void memeMemedex(View v){
-        Intent i = new Intent(Memedex.this, MemeRegistro.class );
+
+    public void memeMemedex(View v) {
+        Intent i = new Intent(Memedex.this, MemeRegistro.class);
         i.putExtra("titulo", v.getTag().toString());
-        for(Meme m: coleccion){
-            if(v.getTag().toString().equals(m.getTitulo())) {
+        for (Meme m : coleccion) {
+            if (v.getTag().toString().equals(m.getTitulo())) {
                 i.putExtra("descripcion", m.getDescripcion());
-                i.putExtra("img",m.getImg());
+                i.putExtra("img", m.getImg());
             }
         }
         startActivity(i);

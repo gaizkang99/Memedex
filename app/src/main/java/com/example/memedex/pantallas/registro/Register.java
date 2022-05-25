@@ -3,6 +3,7 @@ package com.example.memedex.pantallas.registro;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -21,8 +22,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Register extends AppCompatActivity {
 
@@ -50,47 +55,77 @@ public class Register extends AppCompatActivity {
 
         Button back = (Button) findViewById(R.id.back);
 
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference().child("Usuario");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Usuario");
 
 
-        login.setOnClickListener(new View.OnClickListener(){
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Register.this, Login.class );
+                Intent i = new Intent(Register.this, Login.class);
                 startActivity(i);
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener(){
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = userMail.getText().toString();
-                String pwd = password.getText().toString();
-                String confpwd = confPassword.getText().toString();
-                boolean activo = terminos.isChecked();
 
-                if (!pwd.equals(confpwd)){
-                    Toast.makeText(Register.this , "Check both password",Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(pwd) && TextUtils.isEmpty(confpwd) && TextUtils.isEmpty(pwd)){
-                    Toast.makeText(Register.this , "Add credentials...",Toast.LENGTH_SHORT).show();
-                } else if (!activo) {
+                if(userMail.getText().toString().equals(" ")||userMail.getText().toString().equals("")){
+                    Toast.makeText(Register.this, "Inserta un correo valido ", Toast.LENGTH_SHORT).show();
+                }
+                //Verifica que se inserte un usuario
+                else if(userName.getText().toString().contains(" ")||userName.getText().toString().equals("")){
+                    Toast.makeText(Register.this, "Inserta un usuario sin espacios", Toast.LENGTH_SHORT).show();
+                }
+                //Verificación de contraseña
+                else if (!password.getText().toString().equals(confPassword.getText().toString())) {
+                    Toast.makeText(Register.this, "Comprueba la contraseña", Toast.LENGTH_SHORT).show();
+                }
+                //Verificar si falta algún texto
+                else if (TextUtils.isEmpty(password.getText().toString()) && TextUtils.isEmpty(confPassword.getText().toString())) {
+                    Toast.makeText(Register.this, "Inserta las contraseñas", Toast.LENGTH_SHORT).show();
+                }
+                //Verifica si as aceptado los terminos
+                else if (!terminos.isChecked()) {
                     Toast.makeText(getApplicationContext(), "Acepta los terminos y condiciones", Toast.LENGTH_SHORT).show();
-                } else {
-                    firebaseauth.createUserWithEmailAndPassword(user, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                }else{
+                    DatabaseReference verificarUsername = FirebaseDatabase.getInstance().getReference();
+                    Query query = verificarUsername.child("Usuario")
+                            .orderByChild("userName")
+                            .equalTo(userName.getText().toString());
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(Register.this , "USER REGISTERED !!",Toast.LENGTH_SHORT).show();
-                                crearUsuario(); //RealtimeDatabase
-                                Intent i = new Intent(Register.this, Menu.class );
-                                startActivity(i);
-                                finish();
-                            } else {
-                                Toast.makeText(Register.this , "Fail register...",Toast.LENGTH_SHORT).show();
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            //Si existe el NO username registra
+                            if(!snapshot.exists()){
+                                //Crea el usuario
+                                firebaseauth.createUserWithEmailAndPassword(userMail.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(Register.this, "USER REGISTERED !!", Toast.LENGTH_SHORT).show();
+                                            crearUsuario(); //RealtimeDatabase
+                                            Intent i = new Intent(Register.this, Menu.class);
+                                            startActivity(i);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(Register.this, "Error de conexión", Toast.LENGTH_SHORT).show();
 
+                                        }
+                                    }
+                                });
+
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Este usuario ya existe", Toast.LENGTH_SHORT).show();
                             }
                         }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
                     });
+
 
                 }
 
@@ -104,7 +139,8 @@ public class Register extends AppCompatActivity {
             }
         });
     }
-    public void crearUsuario(){
+
+    public void crearUsuario() {
         fb = FirebaseDatabase.getInstance();
         DatabaseReference usuario = fb.getReference("Usuario");
         Usuario user = new Usuario(
@@ -113,6 +149,7 @@ public class Register extends AppCompatActivity {
                 userMail.getText().toString(),
                 300,
                 1);
+
         ValoresDefault.get().setUser(user);
         usuario.child(user.getId()).setValue(user);
 

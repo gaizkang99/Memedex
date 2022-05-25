@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 public class MemeRegistro extends AppCompatActivity {
 
     private boolean bo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,23 +31,23 @@ public class MemeRegistro extends AppCompatActivity {
         TextView tv;
 
         String titulo = getIntent().getStringExtra("titulo");
-        Log.i("Memes",titulo);
-        tv= (TextView) findViewById(R.id.nombreMemeCapturado);
+        Log.i("Memes", titulo);
+        tv = (TextView) findViewById(R.id.nombreMemeCapturado);
         tv.setText(titulo);
 
         String desc = getIntent().getStringExtra("descripcion");
         tv = (TextView) findViewById(R.id.desc);
-        tv.setText("Descripción: "+ desc);
+        tv.setText("Descripción: " + desc);
 
         String img = getIntent().getStringExtra("img");
         ImageView iv = (ImageView) findViewById(R.id.imageView1);
         Picasso.get().load(img).into(iv);
-        Log.i("Memes",img);
-        bo=true;
+        Log.i("Memes", img);
+        bo = true;
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.hijo21);
-        RelativeLayout.LayoutParams w= (RelativeLayout.LayoutParams) rl.getLayoutParams();
+        RelativeLayout.LayoutParams w = (RelativeLayout.LayoutParams) rl.getLayoutParams();
         iv.setOnClickListener(view -> {
-            if(bo){
+            if (bo) {
                 DisplayMetrics metrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(metrics);
                 int width = (int) (metrics.widthPixels); // ancho absoluto en pixels
@@ -58,10 +59,10 @@ public class MemeRegistro extends AppCompatActivity {
                                 height);
                 params.addRule(RelativeLayout.BELOW, R.id.hijo1);
                 rl.setLayoutParams(params);
-            }else{
+            } else {
                 rl.setLayoutParams(w);
             }
-            bo=!bo;
+            bo = !bo;
         });
 
         Button b = (Button) findViewById(R.id.bottonMemedex);

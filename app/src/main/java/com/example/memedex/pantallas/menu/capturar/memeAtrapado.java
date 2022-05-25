@@ -16,13 +16,13 @@ import com.example.memedex.pantallas.menu.Menu;
 import com.example.memedex.pantallas.menu.coleccion.Coleccion;
 import com.squareup.picasso.Picasso;
 
-public class memeAtrapado  extends AppCompatActivity {
+public class memeAtrapado extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meme_atrapado);
 
-        Meme meme= new Meme();
+        Meme meme = new Meme();
         meme.setNombre(getIntent().getExtras().getString("name"));
         meme.setImg(getIntent().getExtras().getString("imgurl"));
         meme.setTipo(getIntent().getExtras().getString("tipo"));
@@ -54,9 +54,10 @@ public class memeAtrapado  extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==event.KEYCODE_BACK){
+        if (keyCode == event.KEYCODE_BACK) {
             Intent i = new Intent(this, Capturar.class);
             startActivity(i);
         }

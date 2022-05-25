@@ -47,7 +47,7 @@ public class Ajustes extends AppCompatActivity {
         scrubSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Log.i("Memes", "Musica "+Integer.toString(i));
+                Log.i("Memes", "Musica " + Integer.toString(i));
                 ValoresDefault.get().setMusica(i);
             }
 
@@ -67,7 +67,7 @@ public class Ajustes extends AppCompatActivity {
         s.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Log.i("Memes", "Sonido "+Integer.toString(i));
+                Log.i("Memes", "Sonido " + Integer.toString(i));
                 ValoresDefault.get().setSonido(i);
             }
 

@@ -20,11 +20,12 @@ import com.squareup.picasso.Picasso;
 
 public class memeColeccion extends AppCompatActivity {
     boolean bo;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meme_atrapado);
 
-        Meme meme= new Meme();
+        Meme meme = new Meme();
         meme.setNombre(getIntent().getExtras().getString("titulo"));
         meme.setImg(getIntent().getExtras().getString("imgurl"));
         meme.setImg(getIntent().getExtras().getString("tipo"));
@@ -38,11 +39,11 @@ public class memeColeccion extends AppCompatActivity {
         TextView tipo = (TextView) findViewById(R.id.tipo);
         tipo.setText(meme.getTipo());
 
-        bo=true;
+        bo = true;
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.hijo21);
-        RelativeLayout.LayoutParams w= (RelativeLayout.LayoutParams) rl.getLayoutParams();
+        RelativeLayout.LayoutParams w = (RelativeLayout.LayoutParams) rl.getLayoutParams();
         iv.setOnClickListener(view -> {
-            if(bo){
+            if (bo) {
                 DisplayMetrics metrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(metrics);
                 int width = (int) (metrics.widthPixels); // ancho absoluto en pixels
@@ -54,10 +55,10 @@ public class memeColeccion extends AppCompatActivity {
                                 height);
                 params.addRule(RelativeLayout.BELOW, R.id.hijo1);
                 rl.setLayoutParams(params);
-            }else{
+            } else {
                 rl.setLayoutParams(w);
             }
-            bo=!bo;
+            bo = !bo;
             //iv.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
             //iv.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
         });
@@ -81,9 +82,10 @@ public class memeColeccion extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==event.KEYCODE_BACK){
+        if (keyCode == event.KEYCODE_BACK) {
             Intent i = new Intent(this, Coleccion.class);
             startActivity(i);
         }

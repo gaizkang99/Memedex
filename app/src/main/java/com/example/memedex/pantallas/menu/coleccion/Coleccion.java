@@ -42,12 +42,13 @@ import java.util.Locale;
 public class Coleccion extends AppCompatActivity {
 
     private ArrayList<Meme> memes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coleccion);
 
-        memes=new ArrayList<>();
+        memes = new ArrayList<>();
 
         Button back = findViewById(R.id.back);
 
@@ -55,7 +56,7 @@ public class Coleccion extends AppCompatActivity {
 
         EditText buscar = (EditText) findViewById(R.id.finder);
 
-        ArrayAdapter<Meme> adapter = new ArrayAdapter<Meme>(Coleccion.this, android.R.layout.simple_list_item_1,memes);
+        ArrayAdapter<Meme> adapter = new ArrayAdapter<Meme>(Coleccion.this, android.R.layout.simple_list_item_1, memes);
         buscar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -66,18 +67,18 @@ public class Coleccion extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 adapter.getFilter().filter(charSequence);
                 GridLayout ll = findViewById(R.id.coleccionMemes);
-                ArrayList<Meme> memesBusqueda= new ArrayList<>();
+                ArrayList<Meme> memesBusqueda = new ArrayList<>();
 
 
-                for(Meme m: memes){
-                    if(m.getTitulo().toLowerCase(Locale.ROOT).contains(charSequence.toString().toLowerCase(Locale.ROOT))){
+                for (Meme m : memes) {
+                    if (m.getTitulo().toLowerCase(Locale.ROOT).contains(charSequence.toString().toLowerCase(Locale.ROOT))) {
                         memesBusqueda.add(m);
-                        Log.i("Memes",charSequence +" "+m.getTitulo());
+                        Log.i("Memes", charSequence + " " + m.getTitulo());
 
                     }
                 }
                 ll.removeAllViews();
-                for(Meme m: memesBusqueda){
+                for (Meme m : memesBusqueda) {
                     printMeme(m);
                 }
             }
@@ -104,7 +105,7 @@ public class Coleccion extends AppCompatActivity {
         Query query = myRef.child("Usuario")
                 .child(ValoresDefault.get().getUser().getId())
                 .child("coleccionMemes");
-        Log.i("Memes",query.toString());
+        Log.i("Memes", query.toString());
 
         //Query query = myRef.child("Meme");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -115,10 +116,10 @@ public class Coleccion extends AppCompatActivity {
                         memes.add(meme.getValue(Meme.class));
                         printMeme(meme.getValue(Meme.class));
                     }
-                }else{
+                } else {
                     GridLayout ll = findViewById(R.id.coleccionMemes);
                     //Text
-                    TextView tv=new TextView(getApplicationContext());
+                    TextView tv = new TextView(getApplicationContext());
                     tv.setText("¡Actualmente no tienes ningún meme!\n" +
                             "Para tener alguno vete a Capturar");
                     tv.setGravity(Gravity.CENTER);
@@ -136,6 +137,7 @@ public class Coleccion extends AppCompatActivity {
 
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_LONG).show();
@@ -144,8 +146,8 @@ public class Coleccion extends AppCompatActivity {
     }
 
     private void printMeme(Meme meme) {
-        LayoutInflater lf=LayoutInflater.from(Coleccion.this);
-        View v= lf.inflate(R.layout.plantilla_memes,null);
+        LayoutInflater lf = LayoutInflater.from(Coleccion.this);
+        View v = lf.inflate(R.layout.plantilla_memes, null);
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -159,26 +161,25 @@ public class Coleccion extends AppCompatActivity {
         ImageView iv = v.findViewById(R.id.imagePlantillaMeme);
 
         iv.setTag(meme.getTitulo());
-        iv.setPadding(10,10,10,0);
-        Log.i("Memes",iv.getTag().toString());
+        iv.setPadding(10, 10, 10, 0);
+        Log.i("Memes", iv.getTag().toString());
         Picasso.get().load(meme.getImg()).into(iv);
-
 
 
         RelativeLayout.LayoutParams w =
                 new RelativeLayout.LayoutParams(
-                        width/3,
-                        height/5);
-        ll.addView(v,w);
+                        width / 3,
+                        height / 5);
+        ll.addView(v, w);
     }
 
-    public void memeMemedex(View v){
-        Intent i = new Intent(Coleccion.this, memeColeccion.class );
+    public void memeMemedex(View v) {
+        Intent i = new Intent(Coleccion.this, memeColeccion.class);
         i.putExtra("titulo", v.getTag().toString());
-        for(Meme m: memes){
-            if(v.getTag().toString().equals(m.getTitulo())) {
-                i.putExtra("imgurl",m.getImg());
-                i.putExtra("tipo",m.getTipo());
+        for (Meme m : memes) {
+            if (v.getTag().toString().equals(m.getTitulo())) {
+                i.putExtra("imgurl", m.getImg());
+                i.putExtra("tipo", m.getTipo());
             }
         }
         startActivity(i);
@@ -186,7 +187,7 @@ public class Coleccion extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==event.KEYCODE_BACK){
+        if (keyCode == event.KEYCODE_BACK) {
             Intent i = new Intent(this, Menu.class);
             startActivity(i);
         }

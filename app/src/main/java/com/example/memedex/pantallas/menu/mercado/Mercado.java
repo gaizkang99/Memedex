@@ -140,8 +140,11 @@ public class Mercado extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(Mercado.this, Vender.class);
-                        i.putExtra("nombreMeme", meme.getTitulo());
+                        i.putExtra("tituloMeme", meme.getTitulo());
                         i.putExtra("imagenMeme", meme.getImg());
+                        i.putExtra("valorMeme", String.valueOf(meme.getPrecio()));
+                        i.putExtra("descripcionMeme", meme.getDescripcion());
+                        i.putExtra("nombreMeme", meme.getNombre());
                         startActivity(i);
                     }
                 });

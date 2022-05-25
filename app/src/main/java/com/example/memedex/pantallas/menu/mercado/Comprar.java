@@ -55,14 +55,8 @@ public class Comprar extends AppCompatActivity {
         valorMeme = getIntent().getStringExtra("valorMeme");
         descripcionMeme = getIntent().getStringExtra("descripcionMeme");
         nombreMeme = getIntent().getStringExtra("nombreMeme");
-        Log.i("Hola", "Info meme: ");
-        Log.i("Hola", nombreDeImagen);
-        Log.i("Hola", rutaImagen);
-        Log.i("Hola", valorMeme);
-        Log.i("Hola", nombreMeme);
-        Log.i("Hola", descripcionMeme);
 
-        nombre.setText(nombreDeImagen);
+        nombre.setText(nombreDeImagen + " // Valor: " + valorMeme);
         Picasso.get().load(rutaImagen).into(imagen);
 
 
@@ -112,7 +106,7 @@ public class Comprar extends AppCompatActivity {
                         .child("coins").setValue(resultado);
                 for(int i=0; i < cantidadDeMemes; i++){
                     Meme meme = new Meme(nombreMeme,nombreDeImagen,"DAM 2T",descripcionMeme,valor,rutaImagen);
-                    Toast.makeText(this, "Has comprado " + String.valueOf(cantidadDeMemes) + " de memes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Has comprado " + cantidadDeMemes + " de memes", Toast.LENGTH_SHORT).show();
                     insertaMemeColeccion(meme);
                 }
                 Intent i = new Intent(Comprar.this, Mercado.class);
@@ -156,7 +150,6 @@ public class Comprar extends AppCompatActivity {
                             .child("memedexMemes").push().setValue(meme);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

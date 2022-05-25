@@ -40,7 +40,6 @@ public class Login extends AppCompatActivity {
     private TextView register;
     private FirebaseDatabase fb;
     private FirebaseAuth firebaseauth;
-    private boolean popup;
 
 
     @SuppressLint("WrongViewCast")
@@ -49,7 +48,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        popup = false;
         usermail = findViewById(R.id.username);
         password = findViewById(R.id.passwd);
         login = findViewById(R.id.logIn);
@@ -68,6 +66,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String user = usermail.getText().toString();
                 String pwd = password.getText().toString();
                 if (TextUtils.isEmpty(user) && TextUtils.isEmpty(pwd)){
@@ -179,7 +178,6 @@ public class Login extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("Usuario")
                                     .child(ValoresDefault.get().getUser().getId())
                                     .child("logro").push().setValue(logro);
-                            popup = true;
                         }
                     }
                 }else{
@@ -196,7 +194,6 @@ public class Login extends AppCompatActivity {
 
         });
     }
-
     private void popup() {
         AlertDialog.Builder alerta = new AlertDialog.Builder(Login.this);
         alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -208,6 +205,5 @@ public class Login extends AppCompatActivity {
         AlertDialog title = alerta.create();
         title.setTitle("Logeado!");
         title.show();
-
     }
 }

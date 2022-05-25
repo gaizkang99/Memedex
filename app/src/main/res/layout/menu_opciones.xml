@@ -125,6 +125,16 @@
                             android:layout_marginRight="40dp"
                             android:text="Mercado"></Button>
 
+                        <Button
+                            android:id="@+id/logro2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="60dp"
+                            android:layout_below="@id/buttonMercado"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:text="Logro2"
+                            android:background="@android:color/transparent"></Button>
+
                     </RelativeLayout>
 
                 </RelativeLayout>

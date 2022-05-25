@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Logro;
@@ -20,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.paginaprincipal);
 
+        ImageButton ee = (ImageButton) findViewById(R.id.imageButton2);
         Button signIn = (Button) findViewById(R.id.signIn);
         Button login = (Button) findViewById(R.id.logIn);
 
@@ -99,11 +105,17 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference logro = fb.getReference("Logro");
 
         logro.push().setValue(new Logro("login",
-        "Logro de inicio de sesion conseguido!",
-        "https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/login.jpg?alt=media&token=68554858-8c76-4236-b184-ff040e67369a"));
+            "Logro de inicio de sesion conseguido!",
+            "https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/login.jpg?alt=media&token=68554858-8c76-4236-b184-ff040e67369a"));
+
+        logro.push().setValue(new Logro("easterEgg",
+                        "Logro de easter egg de Memedes!",
+                "https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/easter-egg.jpg?alt=media&token=7695185d-b0a6-412a-99d2-cb343aafdbf6"));
+
+ */
 
 
-*/
+
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +132,50 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentLogin);
             }
         });
+        //Doble y triple clik
+        ee.setOnTouchListener(new View.OnTouchListener() {
+            Handler handler = new Handler();
+            int numberOfTaps = 0;
+            long lastTapTimeMs = 0;
+            long touchDownMs = 0;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        touchDownMs = System.currentTimeMillis();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        handler.removeCallbacksAndMessages(null);
 
+                        if ((System.currentTimeMillis() - touchDownMs) > ViewConfiguration.getTapTimeout()) {
+                            //it was not a tap
+                            numberOfTaps = 0;
+                            lastTapTimeMs = 0;
+                            break;
+                        }
+                        if (numberOfTaps > 0
+                                && (System.currentTimeMillis() - lastTapTimeMs) < ViewConfiguration.getDoubleTapTimeout()) {
+                            numberOfTaps += 1;
+                        } else {
+                            numberOfTaps = 1;
+                        }
+                        lastTapTimeMs = System.currentTimeMillis();
+                        if (numberOfTaps == 3) {
+                            Toast.makeText(getApplicationContext(), "triple", Toast.LENGTH_SHORT).show();
+                            //handle triple tap
+                        } else if (numberOfTaps == 2) {
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //handle double tap
+                                    Toast.makeText(getApplicationContext(), "double", Toast.LENGTH_SHORT).show();
+                                }
+                            }, ViewConfiguration.getDoubleTapTimeout());
+                        }
+                }
 
+                return true;
+            }
+        });
     }
 }

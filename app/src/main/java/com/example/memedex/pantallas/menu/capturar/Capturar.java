@@ -261,6 +261,8 @@ public class Capturar extends AppCompatActivity {
                     imageView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            sonido.start();
+
                             contador++;
                             view.setVisibility(View.GONE);
                             if(contador>=cantidadReiterar){

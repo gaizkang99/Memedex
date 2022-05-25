@@ -56,8 +56,8 @@ public class Profile extends AppCompatActivity {
         TextView nikname = (TextView) findViewById(R.id.nikname);
         TextView level = (TextView) findViewById(R.id.level);
         nikname.setText(ValoresDefault.get().getUser().getUserName());
-        //todo mostrar level String
-        //level.setText(ValoresDefault.get().getUser().getLevel());
+
+        level.setText("Nivel: "+String.valueOf(ValoresDefault.get().getUser().getLevel()));
 
 
 

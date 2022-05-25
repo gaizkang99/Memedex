@@ -29,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class Register extends AppCompatActivity {
 
     private TextInputEditText userMail, password, confPassword, userName;
@@ -92,14 +94,14 @@ public class Register extends AppCompatActivity {
                     DatabaseReference verificarUsername = FirebaseDatabase.getInstance().getReference();
                     Query query = verificarUsername.child("Usuario")
                             .orderByChild("userName")
-                            .equalTo(userName.getText().toString());
+                            .equalTo(userName.getText().toString().toLowerCase(Locale.ROOT));
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             //Si existe el NO username registra
                             if(!snapshot.exists()){
                                 //Crea el usuario
-                                firebaseauth.createUserWithEmailAndPassword(userMail.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                firebaseauth.createUserWithEmailAndPassword(userMail.getText().toString().toLowerCase(Locale.ROOT), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {

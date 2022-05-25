@@ -33,6 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class Login extends AppCompatActivity {
 
     private TextInputEditText usermail, password;
@@ -67,8 +69,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String user = usermail.getText().toString();
-                String pwd = password.getText().toString();
+                String user = usermail.getText().toString().toLowerCase(Locale.ROOT);
+                String pwd = password.getText().toString().toLowerCase(Locale.ROOT);
                 if (TextUtils.isEmpty(user) && TextUtils.isEmpty(pwd)){
                     Toast.makeText(Login.this , "Enter credentials...",Toast.LENGTH_SHORT).show();
                 } else {
@@ -105,7 +107,7 @@ public class Login extends AppCompatActivity {
         Query query= myRef
                 .child("Usuario")
                 .orderByChild("email")
-                .equalTo(usermail.getText().toString());
+                .equalTo(usermail.getText().toString().toLowerCase(Locale.ROOT));
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -167,18 +169,16 @@ public class Login extends AppCompatActivity {
         Query query= myRef
                 .child("Usuario")
                 .child(ValoresDefault.get().getUser().getId())
-                .child("logro");
+                .child("logro").orderByChild("nombre").equalTo(logro.getNombre());
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for (DataSnapshot l : snapshot.getChildren()) {
-                        if(!(l.getValue(Logro.class).getNombre().equals(logro.getNombre()))){
-                            FirebaseDatabase.getInstance().getReference("Usuario")
-                                    .child(ValoresDefault.get().getUser().getId())
-                                    .child("logro").push().setValue(logro);
-                        }
+                       /* FirebaseDatabase.getInstance().getReference("Usuario")
+                                .child(ValoresDefault.get().getUser().getId())
+                                .child("logro").push().setValue(logro);*/
                     }
                 }else{
                     FirebaseDatabase.getInstance().getReference("Usuario")

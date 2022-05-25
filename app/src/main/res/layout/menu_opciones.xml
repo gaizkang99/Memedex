@@ -132,8 +132,9 @@
                             android:layout_below="@id/buttonMercado"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
-                            android:text="Logro2"
-                            android:background="@android:color/transparent"></Button>
+                            android:layout_marginTop="20dp"
+                            android:alpha="0.5"
+                            android:text="¡¡¡NO ME PULSES TRES VECES!!!"></Button>
 
                     </RelativeLayout>
 

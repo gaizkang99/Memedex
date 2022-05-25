@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         //AudioService = MediaPlayer.create(this, R.raw._uno);
 
  //INSERTAR MEMES
-
-  /*      FirebaseDatabase fb;
+/*
+        FirebaseDatabase fb;
         fb = FirebaseDatabase.getInstance();
         DatabaseReference momardo = fb.getReference("Meme");
 

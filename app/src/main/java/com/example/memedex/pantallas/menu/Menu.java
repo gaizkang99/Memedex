@@ -145,7 +145,6 @@ public class Menu extends AppCompatActivity {
                         lastTapTimeMs = System.currentTimeMillis();
                         if (numberOfTaps == 3) {
                             logro2Obtenido();
-                            popup();
                             //handle triple tap
                         } else if (numberOfTaps == 2) {
                         }
@@ -188,7 +187,7 @@ public class Menu extends AppCompatActivity {
         Query query= myRef
                 .child("Usuario")
                 .child(ValoresDefault.get().getUser().getId())
-                .child("logro");
+                .child("logro").orderByChild("nombre").equalTo(logro.getNombre());
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -199,6 +198,8 @@ public class Menu extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("Usuario")
                                     .child(ValoresDefault.get().getUser().getId())
                                     .child("logro").push().setValue(logro);
+
+                            popup();
                         }
                     }
                 }else{

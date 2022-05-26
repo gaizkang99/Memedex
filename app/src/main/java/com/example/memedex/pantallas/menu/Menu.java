@@ -37,6 +37,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Menu extends AppCompatActivity {
+    int images[]={R.drawable.logo,R.drawable.perfil,R.drawable.example};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,8 @@ public class Menu extends AppCompatActivity {
         Button mercado = findViewById(R.id.buttonMercado);
         Button perfil = (Button) findViewById(R.id.profile);
         Button logro2 = (Button) findViewById(R.id.logro2);
+
+        perfilimg.setImageResource(images[ValoresDefault.get().getUser().getFotoperfil()]);
 
         perfil.setText(ValoresDefault.get().getUser().getUserName() + " / Nivel: " + ValoresDefault.get().getUser().getLevel());
 
@@ -198,7 +201,6 @@ public class Menu extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("Usuario")
                                     .child(ValoresDefault.get().getUser().getId())
                                     .child("logro").push().setValue(logro);
-
                             popup();
                         }
                     }

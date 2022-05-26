@@ -24,6 +24,7 @@ import com.example.memedex.modelo.Meme;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
 import com.example.memedex.pantallas.menu.coleccion.Coleccion;
+import com.example.memedex.pantallas.menu.memedex.MemeRegistro;
 import com.example.memedex.pantallas.menu.memedex.Memedex;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,14 +41,14 @@ import java.util.ArrayList;
 public class Profile extends AppCompatActivity {
 
     private View v;
-    private ArrayList<Logro> logros;
     private ArrayList<Logro> misLogros;
+    int images[]={R.drawable.logo,R.drawable.perfil,R.drawable.example};
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
         misLogros= new ArrayList<>();
-        logros = new ArrayList<>();
 
         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
         Button back = (Button) findViewById(R.id.back);
@@ -60,11 +61,16 @@ public class Profile extends AppCompatActivity {
         level.setText("Nivel: "+String.valueOf(ValoresDefault.get().getUser().getLevel()));
 
 
-
+        perfilimg.setImageResource(images[ValoresDefault.get().getUser().getFotoperfil()]);
         perfilimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //OPCION DE CAMBIAR LA IMAGEN DE PERFIL AL CLICKARLA
+                perfilimg.setImageResource(images[i]);
+                ValoresDefault.get().getUser().setFotoperfil(i);
+                i++;
+                if(i==3) {
+                    i = 0;
+                }
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -147,5 +153,17 @@ public class Profile extends AppCompatActivity {
         iv.setTag(logro.getNombre());
         Picasso.get().load(logro.getImg()).into(iv);
         ll.addView(v,params);
+    }
+
+    public void memeMemedex(View v) {
+        Intent inte = new Intent(Profile.this, LogroRegistro.class);
+        inte.putExtra("titulo", v.getTag().toString());
+        for (Logro m : misLogros) {
+            if (v.getTag().toString().equals(m.getNombre())) {
+                inte.putExtra("descripcion", m.getDescripcion());
+                inte.putExtra("img", m.getImg());
+            }
+        }
+        startActivity(inte);
     }
 }

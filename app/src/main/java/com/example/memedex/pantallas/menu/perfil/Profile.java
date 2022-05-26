@@ -43,7 +43,6 @@ public class Profile extends AppCompatActivity {
     private View v;
     private ArrayList<Logro> misLogros;
     int images[]={R.drawable.logo,R.drawable.perfil,R.drawable.example};
-    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,18 +60,22 @@ public class Profile extends AppCompatActivity {
         level.setText("Nivel: "+String.valueOf(ValoresDefault.get().getUser().getLevel()));
 
 
-        perfilimg.setImageResource(images[ValoresDefault.get().getUser().getFotoperfil()]);
+
+        int fotodeperfil = ValoresDefault.get().getUser().getFotoperfil();
+        setFotoPerfil(fotodeperfil);
         perfilimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                perfilimg.setImageResource(images[i]);
-                ValoresDefault.get().getUser().setFotoperfil(i);
+                int i = ValoresDefault.get().getUser().getFotoperfil();
                 i++;
-                if(i==3) {
-                    i = 0;
+                if (i==3){
+                    i=0;
                 }
+                setFotoPerfil(i);
+                ValoresDefault.get().getUser().setFotoperfil(i);
             }
         });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +96,23 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    public void setFotoPerfil(int laFoto){
+        //Update
+        FirebaseDatabase.getInstance().getReference("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("fotoperfil").setValue(laFoto);
+
+        ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
+        if (laFoto==0){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
+        } else if (laFoto==1){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil3.jpg?alt=media&token=c68b1b32-6cd9-4fa8-9115-92531611d1d9").into(perfilimg);
+        } else if (laFoto==2){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil2.png?alt=media&token=1151d2b6-23e6-4386-a9a0-c21e2679bdff").into(perfilimg);
+        } else if (laFoto==3){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
+        }
+    }
 
     private void obtenerLogrosUserFirebase() {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();

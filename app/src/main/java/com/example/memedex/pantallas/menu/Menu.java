@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class Menu extends AppCompatActivity {
     int images[]={R.drawable.logo,R.drawable.perfil,R.drawable.example};
@@ -56,7 +57,10 @@ public class Menu extends AppCompatActivity {
         Button perfil = (Button) findViewById(R.id.profile);
         Button logro2 = (Button) findViewById(R.id.logro2);
 
-        perfilimg.setImageResource(images[ValoresDefault.get().getUser().getFotoperfil()]);
+
+
+        int fotodeperfil = ValoresDefault.get().getUser().getFotoperfil();
+        setFotoPerfil(fotodeperfil);
 
         perfil.setText(ValoresDefault.get().getUser().getUserName() + " / Nivel: " + ValoresDefault.get().getUser().getLevel());
 
@@ -161,6 +165,20 @@ public class Menu extends AppCompatActivity {
 
         });
     }
+
+    private void setFotoPerfil(int fotodeperfil) {
+        ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
+        if (fotodeperfil==0){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
+        } else if (fotodeperfil==1){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil3.jpg?alt=media&token=c68b1b32-6cd9-4fa8-9115-92531611d1d9").into(perfilimg);
+        } else if (fotodeperfil==2){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil2.png?alt=media&token=1151d2b6-23e6-4386-a9a0-c21e2679bdff").into(perfilimg);
+        } else if (fotodeperfil==3){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
+        }
+    }
+
     private void logro2Obtenido() {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         Query query= myRef

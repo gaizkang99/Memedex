@@ -123,7 +123,8 @@ public class Login extends AppCompatActivity {
                                 user.getValue(Usuario.class).getUserName(),
                                 user.getValue(Usuario.class).getEmail(),
                                 user.getValue(Usuario.class).getCoins(),
-                                user.getValue(Usuario.class).getLevel()
+                                user.getValue(Usuario.class).getLevel(),
+                                user.getValue(Usuario.class).getFotoperfil()
                                 );
                         ValoresDefault.get().setUser(u);
 

@@ -23,7 +23,7 @@
             android:background="#33E9FF">
 
             <FrameLayout
-                android:layout_width="200dp"
+                android:layout_width="fill_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center">
 

@@ -13,13 +13,13 @@ public class Usuario {
     private String id;
     private int fotoperfil;
 
-    public Usuario(String id, String userName, String email, int coins, int level){
+    public Usuario(String id, String userName, String email, int coins, int level, int foto){
         this.id = id;
         this.userName = userName;
         this.email = email;
         this.coins = coins;
         this.level = level;
-        this.fotoperfil = 0;
+        this.fotoperfil = foto;
     }
     public Usuario() { }
 

@@ -57,8 +57,6 @@ public class Menu extends AppCompatActivity {
         Button perfil = (Button) findViewById(R.id.profile);
         Button logro2 = (Button) findViewById(R.id.logro2);
 
-
-
         int fotodeperfil = ValoresDefault.get().getUser().getFotoperfil();
         setFotoPerfil(fotodeperfil);
 
@@ -206,6 +204,15 @@ public class Menu extends AppCompatActivity {
     }
 
     private void insertLogro(Logro logro) {
+        //Update level
+        int w=ValoresDefault.get().getUser().getLevel()+1;
+        ValoresDefault.get().getUser().setLevel(ValoresDefault.get().getUser().getLevel()+1);
+
+        Log.i("Memes",String.valueOf(w));
+        FirebaseDatabase.getInstance().getReference("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("level").setValue(w);
+
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         Query query= myRef
                 .child("Usuario")

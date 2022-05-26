@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.modelo.Logro;
+import com.example.memedex.modelo.Meme;
 import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
@@ -170,6 +171,11 @@ public class Login extends AppCompatActivity {
     }
 
     private void insertLogro(Logro logro) {
+        //Update level
+        FirebaseDatabase.getInstance().getReference("Usuario")
+                .child(ValoresDefault.get().getUser().getId())
+                .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
+
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         Query query= myRef
                 .child("Usuario")
@@ -199,20 +205,6 @@ public class Login extends AppCompatActivity {
             }
 
         });
-    }
-
-
-    private void popup() {
-        AlertDialog.Builder alerta = new AlertDialog.Builder(Login.this);
-        alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        AlertDialog title = alerta.create();
-        title.setTitle("Logeado!");
-        title.show();
     }
     public void newpopup(){
         popupbuilder = new AlertDialog.Builder(this);

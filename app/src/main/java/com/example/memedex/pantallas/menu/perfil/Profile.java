@@ -42,7 +42,6 @@ public class Profile extends AppCompatActivity {
 
     private View v;
     private ArrayList<Logro> misLogros;
-    int images[]={R.drawable.logo,R.drawable.perfil,R.drawable.example};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

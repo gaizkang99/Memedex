@@ -9,7 +9,7 @@ import java.util.List;
 public class ValoresDefault {
     public static Usuario user;
     public CountDownTimer countDownTimer;
-    public float Sonido;
+    public float Sonido=100;
     public float Musica;
 
     private static ValoresDefault ValoresDefault;

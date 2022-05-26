@@ -38,7 +38,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Menu extends AppCompatActivity {
     int images[]={R.drawable.logo,R.drawable.perfil,R.drawable.example};
-
+    private AlertDialog.Builder popupbuilder;
+    private AlertDialog popup;
+    private Button ok;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,13 +203,15 @@ public class Menu extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("Usuario")
                                     .child(ValoresDefault.get().getUser().getId())
                                     .child("logro").push().setValue(logro);
-                            popup();
+                            //TODO SUBIR +1 level
+                            newpopup();
                         }
                     }
                 }else{
                     FirebaseDatabase.getInstance().getReference("Usuario")
                             .child(ValoresDefault.get().getUser().getId())
                             .child("logro").push().setValue(logro);
+                    newpopup();
                 }
             }
 
@@ -218,16 +222,24 @@ public class Menu extends AppCompatActivity {
 
         });
     }
-    private void popup() {
-        AlertDialog.Builder alerta = new AlertDialog.Builder(Menu.this);
-        alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+    public void newpopup(){
+        popupbuilder = new AlertDialog.Builder(this);
+        final View contactPopupView = getLayoutInflater().inflate(R.layout.popup,null);
+        ok = (Button) contactPopupView.findViewById(R.id.buton);
+
+        TextView texto = (TextView) findViewById(R.id.texto);
+        texto.setText("Logro de easter egg de Memedes!");
+
+        popupbuilder.setView(contactPopupView);
+        popup = popupbuilder.create();
+        popup.show();
+
+        ok.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
+            public void onClick(View view) {
+                popup.dismiss();
             }
         });
-        AlertDialog title = alerta.create();
-        title.setTitle("Easter Egg!");
-        title.show();
     }
 }

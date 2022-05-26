@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +44,9 @@ public class Login extends AppCompatActivity {
     private TextView register;
     private FirebaseDatabase fb;
     private FirebaseAuth firebaseauth;
-
+    private AlertDialog.Builder popupbuilder;
+    private AlertDialog popup;
+    private Button ok;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -184,6 +188,7 @@ public class Login extends AppCompatActivity {
                     FirebaseDatabase.getInstance().getReference("Usuario")
                             .child(ValoresDefault.get().getUser().getId())
                             .child("logro").push().setValue(logro);
+                    newpopup();
                 }
             }
 
@@ -194,6 +199,8 @@ public class Login extends AppCompatActivity {
 
         });
     }
+
+
     private void popup() {
         AlertDialog.Builder alerta = new AlertDialog.Builder(Login.this);
         alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -205,5 +212,21 @@ public class Login extends AppCompatActivity {
         AlertDialog title = alerta.create();
         title.setTitle("Logeado!");
         title.show();
+    }
+    public void newpopup(){
+        popupbuilder = new AlertDialog.Builder(this);
+        final View contactPopupView = getLayoutInflater().inflate(R.layout.popup,null);
+        ok = (Button) contactPopupView.findViewById(R.id.buton);
+
+        popupbuilder.setView(contactPopupView);
+        popup = popupbuilder.create();
+        popup.show();
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popup.dismiss();
+            }
+        });
     }
 }

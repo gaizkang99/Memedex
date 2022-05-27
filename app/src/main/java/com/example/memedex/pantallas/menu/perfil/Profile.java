@@ -46,7 +46,7 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        setContentView(R.layout.exchange);
         misLogros= new ArrayList<>();
 
         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);

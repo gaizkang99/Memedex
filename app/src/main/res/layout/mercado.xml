@@ -17,16 +17,30 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:gravity="bottom"
             android:background="#33E9FF">
+
             <FrameLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
+
                 <ImageButton
                     android:id="@+id/back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="?attr/actionModeCloseDrawable" />
+
+                <TextView
+                    android:id="@+id/monedas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:paddingRight="10dp"
+                    android:text="MONEDAS: ">
+
+                </TextView>
             </FrameLayout>
+
         </RelativeLayout>
 
         <ScrollView

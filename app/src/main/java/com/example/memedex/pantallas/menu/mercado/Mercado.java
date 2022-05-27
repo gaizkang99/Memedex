@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
+import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
 import com.example.memedex.pantallas.menu.coleccion.Coleccion;
 import com.example.memedex.pantallas.menu.memedex.Memedex;
@@ -52,6 +53,8 @@ public class Mercado extends AppCompatActivity {
         memes = new ArrayList<>();
 
         pillarMemesBaseDatos();
+        TextView tv = (TextView) findViewById(R.id.monedas);
+        tv.setText("TUS MONEDAS: "+String.valueOf(ValoresDefault.get().getUser().getCoins()));
 
 
         back.setOnClickListener(view -> {

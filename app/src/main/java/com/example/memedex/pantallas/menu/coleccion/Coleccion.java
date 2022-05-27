@@ -181,9 +181,11 @@ public class Coleccion extends AppCompatActivity {
             if (v.getTag().toString().equals(m.getTitulo())) {
                 i.putExtra("imgurl", m.getImg());
                 i.putExtra("tipo", m.getTipo());
+                Log.i("Memes", v.getTag().toString() +" "+m.getImg()+" " +m.getTipo()               );
+
+                startActivity(i);
             }
         }
-        startActivity(i);
     }
 
     @Override

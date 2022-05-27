@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -71,11 +72,11 @@ public class Exchange extends AppCompatActivity {
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //if (!text.getText().toString().equals(ValoresDefault.get().getUser().getUserName()))
+                                if (!text.getText().toString().equals(ValoresDefault.get().getUser().getUserName()))
                                     sendPeticion(text.getText().toString());
-                                /*else
+                                else
                                     Toast.makeText(Exchange.this, "No puedes agregarte a ti mismo", Toast.LENGTH_SHORT).show();
-*/
+
                                 dialogInterface.cancel();
                             }
                         });
@@ -118,9 +119,10 @@ public class Exchange extends AppCompatActivity {
                                         DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Usuario")
                                                 .child(u.getId())
                                                 .child("amigos").push();
-                                        u.setId(dr.getKey());
-                                        u.setRegistrado("false");
-                                        dr.setValue(u);
+                                        Usuario user = ValoresDefault.get().getUser();
+                                        user.setId(dr.getKey());
+                                        user.setRegistrado("false");
+                                        dr.setValue(user);
                                     }else{
                                         Toast.makeText(Exchange.this, "Ya le has enviado una petición", Toast.LENGTH_SHORT).show();
                                     }
@@ -128,9 +130,10 @@ public class Exchange extends AppCompatActivity {
                                     DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Usuario")
                                             .child(u.getId())
                                             .child("amigos").push();
-                                    u.setId(dr.getKey());
-                                    u.setRegistrado("false");
-                                    dr.setValue(u);
+                                    Usuario user = ValoresDefault.get().getUser();
+                                    user.setId(dr.getKey());
+                                    user.setRegistrado("false");
+                                    dr.setValue(user);
                                 }
                             }
 
@@ -279,14 +282,22 @@ public class Exchange extends AppCompatActivity {
                         Button b2 = v.findViewById(R.id.botonVender);
                         b2.setVisibility(View.GONE);
 
-                        //Todo Img
 
+/*
+                        ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
+                        int laFoto= ValoresDefault.get().getUser().getFotoperfil();
+                        if (laFoto==0){
+                            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
+                        } else if (laFoto==1){
+                            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil3.jpg?alt=media&token=c68b1b32-6cd9-4fa8-9115-92531611d1d9").into(perfilimg);
+                        } else if (laFoto==2){
+                            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil2.png?alt=media&token=1151d2b6-23e6-4386-a9a0-c21e2679bdff").into(perfilimg);
+                        } else if (laFoto==3){
+                            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
+                        }*/
 
                         TextView tv = v.findViewById(R.id.nombreMeme);
                         tv.setText(u.getUserName());
-
-
-
 
                         GridLayout rl = (GridLayout) findViewById(R.id.amigos);
                         rl.addView(v);

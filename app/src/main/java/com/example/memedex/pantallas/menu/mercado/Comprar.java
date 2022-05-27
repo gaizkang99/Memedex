@@ -130,6 +130,7 @@ public class Comprar extends AppCompatActivity {
                 .child("Usuario")
                 .child(ValoresDefault.get().getUser().getId())
                 .child("memedexMemes");
+
         memedex.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -137,7 +138,7 @@ public class Comprar extends AppCompatActivity {
                 if (snapshot.exists()) {
                     for (DataSnapshot m : snapshot.getChildren()) {
                         Log.i("Memes",m.getValue(Meme.class).getNombre());
-                        if(m.getValue(Meme.class).getTitulo().equals(meme.getTitulo())){
+                        if(!m.getValue(Meme.class).getTitulo().equals(meme.getTitulo())){
                             existenciaEnMemedex=true;
                         }
                     }

@@ -56,10 +56,13 @@ public class Menu extends AppCompatActivity {
         Button perfil = (Button) findViewById(R.id.profile);
         Button logro2 = (Button) findViewById(R.id.logro2);
 
+
+        //Donde seteas fotoPerfil
         int fotodeperfil = ValoresDefault.get().getUser().getFotoperfil();
         setFotoPerfil(fotodeperfil);
 
-        perfil.setText(ValoresDefault.get().getUser().getUserName() + " / Nivel: " + ValoresDefault.get().getUser().getLevel());
+        perfil.setText(ValoresDefault.get().getUser().getUserName() +
+                " / Nivel: " + ValoresDefault.get().getUser().getLevel());
 
         justes.setOnClickListener(new View.OnClickListener() {
             @Override

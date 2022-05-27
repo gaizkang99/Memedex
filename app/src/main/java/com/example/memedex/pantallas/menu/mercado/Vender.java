@@ -47,6 +47,7 @@ public class Vender extends AppCompatActivity {
         Button vender = findViewById(R.id.vender);
         Button cancelar = findViewById(R.id.cancelar);
 
+
         cantidad.setText("0");
         cantidadExacta = Integer.parseInt(cantidad.getText().toString());
         nombreDeImagen = getIntent().getStringExtra("tituloMeme");

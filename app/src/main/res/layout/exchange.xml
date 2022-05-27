@@ -70,13 +70,13 @@
                             android:id="@+id/peticionesAmistad"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:alpha="0"
                             android:layout_below="@+id/title">
 
                             <TextView
+                                android:id="@+id/peticionesamistad"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/peticionesamistad"
+                                android:alpha="0"
                                 android:background="#f90"
                                 android:gravity="center"
                                 android:padding="14dp"
@@ -106,13 +106,14 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <GridLayout
+                    android:id="@+id/amigos"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/amigos"
+                    android:columnCount="1"
                     android:layout_below="@+id/hijo2">
 
-                </RelativeLayout>
+                </GridLayout>
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>

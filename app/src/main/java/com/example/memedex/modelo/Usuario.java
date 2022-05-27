@@ -9,6 +9,7 @@ public class Usuario {
     private int coins;
     private int level;
     private String id;
+    private String registrado;
 
     public Usuario(String id, String userName, String email, int coins, int level){
         this.id = id;
@@ -31,6 +32,14 @@ public class Usuario {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(String registrado) {
+        this.registrado = registrado;
     }
 
     public void setUserName(String userName) {

@@ -9,7 +9,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_weight="1"
         android:padding="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,6 +17,7 @@
             android:id="@+id/imagen"
             android:layout_width="80dp"
             android:layout_height="80dp">
+
             <ImageView
                 android:id="@+id/imagenMeme"
                 android:layout_width="250px"
@@ -32,7 +32,7 @@
             android:layout_toEndOf="@id/imagen">
 
             <TextView
-                android:id="@+id/nombreMeme"
+                android:id="@+id/nombre"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -48,31 +48,23 @@
             android:layout_toEndOf="@+id/imagen"
             android:gravity="center">
 
-            <Button
+
+            <ImageButton
                 android:id="@+id/botonComprar"
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="COMPRAR"
-                android:textSize="10dp" />
+                app:srcCompat="@android:drawable/ic_input_add" />
 
-            <Button
+
+            <ImageButton
                 android:id="@+id/botonVender"
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:textSize="10dp"
-
                 android:layout_toEndOf="@+id/botonComprar"
-                android:text="VENDER" />
+                android:gravity="center"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+
         </RelativeLayout>
-
-
-
-
-
-
     </RelativeLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

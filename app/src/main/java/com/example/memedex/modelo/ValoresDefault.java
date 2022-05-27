@@ -2,14 +2,11 @@ package com.example.memedex.modelo;
 
 
 import android.os.CountDownTimer;
-import android.util.Log;
-
-import java.util.List;
 
 public class ValoresDefault {
-    public static Usuario user;
+    public Usuario user;
     public CountDownTimer countDownTimer;
-    public float Sonido;
+    public float sonido;
     public float Musica;
 
     private static ValoresDefault ValoresDefault;
@@ -38,11 +35,11 @@ public class ValoresDefault {
     }
 
     public float getSonido() {
-        return Sonido;
+        return sonido;
     }
 
     public void setSonido(float sonido) {
-        Sonido = sonido;
+        this.sonido = sonido;
     }
 
     public float getMusica() {

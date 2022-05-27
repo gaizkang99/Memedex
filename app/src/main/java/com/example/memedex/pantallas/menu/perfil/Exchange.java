@@ -1,5 +1,6 @@
 package com.example.memedex.pantallas.menu.perfil;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,7 +44,7 @@ public class Exchange extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exchange);
 
-        Button back = (Button) findViewById(R.id.back);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
         Button addFriend = (Button) findViewById(R.id.addFriend);
 
         obtenerAmigos();

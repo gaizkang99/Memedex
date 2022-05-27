@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,7 +50,7 @@ public class Profile extends AppCompatActivity {
         misLogros= new ArrayList<>();
 
         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
-        Button back = (Button) findViewById(R.id.back);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
         Button friends = (Button) findViewById(R.id.friends);
 
         TextView nikname = (TextView) findViewById(R.id.nikname);

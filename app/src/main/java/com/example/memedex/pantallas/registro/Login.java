@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,7 +62,7 @@ public class Login extends AppCompatActivity {
         register = findViewById(R.id.register);
         firebaseauth = FirebaseAuth.getInstance();
 
-        Button back = (Button) findViewById(R.id.back);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
 
         register.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -171,10 +172,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void insertLogro(Logro logro) {
-        //Update level
-        FirebaseDatabase.getInstance().getReference("Usuario")
-                .child(ValoresDefault.get().getUser().getId())
-                .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
 
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         Query query= myRef
@@ -192,6 +189,11 @@ public class Login extends AppCompatActivity {
                                 .child("logro").push().setValue(logro);*/
                     }
                 }else{
+                    //Update level
+                    FirebaseDatabase.getInstance().getReference("Usuario")
+                            .child(ValoresDefault.get().getUser().getId())
+                            .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
+
                     FirebaseDatabase.getInstance().getReference("Usuario")
                             .child(ValoresDefault.get().getUser().getId())
                             .child("logro").push().setValue(logro);

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +22,7 @@ public class Ajustes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajustes);
 
-        Button atras = (Button) findViewById(R.id.atras);
+        ImageButton atras = (ImageButton) findViewById(R.id.atras);
         Button close = (Button) findViewById(R.id.cerrarSesion);
 
 

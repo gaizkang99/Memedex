@@ -38,7 +38,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class Menu extends AppCompatActivity {
-    int images[]={R.drawable.logo,R.drawable.perfil,R.drawable.example};
     private AlertDialog.Builder popupbuilder;
     private AlertDialog popup;
     private Button ok;
@@ -204,14 +203,6 @@ public class Menu extends AppCompatActivity {
     }
 
     private void insertLogro(Logro logro) {
-        //Update level
-        int w=ValoresDefault.get().getUser().getLevel()+1;
-        ValoresDefault.get().getUser().setLevel(ValoresDefault.get().getUser().getLevel()+1);
-
-        Log.i("Memes",String.valueOf(w));
-        FirebaseDatabase.getInstance().getReference("Usuario")
-                .child(ValoresDefault.get().getUser().getId())
-                .child("level").setValue(w);
 
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         Query query= myRef
@@ -225,17 +216,27 @@ public class Menu extends AppCompatActivity {
                 if (snapshot.exists()) {
                     for (DataSnapshot l : snapshot.getChildren()) {
                         if(!(l.getValue(Logro.class).getNombre().equals(logro.getNombre()))){
+                            //Update level
+                            FirebaseDatabase.getInstance().getReference("Usuario")
+                                    .child(ValoresDefault.get().getUser().getId())
+                                    .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
+
                             FirebaseDatabase.getInstance().getReference("Usuario")
                                     .child(ValoresDefault.get().getUser().getId())
                                     .child("logro").push().setValue(logro);
-                            //TODO SUBIR +1 level
                             newpopup();
                         }
                     }
                 }else{
+                    //Update level
+                    FirebaseDatabase.getInstance().getReference("Usuario")
+                            .child(ValoresDefault.get().getUser().getId())
+                            .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
+
                     FirebaseDatabase.getInstance().getReference("Usuario")
                             .child(ValoresDefault.get().getUser().getId())
                             .child("logro").push().setValue(logro);
+
                     newpopup();
                 }
             }

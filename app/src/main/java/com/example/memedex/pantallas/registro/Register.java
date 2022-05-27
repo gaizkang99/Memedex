@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +56,7 @@ public class Register extends AppCompatActivity {
         login = findViewById(R.id.login);
         firebaseauth = FirebaseAuth.getInstance();
 
-        Button back = (Button) findViewById(R.id.back);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Usuario");
 

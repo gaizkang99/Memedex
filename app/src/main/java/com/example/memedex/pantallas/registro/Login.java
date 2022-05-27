@@ -50,7 +50,6 @@ public class Login extends AppCompatActivity {
     private AlertDialog popup;
     private Button ok;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,7 +191,8 @@ public class Login extends AppCompatActivity {
                     //Update level
                     FirebaseDatabase.getInstance().getReference("Usuario")
                             .child(ValoresDefault.get().getUser().getId())
-                            .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
+                            .child("level")
+                            .setValue((ValoresDefault.get().getUser().getLevel())+1);
 
                     FirebaseDatabase.getInstance().getReference("Usuario")
                             .child(ValoresDefault.get().getUser().getId())

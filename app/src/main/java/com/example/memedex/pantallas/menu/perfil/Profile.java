@@ -38,6 +38,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.concurrent.Exchanger;
 
 public class Profile extends AppCompatActivity {
 
@@ -46,8 +47,11 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.exchange);
+        setContentView(R.layout.profile);
         misLogros= new ArrayList<>();
+
+        Log.i("Memes",ValoresDefault.get().getUser().getUserName() );
+
 
         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
         ImageButton back = (ImageButton) findViewById(R.id.back);
@@ -87,7 +91,7 @@ public class Profile extends AppCompatActivity {
         friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSign = new Intent(Profile.this, Friends.class);
+                Intent intentSign = new Intent(Profile.this, Exchange.class);
                 startActivity(intentSign);
             }
         });

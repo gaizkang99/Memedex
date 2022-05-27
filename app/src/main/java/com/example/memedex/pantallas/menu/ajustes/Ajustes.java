@@ -41,29 +41,10 @@ public class Ajustes extends AppCompatActivity {
                 startActivity(intentSign);
             }
         });
-        //musica sonido
-        SeekBar scrubSeekBar = (SeekBar) findViewById(R.id.musicaSeekbar);
-        scrubSeekBar.setMax(100);
 
-        scrubSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Log.i("Memes", "Musica " + Integer.toString(i));
-                ValoresDefault.get().setMusica(i);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
 
         SeekBar s = (SeekBar) findViewById(R.id.sonidoSeekbar);
         s.setMax(100);
-        scrubSeekBar.setProgress((int) ValoresDefault.get().getMusica());
 
         s.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

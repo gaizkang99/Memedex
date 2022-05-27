@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +12,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +24,6 @@ import com.example.memedex.R;
 import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
-import com.example.memedex.pantallas.menu.memedex.Memedex;
-import com.example.memedex.pantallas.registro.Login;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -281,10 +276,14 @@ public class Exchange extends AppCompatActivity {
                         b1.setVisibility(View.GONE);
                         Button b2 = v.findViewById(R.id.botonVender);
                         b2.setVisibility(View.GONE);
-/*
 
-                        ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
-                        int laFoto= ValoresDefault.get().getUser().getFotoperfil();
+/*
+                        ImageView perfilimg = (ImageView) findViewById(R.id.imagenPerfil);
+                        Picasso.get()
+                                .load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf")
+                                .into(perfilimg);
+
+                        int laFoto= u.getFotoperfil();
                         if (laFoto==0){
                             Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
                         } else if (laFoto==1){

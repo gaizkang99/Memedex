@@ -51,24 +51,9 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/musica"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Música"></TextView>
-
-                    <SeekBar
-                        android:id="@+id/musicaSeekbar"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/musica"
-                        android:padding="10dp"></SeekBar>
-
-                    <TextView
                         android:id="@+id/sonido"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/musicaSeekbar"
                         android:padding="10dp"
                         android:text="Sonido"></TextView>
 

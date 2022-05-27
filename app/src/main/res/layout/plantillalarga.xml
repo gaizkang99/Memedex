@@ -18,6 +18,7 @@
             android:id="@+id/imagen"
             android:layout_width="80dp"
             android:layout_height="80dp">
+
             <ImageView
                 android:id="@+id/imagenMeme"
                 android:layout_width="250px"

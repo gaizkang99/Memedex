@@ -24,8 +24,6 @@ import com.example.memedex.R;
 import com.example.memedex.modelo.Meme;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
-import com.example.memedex.pantallas.menu.coleccion.Coleccion;
-import com.example.memedex.pantallas.menu.memedex.Memedex;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -50,9 +50,6 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.profile);
         misLogros= new ArrayList<>();
 
-        Log.i("Memes",ValoresDefault.get().getUser().getUserName() );
-
-
         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
         ImageButton back = (ImageButton) findViewById(R.id.back);
         Button friends = (Button) findViewById(R.id.friends);

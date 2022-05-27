@@ -52,6 +52,8 @@
             <Button
                 android:id="@+id/botonComprar"
                 android:layout_width="110dp"
+                android:textStyle="bold"
+                app:cornerRadius="25dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="COMPRAR"
@@ -61,11 +63,12 @@
                 android:id="@+id/botonVender"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:cornerRadius="25dp"
                 android:layout_marginLeft="25dp"
-                android:textSize="10dp"
-
                 android:layout_toEndOf="@+id/botonComprar"
-                android:text="VENDER" />
+                android:text="VENDER"
+                android:textSize="10dp" />
         </RelativeLayout>
 
 

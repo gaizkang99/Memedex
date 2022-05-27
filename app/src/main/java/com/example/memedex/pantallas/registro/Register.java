@@ -151,7 +151,7 @@ public class Register extends AppCompatActivity {
                 userName.getText().toString(),
                 userMail.getText().toString(),
                 300,
-                1,
+                0,
                 0);
 
         ValoresDefault.get().setUser(user);

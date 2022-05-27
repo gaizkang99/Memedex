@@ -30,12 +30,12 @@
                         android:layout_height="wrap_content"
                         android:gravity="left" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/ajustes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="Ajustes" />
+                        android:src="@android:drawable/ic_menu_preferences" />
 
                 </FrameLayout>
 
@@ -84,6 +84,9 @@
                         <Button
                             android:id="@+id/buttonCapturar"
                             android:layout_width="fill_parent"
+
+                            android:textStyle="bold"
+                            app:cornerRadius="25dp"
                             android:layout_height="60dp"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
@@ -93,6 +96,9 @@
                             android:id="@+id/buttonMemedex"
                             android:layout_width="fill_parent"
                             android:layout_height="60dp"
+
+                            android:textStyle="bold"
+                            app:cornerRadius="25dp"
                             android:layout_below="@id/buttonCapturar"
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
@@ -104,8 +110,11 @@
                             android:layout_height="60dp"
                             android:layout_below="@id/buttonMemedex"
                             android:layout_marginLeft="40dp"
+
+                            android:textStyle="bold"
+                            app:cornerRadius="25dp"
                             android:layout_marginRight="40dp"
-                            android:text="Coleccion" />
+                            android:text="Colección" />
 
                         <Button
                             android:id="@+id/buttonIntercambiar"
@@ -113,12 +122,18 @@
                             android:layout_height="60dp"
                             android:layout_below="@id/buttonColeccion"
                             android:layout_marginLeft="40dp"
+
+                            android:textStyle="bold"
+                            app:cornerRadius="25dp"
                             android:layout_marginRight="40dp"
                             android:text="Intercambiar"></Button>
 
                         <Button
                             android:id="@+id/buttonMercado"
                             android:layout_width="fill_parent"
+
+                            android:textStyle="bold"
+                            app:cornerRadius="25dp"
                             android:layout_height="60dp"
                             android:layout_below="@id/buttonIntercambiar"
                             android:layout_marginLeft="40dp"
@@ -131,10 +146,10 @@
                             android:layout_height="60dp"
                             android:layout_below="@id/buttonMercado"
                             android:layout_marginLeft="40dp"
+                            android:layout_marginTop="40dp"
                             android:layout_marginRight="40dp"
-                            android:layout_marginTop="20dp"
                             android:alpha="0.5"
-                            android:text="¡¡¡NO ME PULSES TRES VECES!!!"></Button>
+                            android:text="¡¡¡NO ME PULSES :( !!!"></Button>
 
                     </RelativeLayout>
 

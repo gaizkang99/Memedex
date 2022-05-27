@@ -84,6 +84,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="60dp"
                         android:layout_marginLeft="40dp"
+                        android:textStyle="bold"
+                        app:cornerRadius="25dp"
                         android:layout_marginRight="40dp"
                         android:text="volver a capturar"></Button>
 
@@ -94,6 +96,8 @@
                         android:layout_below="@id/bottonVolverCaptura"
                         android:layout_marginLeft="40dp"
                         android:layout_marginRight="40dp"
+                        android:textStyle="bold"
+                        app:cornerRadius="25dp"
                         android:text="Colección"></Button>
 
                 </RelativeLayout>

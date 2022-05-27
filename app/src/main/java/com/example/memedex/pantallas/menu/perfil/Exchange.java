@@ -101,7 +101,8 @@ public class Exchange extends AppCompatActivity {
                                 .child(u.getId())
                                 .child("amigos")
                                 .orderByChild("userName")
-                                .equalTo(username);
+                                .equalTo(ValoresDefault.get().getUser().getUserName());
+
                         query1.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -114,7 +115,13 @@ public class Exchange extends AppCompatActivity {
                                         DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Usuario")
                                                 .child(u.getId())
                                                 .child("amigos").push();
-                                        Usuario user = ValoresDefault.get().getUser();
+
+                                        Usuario user = new Usuario();
+                                        user.setFotoperfil(ValoresDefault.get().getUser().getFotoperfil());
+                                        user.setCoins(ValoresDefault.get().getUser().getCoins());
+                                        user.setEmail(ValoresDefault.get().getUser().getEmail());
+                                        user.setUserName(ValoresDefault.get().getUser().getUserName());
+                                        user.setLevel(ValoresDefault.get().getUser().getLevel());
                                         user.setId(dr.getKey());
                                         user.setRegistrado("false");
                                         dr.setValue(user);
@@ -125,7 +132,14 @@ public class Exchange extends AppCompatActivity {
                                     DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Usuario")
                                             .child(u.getId())
                                             .child("amigos").push();
-                                    Usuario user = ValoresDefault.get().getUser();
+
+
+                                    Usuario user = new Usuario();
+                                    user.setFotoperfil(ValoresDefault.get().getUser().getFotoperfil());
+                                    user.setCoins(ValoresDefault.get().getUser().getCoins());
+                                    user.setEmail(ValoresDefault.get().getUser().getEmail());
+                                    user.setUserName(ValoresDefault.get().getUser().getUserName());
+                                    user.setLevel(ValoresDefault.get().getUser().getLevel());
                                     user.setId(dr.getKey());
                                     user.setRegistrado("false");
                                     dr.setValue(user);
@@ -202,6 +216,7 @@ public class Exchange extends AppCompatActivity {
                                     @Override
                                     public void onClick(View view) {
 
+                                        Log.i("Memes",u.getId());
 
                                         FirebaseDatabase.getInstance().getReference()
                                                 .child("Usuario")
@@ -210,6 +225,42 @@ public class Exchange extends AppCompatActivity {
                                                 .child(u.getId())
                                                 .child("registrado").setValue("true");
 
+                                        DatabaseReference dr = FirebaseDatabase.getInstance().getReference();
+                                        Query q= dr.child("Usuario")
+                                                .orderByChild("userName")
+                                                .equalTo(u.getUserName());
+
+                                        q.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(snapshot.exists()){
+                                                    for(DataSnapshot ds : snapshot.getChildren()){
+
+                                                        DatabaseReference data = FirebaseDatabase.getInstance().getReference("Usuario")
+                                                                .child(ds.getValue(Usuario.class).getId())
+                                                                .child("amigos")
+                                                                .push();
+
+                                                        Usuario user = new Usuario();
+                                                        user.setFotoperfil(ValoresDefault.get().getUser().getFotoperfil());
+                                                        user.setCoins(ValoresDefault.get().getUser().getCoins());
+                                                        user.setEmail(ValoresDefault.get().getUser().getEmail());
+                                                        user.setUserName(ValoresDefault.get().getUser().getUserName());
+                                                        user.setLevel(ValoresDefault.get().getUser().getLevel());
+                                                        user.setId(data.getKey());
+                                                        user.setRegistrado("true");
+
+                                                        data.setValue(user);
+
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
                                         tw.setVisibility(View.GONE);
                                         title.cancel();
                                         obtenerAmigos();

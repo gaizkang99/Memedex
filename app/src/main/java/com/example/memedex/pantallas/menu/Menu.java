@@ -47,7 +47,7 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.menu_opciones);
 
         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
-        Button justes = (Button) findViewById(R.id.ajustes);
+        ImageView justes = (ImageView) findViewById(R.id.ajustes);
         Button capturar = (Button) findViewById(R.id.buttonCapturar);
         Button memedex = (Button) findViewById(R.id.buttonMemedex);
         Button coleccion = (Button) findViewById(R.id.buttonColeccion);
@@ -125,6 +125,14 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        logro2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logro2Obtenido();
+            }
+        });
+
+        /*
         logro2.setOnTouchListener(new View.OnTouchListener() {
             Handler handler = new Handler();
             int numberOfTaps = 0;
@@ -164,6 +172,8 @@ public class Menu extends AppCompatActivity {
 
 
         });
+
+         */
     }
 
     private void setFotoPerfil(int fotodeperfil) {

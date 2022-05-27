@@ -78,6 +78,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+
+                        android:textStyle="bold"
+                        app:cornerRadius="25dp"
                         android:text="-" />
 
                     <EditText
@@ -95,6 +98,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
+
+                        android:textStyle="bold"
+                        app:cornerRadius="25dp"
                         android:text="+" />
 
                 </RelativeLayout>
@@ -111,17 +117,23 @@
                         android:layout_width="fill_parent"
                         android:layout_height="60dp"
                         android:layout_marginLeft="40dp"
+
+                        android:textStyle="bold"
+                        app:cornerRadius="25dp"
                         android:layout_marginRight="40dp"
-                        android:text="Comprar"/>
+                        android:text="Comprar" />
 
                     <Button
                         android:id="@+id/cancelar"
                         android:layout_width="fill_parent"
                         android:layout_height="60dp"
+
+                        android:textStyle="bold"
+                        app:cornerRadius="25dp"
                         android:layout_below="@id/comprar"
                         android:layout_marginLeft="40dp"
                         android:layout_marginRight="40dp"
-                        android:text="Cancelar"/>
+                        android:text="Cancelar" />
 
                 </RelativeLayout>
 

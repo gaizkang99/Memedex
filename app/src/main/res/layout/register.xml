@@ -43,7 +43,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="140dp"
             android:layout_marginEnd="20dp"
-            android:hint="Enter nikname"
+            android:hint="inserta usuario"
             android:inputType="textEmailAddress"
             android:padding="5dp" />
 
@@ -51,26 +51,26 @@
             android:id="@+id/userMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/userName"
-            android:hint="Enter email"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="inserta correo electrónico"
             android:inputType="textEmailAddress"
             android:padding="5dp" />
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/userMail"
-            android:id="@+id/passwd"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="inserta contraseña"
             android:inputType="textPassword"
-            android:hint="Enter password"
-            android:padding="5dp"/>
+            android:padding="5dp" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:inputType="textPassword"
-            android:hint="Confirm password"
+            android:hint="confirmar contraseña"
             android:padding="5dp"/>
 
         <RelativeLayout
@@ -96,27 +96,27 @@
                 android:id="@+id/terminos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accept Terms and Conditions"
+                android:text="Aceptar terminos y Condiciones"
                 tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
         </RelativeLayout>
 
         <Button
+            android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/switchVibracion"
-            android:id="@+id/register"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Register"/>
+            android:text="Register" />
 
         <TextView
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/register"
-            android:text="Already a user? Login here!"
+            android:text="¿Ya estás registrado? ¡Inicia sesión aquí!"
             android:textAlignment="center"
-            android:textColor="#00F"/>
+            android:textColor="#00F" />
 
     </RelativeLayout>
 

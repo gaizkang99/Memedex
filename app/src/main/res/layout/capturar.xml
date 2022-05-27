@@ -30,6 +30,15 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="?attr/actionModeCloseDrawable" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="¡¡¡¡QUÉ PASARÁ SI ESPERAS!!!!"
+                    android:textSize="20dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
             </FrameLayout>
         </RelativeLayout>
 

@@ -64,7 +64,7 @@ public class Capturar extends AppCompatActivity {
         });
 
 
-        c = new CountDownTimer(rand.nextInt(15) * 1000, 1000) {
+        c = new CountDownTimer(rand.nextInt(7) * 1000, 1000) {
             public void onTick(long millisUntilFinished) {
                 // Used for formatting digit to be in 2 digits only
                 long hour = (millisUntilFinished / 3600000) % 24;

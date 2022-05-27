@@ -281,9 +281,8 @@ public class Exchange extends AppCompatActivity {
                         b1.setVisibility(View.GONE);
                         Button b2 = v.findViewById(R.id.botonVender);
                         b2.setVisibility(View.GONE);
-
-
 /*
+
                         ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
                         int laFoto= ValoresDefault.get().getUser().getFotoperfil();
                         if (laFoto==0){
@@ -294,8 +293,8 @@ public class Exchange extends AppCompatActivity {
                             Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil2.png?alt=media&token=1151d2b6-23e6-4386-a9a0-c21e2679bdff").into(perfilimg);
                         } else if (laFoto==3){
                             Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
-                        }*/
-
+                        }
+*/
                         TextView tv = v.findViewById(R.id.nombreMeme);
                         tv.setText(u.getUserName());
 

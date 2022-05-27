@@ -88,7 +88,11 @@
             android:configChanges="screenSize|orientation"
             android:windowSoftInputMode="stateHidden"
             android:exported="true" />
-
+        <activity
+            android:name=".pantallas.menu.perfil.LogroRegistro"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:exported="true" />
     </application>
 
 </manifest>

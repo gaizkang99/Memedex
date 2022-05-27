@@ -24,13 +24,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-                <Button
+                <ImageButton
                     android:id="@+id/back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="Atrás"
-                    tools:ignore="RtlHardcoded" />
+                    app:srcCompat="?attr/actionModeCloseDrawable" />
 
             </FrameLayout>
         </RelativeLayout>

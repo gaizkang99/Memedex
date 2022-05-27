@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -52,7 +53,7 @@ public class Capturar extends AppCompatActivity {
         sonido = MediaPlayer.create(this, R.raw.duck_sound);
         sonido.setVolume(ValoresDefault.get().getSonido(), ValoresDefault.get().getSonido());
 
-        Button back = (Button) findViewById(R.id.back);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

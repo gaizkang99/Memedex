@@ -6,7 +6,7 @@ import android.os.CountDownTimer;
 public class ValoresDefault {
     public Usuario user;
     public CountDownTimer countDownTimer;
-    public float sonido;
+    public float sonido=100;
     public float Musica;
 
     private static ValoresDefault ValoresDefault;

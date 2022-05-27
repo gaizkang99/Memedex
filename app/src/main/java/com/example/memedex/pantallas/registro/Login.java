@@ -8,6 +8,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memedex.modelo.Logro;
+import com.example.memedex.modelo.Meme;
 import com.example.memedex.modelo.Usuario;
 import com.example.memedex.modelo.ValoresDefault;
 import com.example.memedex.pantallas.menu.Menu;
@@ -42,7 +46,9 @@ public class Login extends AppCompatActivity {
     private TextView register;
     private FirebaseDatabase fb;
     private FirebaseAuth firebaseauth;
-
+    private AlertDialog.Builder popupbuilder;
+    private AlertDialog popup;
+    private Button ok;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -56,7 +62,7 @@ public class Login extends AppCompatActivity {
         register = findViewById(R.id.register);
         firebaseauth = FirebaseAuth.getInstance();
 
-        Button back = (Button) findViewById(R.id.back);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
 
         register.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -119,7 +125,8 @@ public class Login extends AppCompatActivity {
                                 user.getValue(Usuario.class).getUserName(),
                                 user.getValue(Usuario.class).getEmail(),
                                 user.getValue(Usuario.class).getCoins(),
-                                user.getValue(Usuario.class).getLevel()
+                                user.getValue(Usuario.class).getLevel(),
+                                user.getValue(Usuario.class).getFotoperfil()
                                 );
                         ValoresDefault.get().setUser(u);
 
@@ -165,6 +172,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void insertLogro(Logro logro) {
+
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         Query query= myRef
                 .child("Usuario")
@@ -181,9 +189,15 @@ public class Login extends AppCompatActivity {
                                 .child("logro").push().setValue(logro);*/
                     }
                 }else{
+                    //Update level
+                    FirebaseDatabase.getInstance().getReference("Usuario")
+                            .child(ValoresDefault.get().getUser().getId())
+                            .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
+
                     FirebaseDatabase.getInstance().getReference("Usuario")
                             .child(ValoresDefault.get().getUser().getId())
                             .child("logro").push().setValue(logro);
+                    newpopup();
                 }
             }
 
@@ -194,16 +208,20 @@ public class Login extends AppCompatActivity {
 
         });
     }
-    private void popup() {
-        AlertDialog.Builder alerta = new AlertDialog.Builder(Login.this);
-        alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    public void newpopup(){
+        popupbuilder = new AlertDialog.Builder(this);
+        final View contactPopupView = getLayoutInflater().inflate(R.layout.popup,null);
+        ok = (Button) contactPopupView.findViewById(R.id.buton);
+
+        popupbuilder.setView(contactPopupView);
+        popup = popupbuilder.create();
+        popup.show();
+
+        ok.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
+            public void onClick(View view) {
+                popup.dismiss();
             }
         });
-        AlertDialog title = alerta.create();
-        title.setTitle("Logeado!");
-        title.show();
     }
 }

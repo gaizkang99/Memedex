@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +47,7 @@ public class Mercado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mercado);
 
-        Button back = findViewById(R.id.back);
+        ImageButton back = findViewById(R.id.back);
         EditText finder = findViewById(R.id.finder);
         memes = new ArrayList<>();
 

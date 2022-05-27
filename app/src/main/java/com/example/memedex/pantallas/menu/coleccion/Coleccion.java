@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class Coleccion extends AppCompatActivity {
 
         memes = new ArrayList<>();
 
-        Button back = findViewById(R.id.back);
+        ImageButton back = findViewById(R.id.back);
 
         pillarMemesBaseDatos();
 

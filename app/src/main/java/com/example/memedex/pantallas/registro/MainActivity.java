@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.memedex.R;
+import com.example.memedex.modelo.FotoPerfil;
 import com.example.memedex.modelo.Logro;
 import com.example.memedex.modelo.Meme;
 import com.google.firebase.database.DatabaseReference;

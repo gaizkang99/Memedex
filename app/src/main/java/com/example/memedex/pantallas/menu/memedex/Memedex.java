@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -88,7 +89,7 @@ public class Memedex extends AppCompatActivity {
             }
         });
         //Botones
-        Button back = findViewById(R.id.back);
+        ImageButton back = findViewById(R.id.back);
         back.setOnClickListener(view -> {
             Intent intentSign = new Intent(Memedex.this, Menu.class);
             startActivity(intentSign);

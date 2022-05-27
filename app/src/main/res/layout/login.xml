@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <RelativeLayout
@@ -23,13 +23,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-                <Button
+                <ImageButton
                     android:id="@+id/back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/Atras"
-                    tools:ignore="RtlHardcoded" />
+                    app:srcCompat="?attr/actionModeCloseDrawable" />
+
 
             </FrameLayout>
 

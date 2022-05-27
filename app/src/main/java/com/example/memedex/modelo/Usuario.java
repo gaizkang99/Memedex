@@ -1,5 +1,7 @@
 package com.example.memedex.modelo;
 
+import com.example.memedex.R;
+
 import java.util.ArrayList;
 
 public class Usuario {
@@ -10,16 +12,25 @@ public class Usuario {
     private int level;
     private String id;
     private String registrado;
+    private int fotoperfil;
 
-    public Usuario(String id, String userName, String email, int coins, int level){
+    public Usuario(String id, String userName, String email, int coins, int level, int foto){
         this.id = id;
         this.userName = userName;
         this.email = email;
         this.coins = coins;
         this.level = level;
+        this.fotoperfil = foto;
     }
     public Usuario() { }
 
+    public int getFotoperfil() {
+        return fotoperfil;
+    }
+
+    public void setFotoperfil(int fotoperfil) {
+        this.fotoperfil = fotoperfil;
+    }
 
     public String getId() {
         return id;
@@ -64,7 +75,9 @@ public class Usuario {
                 "userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", coins=" + coins +
-                ", level=" + level ;
+                ", level=" + level +
+                ", id='" + id + '\'' +
+                '}';
     }
 
     public void setCoins(int coins) {
@@ -78,5 +91,6 @@ public class Usuario {
     public void setLevel(int level) {
         this.level = level;
     }
+
 
 }

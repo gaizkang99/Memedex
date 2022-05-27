@@ -35,9 +35,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class Menu extends AppCompatActivity {
-
+    private AlertDialog.Builder popupbuilder;
+    private AlertDialog popup;
+    private Button ok;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,9 @@ public class Menu extends AppCompatActivity {
         Button mercado = findViewById(R.id.buttonMercado);
         Button perfil = (Button) findViewById(R.id.profile);
         Button logro2 = (Button) findViewById(R.id.logro2);
+
+        int fotodeperfil = ValoresDefault.get().getUser().getFotoperfil();
+        setFotoPerfil(fotodeperfil);
 
         perfil.setText(ValoresDefault.get().getUser().getUserName() + " / Nivel: " + ValoresDefault.get().getUser().getLevel());
 
@@ -156,6 +162,20 @@ public class Menu extends AppCompatActivity {
 
         });
     }
+
+    private void setFotoPerfil(int fotodeperfil) {
+        ImageView perfilimg = (ImageView) findViewById(R.id.imageView1);
+        if (fotodeperfil==0){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
+        } else if (fotodeperfil==1){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil3.jpg?alt=media&token=c68b1b32-6cd9-4fa8-9115-92531611d1d9").into(perfilimg);
+        } else if (fotodeperfil==2){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil2.png?alt=media&token=1151d2b6-23e6-4386-a9a0-c21e2679bdff").into(perfilimg);
+        } else if (fotodeperfil==3){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/memedex-aa951.appspot.com/o/perfil1.JPG?alt=media&token=83ea862d-0d65-4407-be65-acb0b68d97bf").into(perfilimg);
+        }
+    }
+
     private void logro2Obtenido() {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         Query query= myRef
@@ -183,6 +203,7 @@ public class Menu extends AppCompatActivity {
     }
 
     private void insertLogro(Logro logro) {
+
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         Query query= myRef
                 .child("Usuario")
@@ -195,17 +216,28 @@ public class Menu extends AppCompatActivity {
                 if (snapshot.exists()) {
                     for (DataSnapshot l : snapshot.getChildren()) {
                         if(!(l.getValue(Logro.class).getNombre().equals(logro.getNombre()))){
+                            //Update level
+                            FirebaseDatabase.getInstance().getReference("Usuario")
+                                    .child(ValoresDefault.get().getUser().getId())
+                                    .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
+
                             FirebaseDatabase.getInstance().getReference("Usuario")
                                     .child(ValoresDefault.get().getUser().getId())
                                     .child("logro").push().setValue(logro);
-
-                            popup();
+                            newpopup();
                         }
                     }
                 }else{
+                    //Update level
+                    FirebaseDatabase.getInstance().getReference("Usuario")
+                            .child(ValoresDefault.get().getUser().getId())
+                            .child("level").setValue((ValoresDefault.get().getUser().getLevel())+1);
+
                     FirebaseDatabase.getInstance().getReference("Usuario")
                             .child(ValoresDefault.get().getUser().getId())
                             .child("logro").push().setValue(logro);
+
+                    newpopup();
                 }
             }
 
@@ -216,16 +248,24 @@ public class Menu extends AppCompatActivity {
 
         });
     }
-    private void popup() {
-        AlertDialog.Builder alerta = new AlertDialog.Builder(Menu.this);
-        alerta.setMessage("Logro desbloqueado!!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+    public void newpopup(){
+        popupbuilder = new AlertDialog.Builder(this);
+        final View contactPopupView = getLayoutInflater().inflate(R.layout.popup,null);
+        ok = (Button) contactPopupView.findViewById(R.id.buton);
+
+        TextView texto = (TextView) findViewById(R.id.texto);
+        texto.setText("Logro de easter egg de Memedes!");
+
+        popupbuilder.setView(contactPopupView);
+        popup = popupbuilder.create();
+        popup.show();
+
+        ok.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
+            public void onClick(View view) {
+                popup.dismiss();
             }
         });
-        AlertDialog title = alerta.create();
-        title.setTitle("Easter Egg!");
-        title.show();
     }
 }
